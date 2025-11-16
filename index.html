@@ -1,146 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Boda Cris & Pablo – 12/09/2026</title>
 
-<!-- TIPOGRAFÍAS ELEGANTES -->
+<!-- Tipografías -->
 <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-/* ----------- BASE ----------- */
+/* --- Colores --- */
+:root {
+    --verde-eucalipto: #5e7c71;
+    --beige-suave: #f9f5ef;
+}
+
+/* --- Base --- */
 body {
     margin: 0;
-    background: #ffffff;
+    background: var(--beige-suave);
     font-family: 'Cormorant Garamond', serif;
     color: #333;
 }
 
-/* ----------- CONTENEDOR HERO ----------- */
+/* --- Hero principal --- */
 .hero {
-    padding: 120px 20px 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #faf7f2;
+    padding: 120px 20px;
+    flex-wrap: wrap;
+    gap: 60px;
 }
 
-/* ----------- COLLAGE ----------- */
-.collage {
-    position: relative;
-    max-width: 1100px;
-    width: 100%;
-}
-
-.main-photo {
-    width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-}
-
-/* Fotos secundarias (si añadimos más más tarde) */
-.small-photo {
-    position: absolute;
-    width: 260px;
-    border-radius: 6px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+/* --- Marco ovalado con la foto --- */
+.photo-frame {
+    width: 380px;
+    height: 520px;
+    border-radius: 230px;
+    padding: 14px;
     background: white;
-}
-
-/* Ubicación estilo editorial */
-.small-photo.left {
-    top: 15%;
-    left: -40px;
-}
-
-.small-photo.right {
-    bottom: 15%;
-    right: -40px;
-}
-
-/* ----------- TEXTO SOBRE COLLAGE ----------- */
-.hero-text {
-    text-align: center;
-    margin-top: -420px;
-    margin-bottom: 420px;
+    border: 3px solid #e3dad2;
     position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 220px;
+}
+
+/* --- Decoración floral discreta --- */
+.flower-bottom {
+    position: absolute;
+    bottom: -45px;
+    left: 35px;
+    width: 110px;
+    opacity: 0.85;
+}
+
+.butterfly-top {
+    position: absolute;
+    top: -32px;
+    right: 25px;
+    width: 70px;
+    opacity: 0.8;
+}
+
+/* --- Texto de la portada --- */
+.hero-text {
+    text-align: left;
+    max-width: 500px;
+    margin-top: 40px;
 }
 
 .hero-text h1 {
     font-family: 'Parisienne', cursive;
     font-size: 4rem;
+    color: var(--verde-eucalipto);
     margin: 0;
-    font-weight: 300;
-    color: #333;
 }
 
 .hero-text h2 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    color: #5a5a5a;
     letter-spacing: 2px;
-    margin-top: 10px;
-    font-weight: 300;
-    color: #444;
-}
-
-.date-line {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
+    margin: 10px 0 0 2px;
 }
 
 #countdown {
-    margin-top: 18px;
+    margin-top: 20px;
     font-size: 1.4rem;
-    color: #444;
+    color: var(--verde-eucalipto);
 }
 
-/* ----------- SECCIONES ----------- */
-section {
-    padding: 80px 20px;
-    max-width: 850px;
-    margin: auto;
-    text-align: center;
-}
-
-.title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.divider {
-    width: 70px;
-    height: 2px;
-    background: #d4c5a8;
-    margin: 40px auto;
-}
-
-/* ----------- FOOTER ----------- */
-footer {
-    text-align: center;
-    padding: 40px;
-    font-size: 1rem;
-    color: #777;
-}
-
-/* ----------- RESPONSIVE ----------- */
+/* Responsive */
 @media (max-width: 900px) {
-    .hero-text {
-        margin-top: -250px;
-        margin-bottom: 260px;
+    .hero {
+        flex-direction: column;
+        padding: 80px 20px;
     }
 
-    .small-photo {
-        display: none;
+    .photo-frame {
+        width: 300px;
+        height: 420px;
+        border-radius: 180px;
     }
-}
 
-@media (max-width: 600px) {
-    .hero-text h1 { font-size: 3rem; }
-    .hero-text h2 { font-size: 1.2rem; }
+    .hero-text h1 {
+        font-size: 3.4rem;
+    }
 }
 
 </style>
@@ -148,71 +121,31 @@ footer {
 
 <body>
 
-<!-- HERO COLLAGE -->
+<!-- HERO -->
 <div class="hero">
-    <div class="collage">
 
-        <!-- Foto principal -->
-        <img src="portada.jpeg" class="main-photo" alt="Foto principal" />
+    <!-- Marco con foto -->
+    <div class="photo-frame">
+        <img src="portada.jpeg" alt="Foto pareja">
 
-        <!-- Fotos secundarias opcionales (de momento ocultas) -->
-        <!-- 
-        <img src="foto2.jpeg" class="small-photo left">
-        <img src="foto3.jpeg" class="small-photo right">
-        -->
+        <!-- Flor discreta inferior -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTc1IDExMUMxMTAgMTEwIDEzMCA4MiAxMjUgNTMgMTIxIDI4IDk1IDEzIDcxIDE2IDQ1IDIwIDI5IDQ5IDMyIDY5IDQ1IDk3IDY0IDExMCA4MyAxMTEgMTExWiIgZmlsbD0iI2ZkZWRlYiIgc3Ryb2tlPSIjZThkMmNhIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==" 
+             class="flower-bottom">
 
-        <!-- Texto super elegante -->
-        <div class="hero-text">
-            <h1>Cris & Pablo</h1>
-            <h2>12 • septiembre • 2026</h2>
-            <div id="countdown"></div>
-        </div>
-
+        <!-- Mariposa discreta -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMzUgNEM0MyAxMCA1MiAyMiA1NyAzNyA1MyAzNSA0OSAzMyA0MyAzMCAzOCAyNyAzNCAyNCAzMSAyNCAyOCAyNSAyNiAyOCAyNSAzMSAyMSAzMiAxOCAzNiAxMCA0MiAxMCA0NiAxMyA0OSAxNCA1MiAyMCA1NyAyMCA2MCBVMjcgNjAgMzAgNTcgMzEgNTMgMzAgNTAgMjkgNDkgMjggNDcgMjggNDVWMjggMjQgMTkgMjQgMTcgMjUgMTYgMjcgMTYgMzEgMTggMzQgMjQgMzggMzAgNDMgMzYgNDcgNDEgNDkgNDIgNTQgNDkgNTcgNTUgNTkgNTMgNjEgNTEgNjIgNDkgNjMgNDUgNjMgNDEgNjIgMzggNTkgMzMgNTMgMjkgNDcgMjggNDQgMjcgNDEgMjcgMzkgMjggMzggMzEgMzggMzQgMzkgMzYgNDAgMzkgNDIgNDMgNDQgNDcgNDQgNTAgNDMgNTMgNDIgNTUgNDAgNTYgMzggNTYgMzUgNTQgMzMgNTAKIiBmaWxsPSIjZmVkZWViIiBzdHJva2U9IiNlOGQyY2EiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==" 
+             class="butterfly-top">
     </div>
+
+    <!-- Texto -->
+    <div class="hero-text">
+        <h1>Cris & Pablo</h1>
+        <h2>12 · septiembre · 2026</h2>
+        <div id="countdown"></div>
+    </div>
+
 </div>
 
-<!-- HISTORIA -->
-<section id="historia">
-    <div class="title">Nuestra Historia</div>
-    <p>
-        Aquí podemos escribir un texto bonito sobre cómo empezó todo,
-        lo que significa este día y cualquier detalle que queráis compartir.
-    </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- INFO -->
-<section id="info">
-    <div class="title">La Boda</div>
-    <p>
-        📅 <strong>12 de septiembre de 2026</strong><br>
-        📍 Lugar pendiente de añadir.
-    </p>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROGRAMA -->
-<section id="programa">
-    <div class="title">Programa del Día</div>
-    <p><strong>16:00</strong> — Ceremonia</p>
-    <p><strong>17:30</strong> — Cóctel</p>
-    <p><strong>19:00</strong> — Cena</p>
-    <p><strong>22:00</strong> — Fiesta</p>
-</section>
-
-<div class="divider"></div>
-
-<!-- RSVP -->
-<section id="rsvp">
-    <div class="title">Confirmación de Asistencia</div>
-    <p>Puedes poner aquí un enlace a un Google Forms o WhatsApp.</p>
-</section>
-
-<footer>
-    © 2026 Cris & Pablo — bodacrisypablo.es
-</footer>
 
 <!-- COUNTDOWN -->
 <script>
@@ -222,9 +155,11 @@ const countdownEl = document.getElementById("countdown");
 function updateCountdown() {
     const now = new Date();
     const diff = weddingDate - now;
+
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     countdownEl.textContent = days + " días para la boda ♥";
 }
+
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
