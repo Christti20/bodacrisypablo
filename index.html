@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Boda Cris & Pablo – 12/09/2026</title>
 
@@ -11,108 +11,120 @@
 
 <style>
 
-/* --- Colores --- */
 :root {
     --verde-eucalipto: #5e7c71;
-    --beige-suave: #f9f5ef;
+    --beige: #faf6ef;
 }
 
-/* --- Base --- */
+/* BASE */
 body {
     margin: 0;
-    background: var(--beige-suave);
+    background: var(--beige);
     font-family: 'Cormorant Garamond', serif;
-    color: #333;
+    color: #444;
 }
 
-/* --- Hero principal --- */
+/* HERO GRANDE */
 .hero {
+    height: 90vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 120px 20px;
-    flex-wrap: wrap;
-    gap: 60px;
+    justify-content: center;
+    padding: 40px;
+    gap: 80px;
+    flex-wrap: nowrap;
 }
 
-/* --- Marco ovalado con la foto --- */
+/* FOTO XL */
 .photo-frame {
-    width: 380px;
-    height: 520px;
-    border-radius: 230px;
-    padding: 14px;
+    width: 480px;
+    height: 680px;
+    border-radius: 260px;
+    padding: 20px;
     background: white;
-    border: 3px solid #e3dad2;
+    border: 4px solid #eae1d8;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
     position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
 .photo-frame img {
     width: 100%;
     height: 100%;
+    border-radius: 240px;
     object-fit: cover;
-    border-radius: 220px;
 }
 
-/* --- Decoración floral discreta --- */
-.flower-bottom {
+/* FLORES Y MARIPOSA — PEQUEÑITAS Y FINAS */
+.flower-small {
     position: absolute;
-    bottom: -45px;
+    bottom: -28px;
     left: 35px;
-    width: 110px;
-    opacity: 0.85;
+    width: 75px;
+    opacity: 0.75;
 }
 
-.butterfly-top {
+.butterfly-small {
     position: absolute;
-    top: -32px;
-    right: 25px;
-    width: 70px;
+    top: -22px;
+    right: 28px;
+    width: 50px;
     opacity: 0.8;
 }
 
-/* --- Texto de la portada --- */
+/* TEXTO */
 .hero-text {
-    text-align: left;
     max-width: 500px;
-    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero-text h1 {
     font-family: 'Parisienne', cursive;
-    font-size: 4rem;
+    font-size: 5rem;
+    margin: 0 0 10px 0;
     color: var(--verde-eucalipto);
-    margin: 0;
 }
 
 .hero-text h2 {
-    font-size: 1.6rem;
-    color: #5a5a5a;
+    font-size: 1.8rem;
     letter-spacing: 2px;
-    margin: 10px 0 0 2px;
+    color: #6b6b6b;
+    margin: 0 0 20px 2px;
 }
 
 #countdown {
-    margin-top: 20px;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--verde-eucalipto);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* RESPONSIVE */
+@media (max-width: 1100px) {
     .hero {
         flex-direction: column;
-        padding: 80px 20px;
+        height: auto;
+        padding: 40px 20px;
+        gap: 40px;
     }
 
     .photo-frame {
-        width: 300px;
-        height: 420px;
+        width: 350px;
+        height: 500px;
+        border-radius: 200px;
+    }
+
+    .photo-frame img {
         border-radius: 180px;
     }
 
     .hero-text h1 {
-        font-size: 3.4rem;
+        font-size: 4rem;
+        text-align: center;
+    }
+
+    .hero-text h2,
+    #countdown {
+        text-align: center;
     }
 }
 
@@ -121,23 +133,22 @@ body {
 
 <body>
 
-<!-- HERO -->
+<!-- HERO XL -->
 <div class="hero">
 
-    <!-- Marco con foto -->
+    <!-- FOTO GRANDE -->
     <div class="photo-frame">
         <img src="portada.jpeg" alt="Foto pareja">
 
-        <!-- Flor discreta inferior -->
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDE1MCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTc1IDExMUMxMTAgMTEwIDEzMCA4MiAxMjUgNTMgMTIxIDI4IDk1IDEzIDcxIDE2IDQ1IDIwIDI5IDQ5IDMyIDY5IDQ1IDk3IDY0IDExMCA4MyAxMTEgMTExWiIgZmlsbD0iI2ZkZWRlYiIgc3Ryb2tlPSIjZThkMmNhIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==" 
-             class="flower-bottom">
+        <!-- FLORES SUAVES -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUwIDc1Qzc1IDc0IDkwIDU1IDg3IDM3IDg0IDIxIDY2IDEwIDUwIDEzIDM0IDE2IDIyIDI4IDE4IDQzIDE4IDU1IDI4IDYyIDM3IDY1IDU0IDUwIDc1WiIgZmlsbD0iI2ZlZGVlYiIgc3Ryb2tlPSIjZThkMmNhIiBzdHJva2Utd2lkdGg9IjQiLz48L3N2Zz4=" class="flower-small">
 
-        <!-- Mariposa discreta -->
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMzUgNEM0MyAxMCA1MiAyMiA1NyAzNyA1MyAzNSA0OSAzMyA0MyAzMCAzOCAyNyAzNCAyNCAzMSAyNCAyOCAyNSAyNiAyOCAyNSAzMSAyMSAzMiAxOCAzNiAxMCA0MiAxMCA0NiAxMyA0OSAxNCA1MiAyMCA1NyAyMCA2MCBVMjcgNjAgMzAgNTcgMzEgNTMgMzAgNTAgMjkgNDkgMjggNDcgMjggNDVWMjggMjQgMTkgMjQgMTcgMjUgMTYgMjcgMTYgMzEgMTggMzQgMjQgMzggMzAgNDMgMzYgNDcgNDEgNDkgNDIgNTQgNDkgNTcgNTUgNTkgNTMgNjEgNTEgNjIgNDkgNjMgNDUgNjMgNDEgNjIgMzggNTkgMzMgNTMgMjkgNDcgMjggNDQgMjcgNDEgMjcgMzkgMjggMzggMzEgMzggMzQgMzkgMzYgNDAgMzkgNDIgNDMgNDQgNDcgNDQgNTAgNDMgNTMgNDIgNTUgNDAgNTYgMzggNTYgMzUgNTQgMzMgNTAKIiBmaWxsPSIjZmVkZWViIiBzdHJva2U9IiNlOGQyY2EiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPg==" 
-             class="butterfly-top">
+        <!-- MARIPOSA SUAVE -->
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDUgMTUgNTAgMjggNjAgNDEgNTUgNDUgNDcgNTAgNDMgNDkgMzkgNDggMzggNDcgMzkgNDUgMzQgNDQgMzAgNDQgMjggNDYgMjggNDggMjkgNDkgMzAgNTAgMzEgNTMgMzIgNTUgMzUgNTYgMzcgNTcgMzkgNTYgNDAgNTQgNDEgNTMgNDIgNTAgNDEgNDkgMzggNDcgMzUgNDQgMzMgNDMgMzAgNDIgMjYgNDEgMjQgMzkgMjQgMzggMjYgMzggMzAgMzkgMzQgMzkgNDEgNDIgNDcgNDQgNDggNDUgNTAgNDUgNTIgNDMgNTMgNDEgNTQgMzkgNTMgMzggNTAgMzQgNDkgMzMgNDggMzMgNDcgMzQgNDUgMzggNDMgNDEgNDIgNDQgNDQgNDUgNDcgNDkgNDggNTIgNTAgNTMiIGZpbGw9IiNmZWRlZWIiIHN0cm9rZT0iI2U4ZDJjYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+" 
+             class="butterfly-small">
     </div>
 
-    <!-- Texto -->
+    <!-- TEXTO -->
     <div class="hero-text">
         <h1>Cris & Pablo</h1>
         <h2>12 · septiembre · 2026</h2>
@@ -155,11 +166,9 @@ const countdownEl = document.getElementById("countdown");
 function updateCountdown() {
     const now = new Date();
     const diff = weddingDate - now;
-
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     countdownEl.textContent = days + " días para la boda ♥";
 }
-
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
