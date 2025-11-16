@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda Cris & Pablo – 2026</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            height: 100vh;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 1.8rem;
+            margin-top: -10px;
+            color: #666;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #ccc;
+            margin: 40px auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        #countdown {
+            font-size: 1.8rem;
+            text-align: center;
+            color: #444;
+        }
+
+        .program-item {
+            margin-bottom: 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Cris & Pablo</h1>
+    <h2>Nos casamos en 2026</h2>
+    <div class="divider"></div>
+    <div id="countdown"></div>
+</header>
+
+<section id="historia">
+    <div class="title">Nuestra historia</div>
+    <p>
+        Aquí pondremos un texto breve y elegante sobre vuestra historia juntos.
+        Podemos ampliarlo o hacerlo más romántico, divertido o simbólico.
+    </p>
+</section>
+
+<div class="divider"></div>
+
+<section id="fecha-lugar">
+    <div class="title">Fecha & Lugar</div>
+    <p>
+        📅 <strong>Fecha:</strong> Día / Mes / 2026<br>
+        📍 <strong>Lugar:</strong> Nombre del sitio (se puede añadir Google Maps)
+    </p>
+</section>
+
+<div class="divider"></div>
+
+<section id="programa">
+    <div class="title">Programa del día</div>
+
+    <div class="program-item"><strong>16:00</strong> — Ceremonia</div>
+    <div class="program-item"><strong>17:30</strong> — Cóctel</div>
+    <div class="program-item"><strong>19:00</strong> — Cena</div>
+    <div class="program-item"><strong>22:00</strong> — Fiesta</div>
+
+</section>
+
+<div class="divider"></div>
+
+<section id="como-llegar">
+    <div class="title">Cómo llegar</div>
+    <p>Puedes incluir aquí un mapa, coordenadas o indicaciones especiales.</p>
+</section>
+
+<div class="divider"></div>
+
+<section id="dresscode">
+    <div class="title">Dress Code</div>
+    <p>Indica aquí el estilo de vestimenta recomendado.</p>
+</section>
+
+<div class="divider"></div>
+
+<section id="rsvp">
+    <div class="title">Confirmación de asistencia (RSVP)</div>
+    <p>Puedes enlazar un Google Forms, un correo o un WhatsApp.</p>
+    <p><a href="#" style="color:#333; font-weight:600;">Formulario de asistencia</a></p>
+</section>
+
+<div class="divider"></div>
+
+<section id="info-invitados">
+    <div class="title">Información para invitados</div>
+    <p>Alojamiento, transporte, recomendaciones, etc.</p>
+</section>
+
+<div class="divider"></div>
+
+<section id="lista-boda">
+    <div class="title">Lista de boda</div>
+    <p>
+        Puedes añadir enlace a vuestra lista (Amazon, El Corte Inglés, o cuenta bancaria).
+    </p>
+</section>
+
+<div class="divider"></div>
+
+<section id="galeria">
+    <div class="title">Galería</div>
+    <p>
+        Podemos añadir fotos vuestras o dejar espacio para subir imágenes después.
+    </p>
+</section>
+
+<footer>
+    © 2026 Cris & Pablo – bodacrisypablo.es
+</footer>
+
+<script>
+    // Cuenta atrás
+    const weddingDate = new Date("2026-06-20T00:00:00"); // Ajusta la fecha
+    const countdownEl = document.getElementById("countdown");
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = weddingDate - now;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        countdownEl.innerHTML = `${days} días para la boda 🎉`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
