@@ -12,90 +12,89 @@
 <style>
 
 :root {
-    --verde-eucalipto: #5e7c71;
-    --beige: #faf6ef;
+    --verde: #5e7c71;
+    --beige: #faf7ef;
 }
 
-/* BASE */
 body {
     margin: 0;
     background: var(--beige);
     font-family: 'Cormorant Garamond', serif;
-    color: #444;
 }
 
-/* HERO GRANDE */
+/* HERO COMPLETO */
 .hero {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 100px;
     padding: 40px;
-    gap: 80px;
-    flex-wrap: nowrap;
 }
 
 /* FOTO XL */
 .photo-frame {
-    width: 480px;
-    height: 680px;
-    border-radius: 260px;
-    padding: 20px;
+    width: 530px;
+    height: 780px;
+    border-radius: 310px;
+    padding: 22px;
     background: white;
-    border: 4px solid #eae1d8;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    border: 4px solid #e9ded3;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
     position: relative;
 }
 
 .photo-frame img {
     width: 100%;
     height: 100%;
-    border-radius: 240px;
+    border-radius: 290px;
     object-fit: cover;
 }
 
-/* FLORES Y MARIPOSA — PEQUEÑITAS Y FINAS */
-.flower-small {
+/* FLORES Y MARIPOSA — DISCRETAS */
+.flower {
     position: absolute;
-    bottom: -28px;
+    bottom: -25px;
     left: 35px;
-    width: 75px;
-    opacity: 0.75;
-}
-
-.butterfly-small {
-    position: absolute;
-    top: -22px;
-    right: 28px;
-    width: 50px;
+    width: 60px;
     opacity: 0.8;
 }
 
-/* TEXTO */
+.butterfly {
+    position: absolute;
+    top: -12px;
+    right: 35px;
+    width: 45px;
+    opacity: 0.85;
+}
+
+/* BLOQUE DE TEXTO COMPACTO Y CENTRADO */
 .hero-text {
-    max-width: 500px;
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 }
 
 .hero-text h1 {
+    font-size: 6.2rem;
     font-family: 'Parisienne', cursive;
-    font-size: 5rem;
-    margin: 0 0 10px 0;
-    color: var(--verde-eucalipto);
+    color: var(--verde);
+    margin: 0;
+    line-height: 1;
 }
 
 .hero-text h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    color: #555;
+    margin: 15px 0 5px 0;
     letter-spacing: 2px;
-    color: #6b6b6b;
-    margin: 0 0 20px 2px;
 }
 
 #countdown {
-    font-size: 1.6rem;
-    color: var(--verde-eucalipto);
+    margin-top: 15px;
+    font-size: 1.8rem;
+    color: var(--verde);
 }
 
 /* RESPONSIVE */
@@ -103,28 +102,25 @@ body {
     .hero {
         flex-direction: column;
         height: auto;
-        padding: 40px 20px;
-        gap: 40px;
+        padding: 60px 20px;
     }
 
     .photo-frame {
-        width: 350px;
-        height: 500px;
-        border-radius: 200px;
-    }
-
-    .photo-frame img {
-        border-radius: 180px;
+        width: 380px;
+        height: 560px;
+        border-radius: 230px;
     }
 
     .hero-text h1 {
-        font-size: 4rem;
-        text-align: center;
+        font-size: 4.5rem;
     }
 
-    .hero-text h2,
+    .hero-text h2 {
+        font-size: 1.6rem;
+    }
+
     #countdown {
-        text-align: center;
+        font-size: 1.4rem;
     }
 }
 
@@ -133,22 +129,18 @@ body {
 
 <body>
 
-<!-- HERO XL -->
 <div class="hero">
 
-    <!-- FOTO GRANDE -->
     <div class="photo-frame">
-        <img src="portada.jpeg" alt="Foto pareja">
+        <img src="portada.jpeg">
 
-        <!-- FLORES SUAVES -->
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTUwIDc1Qzc1IDc0IDkwIDU1IDg3IDM3IDg0IDIxIDY2IDEwIDUwIDEzIDM0IDE2IDIyIDI4IDE4IDQzIDE4IDU1IDI4IDYyIDM3IDY1IDU0IDUwIDc1WiIgZmlsbD0iI2ZlZGVlYiIgc3Ryb2tlPSIjZThkMmNhIiBzdHJva2Utd2lkdGg9IjQiLz48L3N2Zz4=" class="flower-small">
+        <img class="flower" 
+             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDIgNjNDNjAgNjAgNzAgNDUgNjkgMzUgNjggMjQgNTUgMTQgNDAgMTYgMjYgMTggMjAgMzAgMTUgNDEgMTUgNTEgMjEgNTkgMzMgNjMgNDIgWiIgZmlsbD0iI2ZlZGVlYiIgc3Ryb2tlPSIjZThkMmNhIiBzdHJva2Utd2lkdGg9IjMiLz48L3N2Zz4=">
 
-        <!-- MARIPOSA SUAVE -->
-        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDUgMTUgNTAgMjggNjAgNDEgNTUgNDUgNDcgNTAgNDMgNDkgMzkgNDggMzggNDcgMzkgNDUgMzQgNDQgMzAgNDQgMjggNDYgMjggNDggMjkgNDkgMzAgNTAgMzEgNTMgMzIgNTUgMzUgNTYgMzcgNTcgMzkgNTYgNDAgNTQgNDEgNTMgNDIgNTAgNDEgNDkgMzggNDcgMzUgNDQgMzMgNDMgMzAgNDIgMjYgNDEgMjQgMzkgMjQgMzggMjYgMzggMzAgMzkgMzQgMzkgNDEgNDIgNDcgNDQgNDggNDUgNTAgNDUgNTIgNDMgNTMgNDEgNTQgMzkgNTMgMzggNTAgMzQgNDkgMzMgNDggMzMgNDcgMzQgNDUgMzggNDMgNDEgNDIgNDQgNDQgNDUgNDcgNDkgNDggNTIgNTAgNTMiIGZpbGw9IiNmZWRlZWIiIHN0cm9rZT0iI2U4ZDJjYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+" 
-             class="butterfly-small">
+        <img class="butterfly" 
+             src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNDUgMTUgNTAgMjggNjAgNDEgNTUgNDUgNDcgNTAgNDMgNDkgMzkgNDggMzggNDcgMzkgNDUgMzQgNDQgMzAgNDQgMjggNDYgMjggNDggMjkgNDkgMzAgNTAgMzEgNTMgMzIgNTUgMzUgNTYgMzcgNTcgMzkgNTYgNDAgNTQgNDEgNTMgNDIgNTAgNDEgNDkgMzggNDcgMzUgNDQgMzMgNDMgMzAgNDIgMjYgNDEgMjQgMzkgMjQgMzggMjYgMzggMzAgMzkgMzQgMzkgNDEgNDIgNDcgNDQgNDggNDUgNTAgNDUgNTIgNDMgNTMgNDEgNTQgMzkgNTMgMzggNTAgMzQgNDkgMzMgNDggMzMgNDcgMzQgNDUgMzggNDMgNDEgNDIgNDQgNDQgNDUgNDcgNDkgNDggNTIgNTAgNTMiIGZpbGw9IiNmZWRlZWIiIHN0cm9rZT0iI2U4ZDJjYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PC9zdmc+">
     </div>
 
-    <!-- TEXTO -->
     <div class="hero-text">
         <h1>Cris & Pablo</h1>
         <h2>12 · septiembre · 2026</h2>
@@ -157,17 +149,13 @@ body {
 
 </div>
 
-
-<!-- COUNTDOWN -->
 <script>
 const weddingDate = new Date("2026-09-12T00:00:00");
-const countdownEl = document.getElementById("countdown");
-
 function updateCountdown() {
     const now = new Date();
     const diff = weddingDate - now;
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    countdownEl.textContent = days + " días para la boda ♥";
+    document.getElementById("countdown").textContent = days + " días para la boda ♥";
 }
 setInterval(updateCountdown, 1000);
 updateCountdown();
