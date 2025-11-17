@@ -10,52 +10,52 @@
         margin: 0;
         padding: 0;
         font-family: "Georgia", serif;
-        background-color: #efe9db; /* beige suave */
-        color: #48674b; /* verde elegante */
+        background-color: #efe9db;
+        color: #48674b;
     }
 
+    /* HERO RECORTADO COMO EN TU MOCKUP */
     .hero {
         position: relative;
         width: 100%;
-        max-width: 500px; /* para mantener proporción bonita en móvil */
-        margin: 0 auto;
-        background-color: #efe9db;
+        height: 80vh; /* ocupa casi toda la pantalla móvil */
+        overflow: hidden; /* recorta la foto */
     }
 
     .hero img {
         width: 100%;
-        height: auto;
-        display: block;
-        opacity: 0.92; /* ligera suavidad sin perder detalle */
+        height: 100%;
+        object-fit: cover;  /* recorta por alto */
+        object-position: center top; /* enseña la parte superior como tu diseño */
+        opacity: 0.92;
     }
 
-    /* CONTENEDOR DEL TEXTO ENCIMA */
+    /* TEXTO ENCIMA */
     .text-overlay {
         position: absolute;
-        top: 30px;
+        top: 25px;
         width: 100%;
         text-align: center;
-        color: #506b55; /* verde más profundo */
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        color: #506b55;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.15);
         padding: 0 10px;
     }
 
     .names {
         font-size: 2.2rem;
         font-weight: 600;
-        letter-spacing: 1px;
     }
 
     .date {
-        margin-top: 8px;
+        margin-top: 5px;
         font-size: 1.2rem;
         font-weight: 500;
     }
 
-    /* BLOQUE BEIGE DEBAJO */
+    /* BLOQUE BEIGE */
     .bottom-beige {
+        height: 100px;
         background-color: #efe9db;
-        height: 120px; /* ajustable */
     }
 </style>
 </head>
@@ -64,13 +64,3 @@
 <div class="hero">
     <div class="text-overlay">
         <div class="names">Cris & Pablo</div>
-        <div class="date">12 · Septiembre · 2026</div>
-    </div>
-
-    <img src="portada.jpeg" alt="Foto de Cris y Pablo">
-</div>
-
-<div class="bottom-beige"></div>
-
-</body>
-</html>
