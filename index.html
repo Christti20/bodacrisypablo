@@ -1,88 +1,76 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cris & Pablo</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boda – Cris & Pablo</title>
 
 <style>
-    body, html {
+    body {
         margin: 0;
         padding: 0;
-        height: 100%;
-        font-family: 'Playfair Display', serif;
-        background-color: #f7f3eb;
-        overflow: hidden; /* para que no haya scroll */
+        font-family: "Georgia", serif;
+        background-color: #efe9db; /* beige suave */
+        color: #48674b; /* verde elegante */
     }
 
     .hero {
         position: relative;
         width: 100%;
-        height: 100vh;
-        background-image: url('portada.jpeg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        max-width: 500px; /* para mantener proporción bonita en móvil */
+        margin: 0 auto;
+        background-color: #efe9db;
     }
 
-    /* Capa translúcida suave */
-    .overlay {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(255, 255, 255, 0.35); /* Ajustable */
+    .hero img {
+        width: 100%;
+        height: auto;
+        display: block;
+        opacity: 0.92; /* ligera suavidad sin perder detalle */
     }
 
-    .text-container {
+    /* CONTENEDOR DEL TEXTO ENCIMA */
+    .text-overlay {
         position: absolute;
-        bottom: 6%;
+        top: 30px;
         width: 100%;
         text-align: center;
-        color: #4f665a;
+        color: #506b55; /* verde más profundo */
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        padding: 0 10px;
     }
 
     .names {
-        font-size: 2.6rem;
+        font-size: 2.2rem;
         font-weight: 600;
-        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
     }
 
     .date {
+        margin-top: 8px;
         font-size: 1.2rem;
-        margin-bottom: 0.3rem;
+        font-weight: 500;
     }
 
-    .countdown {
-        font-size: 1.1rem;
-    }
-
-    /* Ajustes móviles */
-    @media (max-width: 600px) {
-        .names {
-            font-size: 2.2rem;
-        }
-        .date {
-            font-size: 1.1rem;
-        }
-        .countdown {
-            font-size: 1rem;
-        }
+    /* BLOQUE BEIGE DEBAJO */
+    .bottom-beige {
+        background-color: #efe9db;
+        height: 120px; /* ajustable */
     }
 </style>
 </head>
-
 <body>
 
 <div class="hero">
-    <div class="overlay"></div>
-
-    <div class="text-container">
+    <div class="text-overlay">
         <div class="names">Cris & Pablo</div>
-        <div class="date">12 · septiembre · 2026</div>
-        <div class="countdown">299 días para la boda ❤️</div>
+        <div class="date">12 · Septiembre · 2026</div>
     </div>
+
+    <img src="portada.jpeg" alt="Foto de Cris y Pablo">
 </div>
+
+<div class="bottom-beige"></div>
 
 </body>
 </html>
