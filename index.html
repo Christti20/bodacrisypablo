@@ -8,74 +8,72 @@
 <style>
     body {
         margin: 0;
+        padding: 0;
         font-family: "Georgia", serif;
         background-color: #efe9db;
+        color: #48674b;
         text-align: center;
-        color: #506b55;
     }
 
-    /* CONTENEDOR PRINCIPAL */
+    /* CONTENEDOR HERO */
     .hero {
+        position: relative;
         width: 100%;
-        max-width: 600px;
-        margin: 0 auto;
-        overflow: hidden; /* Permite controlar la altura */
+        height: 70vh; /* 🔥 Foto fija al 70% del alto del móvil */
+        overflow: hidden;
     }
 
-    /* FOTO SUAVIZADA + ALTURA REDUCIDA */
     .hero img {
         width: 100%;
-        height: 78vh; /* ANTES era auto – ahora ocupa menos */
-        object-fit: cover; /* mantiene proporción sin distorsionar */
-        opacity: 0.60;
-        filter: brightness(1.35) contrast(0.75) saturate(0.8) blur(0.7px);
+        height: 100%;
+        object-fit: cover; /* 🔥 Mantiene recorte bonito sin deformar */
+        opacity: 0.50;     /* 🔥 Suavidad estilo foto lavada */
+        filter: brightness(110%); /* Más claridad tipo ejemplo */
     }
 
-    /* TEXTO DE ABAJO */
-    .info {
-        padding: 15px 15px 30px; /* menos padding arriba, sube el bloque */
-        margin-top: -10px; /* sube un poquito más */
-    }
-
+    /* TEXTO PRINCIPAL */
     .names {
-        font-size: 2.2rem;
-        font-weight: 600;
-        margin-bottom: 6px;
+        font-size: 2.4rem;
+        font-weight: bold;
+        margin-top: 20px;
     }
 
     .date {
-        font-size: 1.2rem;
-        margin-bottom: 5px;
+        font-size: 1.3rem;
+        margin-top: 6px;
     }
 
     .countdown {
         font-size: 1.1rem;
-        margin-top: 5px;
-        color: #4f6b4f;
+        margin-top: 10px;
     }
+
 </style>
 </head>
 <body>
 
+<!-- FOTO -->
 <div class="hero">
     <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
-<div class="info">
-    <div class="names">Cris & Pablo</div>
-    <div class="date">12 · Septiembre · 2026</div>
-    <div id="countdown" class="countdown"></div>
-</div>
+<!-- TEXTO ABAJO -->
+<div class="names">Cris & Pablo</div>
+<div class="date">12 · Septiembre · 2026</div>
+<div class="countdown" id="countdown"></div>
 
 <script>
-    const target = new Date("2026-09-12T00:00:00").getTime();
-    setInterval(() => {
-        const now = new Date().getTime();
-        const diff = target - now;
-        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("countdown").innerText =
-            dias + " días para la boda ❤️";
-    }, 1000);
+function updateCountdown() {
+    const weddingDate = new Date("2026-09-12");
+    const today = new Date();
+    const diff = weddingDate - today;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("countdown").textContent = days + " días para la boda ❤️";
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000*60*60);
 </script>
 
 </body>
