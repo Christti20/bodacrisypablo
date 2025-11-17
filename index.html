@@ -9,36 +9,50 @@
     body {
         margin: 0;
         font-family: "Georgia", serif;
-        background-color: #efe9db;
+        background-color: #efe9db; /* beige suave */
         text-align: center;
-        color: #506b55;
+        color: #506b55; /* verde elegante */
     }
 
+    /* CONTENEDOR PRINCIPAL */
+    .hero {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* FOTO MUY SUAVIZADA */
     .hero img {
         width: 100%;
         height: auto;
         display: block;
-        max-width: 550px;
-        margin: 0 auto;
+        opacity: 0.60; 
+        filter: brightness(1.35) contrast(0.75) saturate(0.8) blur(0.5px);
+    }
+
+    /* TEXTO DE ABAJO */
+    .info {
+        padding: 25px 15px 40px;
     }
 
     .names {
         font-size: 2.4rem;
         font-weight: 600;
-        margin-top: 15px;
+        margin-bottom: 10px;
+        color: #48674b;
     }
 
     .date {
-        font-size: 1.2rem;
-        margin-top: 5px;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
     }
 
     .countdown {
-        margin-top: 10px;
         font-size: 1.2rem;
         font-weight: 500;
+        margin-top: 5px;
+        color: #4f6b4f;
     }
-
 </style>
 </head>
 <body>
@@ -47,9 +61,11 @@
     <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
-<div class="names">Cris & Pablo</div>
-<div class="date">12 · Septiembre · 2026</div>
-<div id="countdown" class="countdown"></div>
+<div class="info">
+    <div class="names">Cris & Pablo</div>
+    <div class="date">12 · Septiembre · 2026</div>
+    <div id="countdown" class="countdown"></div>
+</div>
 
 <script>
     const target = new Date("2026-09-12T00:00:00").getTime();
@@ -57,7 +73,6 @@
         const now = new Date().getTime();
         const diff = target - now;
         const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-
         document.getElementById("countdown").innerText =
             dias + " días para la boda ❤️";
     }, 1000);
