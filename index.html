@@ -6,79 +6,84 @@
 <title>Boda – Cris & Pablo</title>
 
 <style>
-    /* ANTI-CACHE PARA FORZAR RECARGA */
-    * { animation: cacheFix 0s; }
-    @keyframes cacheFix {}
-
     body {
         margin: 0;
-        padding: 0;
         font-family: "Georgia", serif;
-        background-color: #efe9db; /* beige suave */
-        color: #506b55; /* verde elegante */
-        overflow-x: hidden;
+        background-color: #efe9db;
+        text-align: center;
+        color: #506b55;
     }
 
     .hero {
         position: relative;
         width: 100%;
-        max-width: 500px; 
+        max-width: 550px;
         margin: 0 auto;
     }
 
-    /* FOTO con efecto suave difuminado */
     .hero img {
         width: 100%;
         height: auto;
         display: block;
-        filter: brightness(0.90) blur(1.5px);
-        opacity: 0.90;
     }
 
-    /* TEXTO SOBRE LA IMAGEN */
     .text-overlay {
         position: absolute;
         top: 25px;
         width: 100%;
-        text-align: center;
-        color: #4f6c52;
-        text-shadow: 0 3px 12px rgba(0,0,0,0.25);
-        padding: 0 10px;
+        color: #4f6b4f;
+        text-shadow: 0px 2px 8px rgba(0,0,0,0.15);
     }
 
     .names {
         font-size: 2.4rem;
-        font-weight: 700;
+        font-weight: 600;
     }
 
     .date {
-        margin-top: 10px;
+        margin-top: 8px;
         font-size: 1.3rem;
+    }
+
+    .countdown {
+        margin-top: 12px;
+        font-size: 1.2rem;
         font-weight: 500;
     }
 
-    /* FONDO BEIGE INFERIOR */
-    .bottom-beige {
-        height: 100px;
+    .bottom {
+        height: 140px;
         background-color: #efe9db;
     }
 </style>
-
 </head>
 <body>
 
 <div class="hero">
-
     <div class="text-overlay">
         <div class="names">Cris & Pablo</div>
         <div class="date">12 · Septiembre · 2026</div>
+        <div id="countdown" class="countdown"></div>
     </div>
 
-    <!-- CAMBIA LA IMAGEN AQUÍ (IMPORTANTE RENOMBRADA PARA ROMPER CACHE) -->
-    <img src="portada.jpeg?v=5" alt="Foto de Cris y Pablo">
+    <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
-<div class="bottom-beige"></div>
+<div class="bottom"></div>
+
+<script>
+    // Cuenta atrás
+    const target = new Date("2026-09-12T00:00:00").getTime();
+    setInterval(() => {
+        const now = new Date().getTime();
+        const diff = target - now;
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+        document.getElementById("countdown").innerText =
+            dias + " días para la boda ❤️";
+    }, 1000);
+</script>
 
 </body>
 </html>
