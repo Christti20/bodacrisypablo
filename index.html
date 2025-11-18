@@ -202,6 +202,19 @@
         color: #7b8a78;
         text-align: center;
     }
+    /* Estado oculto (altura 0 y transparente) */
+    .extra-hidden {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Estado visible (altura automática y opacidad completa) */
+    .extra-visible {
+        max-height: 500px; /* suficiente para cubrir los campos */
+        opacity: 1;
+    }
 </style>
 </head>
 <body>
@@ -330,32 +343,39 @@
             <input type="text" id="nombre" required>
 
             <label>¿Asistirás?</label>
-            <select id="asistencia">
-                <option value="Sí">Sí</option>
-                <option value="No">No</option>
-                <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+            <label>¿Asistirás?</label>
+                <select id="asistencia" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="Sí">Sí</option>
+                    <option value="No">No</option>
+                    <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
             </select>
 
-            <label>Adultos</label>
-            <select id="adultos">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
+            <div id="extraFields" class="extra-hidden">
 
-            <label>Niños</label>
-            <select id="ninos">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
+                <label>Adultos</label>
+                <select id="adultos">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
 
-            <label>Alergias y/o intolerancias</label>
-            <textarea id="comentarios"></textarea>
+                <label>Niños</label>
+                <select id="ninos">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+
+                <label>Alergias y/o intolerancias</label>
+                    <textarea id="comentarios"></textarea>
+
+            </div>
+
 
             <button type="submit" class="btn">Confirmar asistencia</button>
         </form>
@@ -409,9 +429,30 @@
     updateCountdown();
     setInterval(updateCountdown, 1000*60*60);
 </script>
+<script>
+    document.getElementById("asistencia").addEventListener("change", function() {
+        const extra = document.getElementById("extraFields");
 
+        if (this.value === "Sí") {
+            // Mostrar con animación
+            extra.classList.remove("extra-hidden");
+            extra.classList.add("extra-visible");
+        } 
+        else {
+            // Ocultar con animación
+            extra.classList.remove("extra-visible");
+            extra.classList.add("extra-hidden");
+
+            // Resetear valores
+            document.getElementById("adultos").value = "0";
+            document.getElementById("ninos").value = "0";
+            document.getElementById("comentarios").value = "";
+        }
+    });
+</script>
 </body>
 </html>
+
 
 
 
