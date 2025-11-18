@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boda – Cris & Pablo</title>
 
-<!-- Fuente elegante para títulos (opcional) -->
+<!-- Fuente elegante -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
@@ -41,7 +41,7 @@
     }
 
     .names {
-        font-family: "Playfair Display", "Georgia", serif;
+        font-family: "Playfair Display", serif;
         font-size: 2.4rem;
         font-weight: bold;
         margin-top: 20px;
@@ -57,52 +57,33 @@
         margin-top: 10px;
         margin-bottom: 25px;
     }
-    /* ------------------ NAVBAR SUPERIOR ------------------ */
-    .navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background-color: rgba(239, 233, 219, 0.92);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        padding: 10px 0;
-        backdrop-filter: blur(6px);
-        z-index: 999;
-    }
 
-    .nav-inner {
-        max-width: 900px;
-        margin: auto;
+    /* ---------- MENÚ DEBAJO DE LA PORTADA ---------- */
+    .subnav {
+        width: 100%;
+        background-color: #f6f1e6;
+        padding: 12px 0;
         display: flex;
         justify-content: center;
-        gap: 18px;
+        gap: 22px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: relative;
+        z-index: 2;
     }
 
-    .nav-inner a {
+    .subnav a {
         font-family: "Playfair Display", serif;
         text-decoration: none;
-        color: #445f48;
+        color: #455f49;
         font-size: 1rem;
         transition: 0.2s;
     }
 
-    .nav-inner a:hover {
+    .subnav a:hover {
         color: #2c4133;
         transform: scale(1.05);
     }
 
-    /* Para que el contenido no quede escondido detrás */
-    body {
-        padding-top: 60px;
-    }
-    
-    .section-title i {
-        width: 26px;
-        height: 26px;
-        stroke-width: 1.6;
-        margin-right: 8px;
-        vertical-align: middle;
-        color: #445f48;
-    }
     /* ---------- SECCIONES GENERALES ---------- */
     .section {
         padding: 40px 20px;
@@ -112,11 +93,15 @@
     }
 
     .section-title {
-        font-family: "Playfair Display", "Georgia", serif;
+        font-family: "Playfair Display", serif;
         font-size: 2rem;
         text-align: center;
         margin-bottom: 25px;
         color: #445f48;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
     }
 
     .card {
@@ -132,10 +117,6 @@
         margin-top: 0;
         font-size: 1.2rem;
         color: #4b6650;
-    }
-
-    .card p {
-        margin: 8px 0;
     }
 
     .highlight {
@@ -178,27 +159,12 @@
         filter: brightness(1.07);
     }
 
-    /* ---------- LISTAS ---------- */
-    .list {
-        padding-left: 18px;
-        margin: 10px 0;
-    }
-
-    .list li {
-        margin-bottom: 6px;
-    }
-
-    /* ---------- FORMULARIO CONFIRMACIÓN ---------- */
+    /* ---------- FORMULARIOS ---------- */
     .rsvp-form {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-top: 10px;
-    }
-
-    .rsvp-form label {
-        font-weight: 600;
-        font-size: 0.95rem;
     }
 
     .rsvp-form input,
@@ -210,11 +176,6 @@
         border-radius: 8px;
         border: 1px solid #c6bda7;
         background-color: #fdf9f0;
-    }
-
-    .rsvp-form textarea {
-        resize: vertical;
-        min-height: 70px;
     }
 
     .btn {
@@ -229,138 +190,94 @@
         color: #f9f6ed;
     }
 
-    .btn-secondary {
-        background-color: #d1c4a6;
-        color: #374335;
-    }
-
-    .btn:hover {
-        filter: brightness(1.05);
-    }
-
-    .center {
-        text-align: center;
-    }
-
-    /* Un poco de espacio al final */
     footer {
         padding: 30px 10px 40px;
         font-size: 0.85rem;
         color: #7b8a78;
+        text-align: center;
     }
 </style>
 </head>
-<script src="https://unpkg.com/feather-icons"></script>
-<script>
-    feather.replace();
-</script>
 <body>
-<!-- ===================== MENÚ SUPERIOR ===================== -->
-<nav class="navbar">
-    <div class="nav-inner">
-        <a href="#inicio">Inicio</a>
-        <a href="#historia">Nuestra historia</a>
-        <a href="#lugar">Lugar</a>
-        <a href="#alojamiento">Alojamiento</a>
-        <a href="#rsvp">Asistencia</a>
-    </div>
-</nav>
+
 <!-- FOTO -->
 <div class="hero" id="inicio">
     <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
-<!-- TEXTO ABAJO -->
+<!-- TEXTO -->
 <div class="names">Cris & Pablo</div>
 <div class="date">12 · Septiembre · 2026</div>
 <div class="countdown" id="countdown"></div>
 
+<!-- MENÚ DEBAJO DE LA FOTO -->
+<nav class="subnav">
+    <a href="#historia">Nuestra historia</a>
+    <a href="#lugar">Lugar</a>
+    <a href="#alojamiento">Alojamiento</a>
+    <a href="#rsvp">Asistencia</a>
+</nav>
+
 <!-- ===================== NUESTRA HISTORIA ===================== -->
 <section class="section" id="historia">
     <h2 class="section-title">
-        <i data-feather="heart"></i> Nuestra historia
+        <!-- ICONO CORAZÓN -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        Nuestra historia
     </h2>
-    
+
     <div class="card">
-        
-        <!-- FOTO ELEGANTE DENTRO DE LA SECCIÓN -->
         <div style="text-align:center; margin-bottom: 20px;">
-            <img src="fotoTattoo.jpeg" alt="Nuestra historia" 
-                 style="width: 100%; max-width: 500px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.10);">
+            <img src="fotoTattoo.jpeg" style="width: 100%; max-width: 500px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.10);">
         </div>
 
-        <p>
-        Nos conocimos en octubre de 2003, en una clase de la Facultad de Informática, donde lo más entretenido se suponía que iban a ser las prácticas… pero no: lo más interesante estaba sentado justo enfrente.  
-        Desde el primer día hubo una chispa, una de esas conexiones que te hacen pensar:  
-        <em>“Uy… aquí pasa algo.”</em>
-        </p>
+        <p>Nos conocimos en octubre de 2003, en una clase de la Facultad de Informática, donde lo más entretenido se suponía que iban a ser las prácticas… pero no: lo más interesante estaba sentado justo enfrente.</p>
 
-        <p>
-        Tuvimos una historia breve, intensa y con más mariposas que líneas de código.  
-        Pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos.  
-        Eso sí: nunca llegamos a perder del todo ese hilo que nos mantenía cerca, aunque fuera en la distancia.
-        </p>
+        <p>Tuvimos una historia breve, intensa y con más mariposas que líneas de código. Pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos.</p>
 
-        <p>
-        Pasaron <strong>16 años</strong> (sí, sí, dieciséis… ni las temporadas de algunas series duran tanto), hasta que el destino nos reencontró de nuevo y, como si alguien hubiera pulsado <em>“Restaurar partida guardada”</em>, la conexión apareció exactamente donde la dejamos. Igual de fuerte. Igual de nuestra.
-        </p>
+        <p>Pasaron <strong>16 años</strong> hasta que el destino nos reencontró de nuevo y, como si alguien hubiera pulsado “Restaurar partida guardada”, la conexión apareció exactamente donde la dejamos.</p>
 
-        <p>
-        Desde entonces hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que han hecho que esta historia tenga aún más sentido.
-        </p>
+        <p>Desde entonces hemos ido construyendo nuestra vida juntos, esta vez con dos coprotagonistas maravillosas: Natalia y Elena.</p>
 
-        <p>
-        Hoy seguimos aquí, riéndonos, queriéndonos y celebrando que, aunque el destino se tomara su tiempo, al final nos volvió a poner en el mismo camino.  
-        <strong>Porque el corazón nunca olvida donde dejó sus mejores latidos.</strong>
-        </p>
+        <p><strong>Porque el corazón nunca olvida donde dejó sus mejores latidos.</strong></p>
     </div>
 </section>
 
 <!-- ===================== LUGAR ===================== -->
 <section class="section" id="lugar">
     <h2 class="section-title">
-        <i data-feather="map-pin"></i> Lugar
+        <!-- ICONO UBICACIÓN -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Lugar
     </h2>
 
     <div class="card">
 
         <h3>Ceremonia</h3>
         <p class="highlight">Castillo de Oropesa</p>
-        <p>Oropesa (Toledo)</p>
         <p>Hora: <strong>18:00</strong></p>
 
-        <hr style="margin:18px 0; border:none; border-top:1px solid #e0d6c1;">
+        <hr>
 
         <h3>Celebración</h3>
         <p class="highlight">Finca Casaes</p>
-        <p>Oropesa (Toledo)</p>
-        <p>El cóctel dará comienzo a las <strong>19:00</strong></p>
+        <p>El cóctel comenzará a las <strong>19:00</strong></p>
 
-        <p style="margin-top:16px;">
-            Aquí puedes orientarte fácilmente para llegar tanto al castillo como a la finca.
-        </p>
-
-        <!-- BOTONES GOOGLE MAPS -->
-        <a class="btn-maps"
-           href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo"
-           target="_blank">
+        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo" target="_blank">
             Cómo llegar al Castillo de Oropesa
         </a>
 
-        <a class="btn-maps"
-           href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo"
-           target="_blank">
+        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo" target="_blank">
             Cómo llegar a la Finca Casaes
         </a>
 
-        <!-- MAPA INTERACTIVO -->
         <div class="map-container">
-            <iframe
-                class="map-iframe"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=Oropesa%2C+Toledo&output=embed">
-            </iframe>
+            <iframe class="map-iframe" loading="lazy" src="https://www.google.com/maps?q=Oropesa%2C+Toledo&output=embed"></iframe>
         </div>
 
     </div>
@@ -369,82 +286,35 @@
 <!-- ===================== ALOJAMIENTO ===================== -->
 <section class="section" id="alojamiento">
     <h2 class="section-title">
-        <i data-feather="home"></i> Alojamiento
+        <!-- ICONO CASA -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M9 22V12h6v10"/>
+        </svg>
+        Alojamiento
     </h2>
+
     <div class="card">
-        <p>
-            Para quienes vengáis de fuera, hemos preparado algunas sugerencias
-            de hoteles cercanos al lugar de la celebración.
-        </p>
-
-        <ul class="list">
-            <li><span class="highlight">Hotel 1</span> – a X minutos en coche. [Info / código descuento si lo hay]</li>
-            <li><span class="highlight">Hotel 2</span> – a X minutos en coche. [Info]</li>
-            <li><span class="highlight">Hotel 3</span> – zona centro. [Info]</li>
-        </ul>
-
-        <p>
-            Podéis elegir el alojamiento que prefiráis. Si necesitáis ayuda,
-            no dudéis en escribirnos.
-        </p>
+        <p>Pronto añadiremos recomendaciones de hoteles.</p>
     </div>
 </section>
 
 <!-- ===================== CONFIRMACIÓN DE ASISTENCIA ===================== -->
 <section class="section" id="rsvp">
     <h2 class="section-title">
-        <i data-feather="check-circle"></i> Confirmación de asistencia
+        <!-- ICONO CHECK -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Confirmación de asistencia
     </h2>
+
     <div class="card">
-        <p>
-            Nos hará mucha ilusión compartir este día con vosotros.  
-            Por favor, confirmad vuestra asistencia antes del
-            <span class="highlight">[fecha límite]</span>.
-        </p>
+        <p>Podéis confirmar vuestra asistencia mediante WhatsApp o formulario externo.</p>
 
-        <form class="rsvp-form">
-            <div>
-                <label for="nombre">Nombre y apellidos</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-            </div>
-
-            <div>
-                <label for="personas">Número de personas</label>
-                <select id="personas" name="personas">
-                    <option value="1">1 persona</option>
-                    <option value="2">2 personas</option>
-                    <option value="3">3 personas</option>
-                    <option value="4">4 personas</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="asistencia">¿Asistirás?</label>
-                <select id="asistencia" name="asistencia">
-                    <option value="si">Sí, allí estaré</option>
-                    <option value="no">No podré asistir</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="comentarios">Alergias, intolerancias o comentarios</label>
-                <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos si tienes alguna alergia, si eres vegetariano/a, etc."></textarea>
-            </div>
-
-            <button type="button" class="btn btn-secondary">
-                (Pendiente de configurar envío)
-            </button>
-        </form>
-
-        <p style="margin-top:18px;" class="center">
-            Si lo prefieres, también puedes confirmar por WhatsApp o mediante
-            un formulario externo:
-        </p>
-        <p class="center">
-            <a href="https://forms.gle/TU_FORMULARIO" target="_blank">
-                <button type="button" class="btn">Abrir formulario de confirmación</button>
-            </a>
-        </p>
+        <a href="https://forms.gle/TU_FORMULARIO" target="_blank">
+            <button class="btn">Abrir formulario de confirmación</button>
+        </a>
     </div>
 </section>
 
@@ -453,7 +323,6 @@
 </footer>
 
 <script>
-    // Cuenta atrás
     function updateCountdown() {
         const weddingDate = new Date("2026-09-12");
         const today = new Date();
@@ -470,4 +339,3 @@
 
 </body>
 </html>
-
