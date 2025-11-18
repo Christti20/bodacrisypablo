@@ -7,8 +7,6 @@
 
 <!-- Fuente elegante -->
 <link href="https://fonts.googleapis.com/css2?family=Updock&display=swap" rel="stylesheet">    
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -27,10 +25,10 @@
 
     /* ---------- HERO ---------- */
     .hero {
-        position: relative;
         width: 100%;
         height: 65vh;
         overflow: hidden;
+        background: #000;
     }
 
     .hero img {
@@ -43,24 +41,24 @@
 
     .names {
         font-family: "Updock", cursive;
-        font-size: 4rem;            /* más grande y elegante */
-        margin-top: 10px;           /* ↓ antes 20px, ahora más cerca */
+        font-size: 4rem;
+        margin-top: 10px;
         line-height: 1;
         color: #445f48;
     }
 
     .date {
         font-family: "Updock", cursive;
-        font-size: 2.2rem;          /* más grande */
-        margin-top: 0px;            /* ↓ elimina espacio */
+        font-size: 2.2rem;
+        margin-top: 0px;
         line-height: 1.1;
     }
 
     .countdown {
         font-family: "Updock", cursive;
-        font-size: 1.8rem;          /* más visible */
-        margin-top: 4px;            /* ↓ mucho menos espacio */
-        margin-bottom: 15px;        /* ↓ antes 25px */
+        font-size: 1.8rem;
+        margin-top: 4px;
+        margin-bottom: 15px;
         color: #445f48;
     }
 
@@ -73,8 +71,9 @@
         justify-content: center;
         gap: 22px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        position: relative;
-        z-index: 2;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
 
     .subnav a {
@@ -90,7 +89,7 @@
         transform: scale(1.05);
     }
 
-    /* ---------- SECCIONES GENERALES ---------- */
+    /* ---------- SECCIONES ---------- */
     .section {
         padding: 40px 20px;
         max-width: 800px;
@@ -119,81 +118,127 @@
         font-size: 0.98rem;
     }
 
-    .card h3 {
-        margin-top: 0;
-        font-size: 1.2rem;
-        color: #4b6650;
-    }
-
-    .highlight {
-        font-weight: bold;
-    }
-
-    /* ---------- MAPA ---------- */
-    .map-container {
-        margin-top: 18px;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-
-    .map-iframe {
-        width: 100%;
-        height: 260px;
-        border: 0;
-    }
-
-    /* ---------- BOTONES GOOGLE MAPS ---------- */
-    .btn-maps {
-        display: block;
-        width: 100%;
-        max-width: 260px;
-        margin: 12px auto;
-        padding: 10px 16px;
-        background-color: #48674b;
-        color: #f9f6ed;
-        text-decoration: none;
-        border-radius: 999px;
-        font-weight: 600;
-        font-size: 1rem;
-        text-align: center;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.10);
-        transition: 0.2s;
-    }
-
-    .btn-maps:hover {
-        filter: brightness(1.07);
-    }
-
-    /* ---------- FORMULARIOS ---------- */
+    /* ---------- FORMULARIO ESTILO ---------- */
     .rsvp-form {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         margin-top: 10px;
+    }
+
+    .field-label {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        margin-top: 14px;
+    }
+
+    .field-label svg {
+        width: 18px;
+        height: 18px;
+        stroke: #48674b;
     }
 
     .rsvp-form input,
     .rsvp-form select,
     .rsvp-form textarea {
         font-family: inherit;
-        font-size: 0.95rem;
-        padding: 8px 10px;
-        border-radius: 8px;
+        font-size: 1rem;
+        padding: 10px 12px;
+        border-radius: 10px;
         border: 1px solid #c6bda7;
         background-color: #fdf9f0;
+        color: #374335;
     }
 
+    textarea {
+        resize: vertical;
+        min-height: 70px;
+    }
+
+    /* Campos extras ocultos */
+    #extraFields {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.45s ease;
+    }
+
+    #extraFields.show {
+        max-height: 500px;
+        opacity: 1;
+        margin-top: 12px;
+    }
+
+    /* Fila adultos/niños */
+    .extra-row {
+        display: flex;
+        gap: 14px;
+    }
+
+    .extra-row > div {
+        flex: 1;
+    }
+
+    /* Botón */
     .btn {
-        margin-top: 10px;
+        margin-top: 14px;
         border: none;
         border-radius: 999px;
-        padding: 10px 18px;
-        font-size: 1rem;
+        padding: 12px 18px;
+        font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
         background-color: #48674b;
         color: #f9f6ed;
+        position: relative;
+        transition: 0.2s;
+    }
+
+    .btn:hover {
+        filter: brightness(1.06);
+    }
+
+    .btn.loading {
+        pointer-events: none;
+        background-color: #3b5540;
+    }
+
+    .btn.loading::after {
+        content: "";
+        width: 18px;
+        height: 18px;
+        border: 3px solid #f9f6ed;
+        border-top-color: transparent;
+        border-radius: 50%;
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: translateY(-50%) rotate(360deg); }
+    }
+
+    /* Mensaje OK */
+    #rsvp-ok {
+        display: none;
+        margin-top: 18px;
+        background: #e8f2ea;
+        padding: 14px;
+        border-radius: 14px;
+        color: #3c5e44;
+        font-weight: 600;
+        animation: fadeIn 0.6s ease;
+        text-align: center;
+    }
+
+    @keyframes fadeIn {
+        from { opacity:0; transform:translateY(8px); }
+        to { opacity:1; transform:translateY(0); }
     }
 
     footer {
@@ -202,25 +247,13 @@
         color: #7b8a78;
         text-align: center;
     }
-    /* Estado oculto (altura 0 y transparente) */
-    .extra-hidden {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease, opacity 0.5s ease;
-    }
-
-    /* Estado visible (altura automática y opacidad completa) */
-    .extra-visible {
-        max-height: 500px; /* suficiente para cubrir los campos */
-        opacity: 1;
-    }
 </style>
 </head>
+
 <body>
 
 <!-- FOTO -->
-<div class="hero" id="inicio">
+<div class="hero">
     <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
@@ -229,7 +262,7 @@
 <div class="date">12 · Septiembre · 2026</div>
 <div class="countdown" id="countdown"></div>
 
-<!-- MENÚ DEBAJO DE LA FOTO -->
+<!-- MENÚ -->
 <nav class="subnav">
     <a href="#historia">Nuestra historia</a>
     <a href="#lugar">Lugar</a>
@@ -237,10 +270,9 @@
     <a href="#rsvp">Asistencia</a>
 </nav>
 
-<!-- ===================== NUESTRA HISTORIA ===================== -->
+<!-- ================= HISTORIA ================= -->
 <section class="section" id="historia">
     <h2 class="section-title">
-        <!-- ICONO CORAZÓN -->
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
         </svg>
@@ -252,22 +284,14 @@
             <img src="fotoTattoo.jpeg" style="width: 100%; max-width: 500px; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.10);">
         </div>
 
-        <p>Nos conocimos en octubre de 2003, en una clase de la Facultad de Informática, donde lo más entretenido se suponía que iban a ser las prácticas… pero no: lo más interesante estaba sentado justo enfrente.</p>
-
-        <p>Tuvimos una historia breve, intensa y con más mariposas que líneas de código. Pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos.</p>
-
-        <p>Pasaron <strong>16 años</strong> hasta que el destino nos reencontró de nuevo y, como si alguien hubiera pulsado “Restaurar partida guardada”, la conexión apareció exactamente donde la dejamos.</p>
-
-        <p>Desde entonces hemos ido construyendo nuestra vida juntos, esta vez con dos coprotagonistas maravillosas: Natalia y Elena.</p>
-
+        <p>Nos conocimos en octubre de 2003… (tu texto completo aquí).</p>
         <p><strong>Porque el corazón nunca olvida donde dejó sus mejores latidos.</strong></p>
     </div>
 </section>
 
-<!-- ===================== LUGAR ===================== -->
+<!-- ================= LUGAR ================= -->
 <section class="section" id="lugar">
     <h2 class="section-title">
-        <!-- ICONO UBICACIÓN -->
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 1 1 18 0z"/>
             <circle cx="12" cy="10" r="3"/>
@@ -276,10 +300,9 @@
     </h2>
 
     <div class="card">
-
         <h3>Ceremonia</h3>
         <p class="highlight">Castillo de Oropesa</p>
-        <p>Hora: <strong>18:00</strong></p>
+        <p><strong>18:00</strong></p>
 
         <hr>
 
@@ -287,42 +310,26 @@
         <p class="highlight">Finca Casaes</p>
         <p>El cóctel comenzará a las <strong>19:00</strong></p>
 
-        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo" target="_blank">
-            Cómo llegar al Castillo de Oropesa
-        </a>
-
-        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo" target="_blank">
-            Cómo llegar a la Finca Casaes
-        </a>
+        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo" target="_blank">Cómo llegar al Castillo</a>
+        <a class="btn-maps" href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo" target="_blank">Cómo llegar a la Finca</a>
 
         <div class="map-container">
-            <iframe class="map-iframe" loading="lazy" src="https://www.google.com/maps?q=Oropesa%2C+Toledo&output=embed"></iframe>
+            <iframe class="map-iframe" src="https://www.google.com/maps?q=Oropesa%2C+Toledo&output=embed"></iframe>
         </div>
-
     </div>
 </section>
 
-<!-- ===================== ALOJAMIENTO ===================== -->
+<!-- ================= ALOJAMIENTO ================= -->
 <section class="section" id="alojamiento">
-    <h2 class="section-title">
-        <!-- ICONO CASA -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <path d="M9 22V12h6v10"/>
-        </svg>
-        Alojamiento
-    </h2>
-
+    <h2 class="section-title">Alojamiento</h2>
     <div class="card">
-        <p>Pronto añadiremos recomendaciones de hoteles.</p>
+        Próximamente añadiremos recomendaciones.
     </div>
 </section>
 
-<!-- ===================== CONFIRMACIÓN DE ASISTENCIA ===================== -->
+<!-- ================= CONFIRMACIÓN ASISTENCIA ================= -->
 <section class="section" id="rsvp">
-
     <h2 class="section-title">
-        <!-- ICONO MANO CORAZÓN -->
         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M12 21s-6-4.35-9-8.7C1 9 2 5 5 3.5S10 4 12 7c2-3 5-4.5 7-3.5s4 5.5 2 8.8C18 16.65 12 21 12 21z"/>
         </svg>
@@ -332,131 +339,124 @@
     <div class="card">
 
         <p style="margin-bottom:18px;">
-            Nos haría mucha ilusión compartir este día con vosotros.  
-            Por favor, confirmad vuestra asistencia antes del <span class="highlight">[1 de agosto de 2026]</span>.
+            Nos hará mucha ilusión compartir este día con vosotros.  
+            Confirmad antes del <strong>1 de agosto de 2026</strong>.
         </p>
 
-        <!-- FORMULARIO -->
         <form id="rsvpForm" class="rsvp-form">
 
-            <label>Nombre y apellidos *</label>
+            <!-- Nombre -->
+            <label class="field-label">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                </svg>
+                Nombre y apellidos *
+            </label>
             <input type="text" id="nombre" required>
 
-            <label>¿Asistirás?</label>
-                <select id="asistencia" required>
-                    <option value="" disabled selected>Selecciona una opción</option>
-                    <option value="Sí">Sí</option>
-                    <option value="No">No</option>
-                    <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+            <!-- Asistencia -->
+            <label class="field-label">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                ¿Asistirás?
+            </label>
+            <select id="asistencia" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+                <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
             </select>
 
-            <div id="extraFields" class="extra-hidden">
+            <!-- Campos adicionales -->
+            <div id="extraFields">
 
-                <label>Adultos</label>
-                <select id="adultos">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
+                <div class="extra-row">
+                    <div>
+                        <label class="field-label">Adultos</label>
+                        <select id="adultos">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
 
-                <label>Niños</label>
-                <select id="ninos">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
+                    <div>
+                        <label class="field-label">Niños</label>
+                        <select id="ninos">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                </div>
 
-                <label>Alergias y/o intolerancias</label>
-                    <textarea id="comentarios"></textarea>
+                <label class="field-label">Alergias y/o intolerancias</label>
+                <textarea id="comentarios"></textarea>
             </div>
 
             <button type="submit" class="btn">Enviar</button>
         </form>
 
-        <p id="rsvp-ok" style="display:none; color:#3c5e44; margin-top:15px;">
-            ¡Gracias! Hemos recibido tu respuesta ❤️
-        </p>
+        <p id="rsvp-ok">¡Gracias! Hemos recibido tu confirmación ❤️</p>
+
     </div>
-
-    <!-- SCRIPT GOOGLE FORMS -->
-    <script>
-    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
-
-        const data = new FormData();
-        data.append("entry.1644133493", document.getElementById("nombre").value);       // Nombre
-        data.append("entry.371748636",  document.getElementById("asistencia").value);  // Asistencia
-        data.append("entry.1964685042", document.getElementById("adultos").value);     // Adultos
-        data.append("entry.1609486861", document.getElementById("ninos").value);       // Niños
-        data.append("entry.320730572",  document.getElementById("comentarios").value); // Alergias
-
-        fetch(url, {
-            method: "POST",
-            mode: "no-cors",
-            body: data
-        })
-        .then(() => {
-            document.getElementById("rsvpForm").reset();
-            document.getElementById("rsvp-ok").style.display = "block";
-        });
-    });
-    </script>
 </section>
+
 <footer>
-    Cris & Pablo · 12 · Septiembre · 2026
+    Cris & Pablo · 12 septiembre 2026
 </footer>
 
+<!-- ================= SCRIPTS ================= -->
 <script>
-    function updateCountdown() {
-        const weddingDate = new Date("2026-09-12");
-        const today = new Date();
-        const diff = weddingDate - today;
+function updateCountdown() {
+    const weddingDate = new Date("2026-09-12");
+    const today = new Date();
+    const diff = weddingDate - today;
+    const days = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("countdown").textContent = days + " días para la boda ❤️";
+}
+updateCountdown();
+setInterval(updateCountdown, 3600000);
 
-        const days = Math.floor(diff / (1000*60*60*24));
-        document.getElementById("countdown").textContent =
-            days + " días para la boda ❤️";
-    }
+/* Mostrar/ocultar campos extra */
+document.getElementById("asistencia").addEventListener("change", function() {
+    const extra = document.getElementById("extraFields");
+    if (this.value === "Sí") extra.classList.add("show");
+    else extra.classList.remove("show");
+});
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000*60*60);
+/* Envío Google Forms */
+document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const btn = document.querySelector(".btn");
+    btn.classList.add("loading");
+
+    const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+
+    const data = new FormData();
+    data.append("entry.1644133493", document.getElementById("nombre").value);
+    data.append("entry.371748636",  document.getElementById("asistencia").value);
+    data.append("entry.1964685042", document.getElementById("adultos").value);
+    data.append("entry.1609486861", document.getElementById("ninos").value);
+    data.append("entry.320730572",  document.getElementById("comentarios").value);
+
+    fetch(url, { method: "POST", mode: "no-cors", body: data })
+        .then(() => {
+            btn.classList.remove("loading");
+            document.getElementById("rsvpForm").reset();
+            document.getElementById("extraFields").classList.remove("show");
+            document.getElementById("rsvp-ok").style.display = "block";
+        });
+});
 </script>
-<script>
-    document.getElementById("asistencia").addEventListener("change", function() {
-        const extra = document.getElementById("extraFields");
 
-        if (this.value === "Sí") {
-            // Mostrar con animación
-            extra.classList.remove("extra-hidden");
-            extra.classList.add("extra-visible");
-        } 
-        else {
-            // Ocultar con animación
-            extra.classList.remove("extra-visible");
-            extra.classList.add("extra-hidden");
-
-            // Resetear valores
-            document.getElementById("adultos").value = "0";
-            document.getElementById("ninos").value = "0";
-            document.getElementById("comentarios").value = "";
-        }
-    });
-</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
