@@ -97,6 +97,42 @@
         font-weight: bold;
     }
 
+    /* ---------- MAPA ---------- */
+    .map-container {
+        margin-top: 18px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+
+    .map-iframe {
+        width: 100%;
+        height: 260px;
+        border: 0;
+    }
+
+    /* ---------- BOTONES GOOGLE MAPS ---------- */
+    .btn-maps {
+        display: block;
+        width: 100%;
+        max-width: 260px;
+        margin: 12px auto;
+        padding: 10px 16px;
+        background-color: #48674b;
+        color: #f9f6ed;
+        text-decoration: none;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 1rem;
+        text-align: center;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+        transition: 0.2s;
+    }
+
+    .btn-maps:hover {
+        filter: brightness(1.07);
+    }
+
     /* ---------- LISTAS ---------- */
     .list {
         padding-left: 18px;
@@ -239,9 +275,32 @@
         <p>El cóctel dará comienzo a las <strong>19:00</strong></p>
 
         <p style="margin-top:16px;">
-            Próximamente añadiremos un mapa interactivo y más detalles para facilitar el acceso
-            y el aparcamiento.
+            Aquí puedes orientarte fácilmente para llegar tanto al castillo como a la finca.
         </p>
+
+        <!-- BOTONES GOOGLE MAPS -->
+        <a class="btn-maps"
+           href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo"
+           target="_blank">
+            Cómo llegar al Castillo de Oropesa
+        </a>
+
+        <a class="btn-maps"
+           href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo"
+           target="_blank">
+            Cómo llegar a la Finca Casaes
+        </a>
+
+        <!-- MAPA INTERACTIVO -->
+        <div class="map-container">
+            <iframe
+                class="map-iframe"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Oropesa%2C+Toledo&output=embed">
+            </iframe>
+        </div>
+
     </div>
 </section>
 
@@ -277,7 +336,6 @@
             <span class="highlight">[fecha límite]</span>.
         </p>
 
-        <!-- Formulario simple (no envía aún a ningún sitio concreto) -->
         <form class="rsvp-form">
             <div>
                 <label for="nombre">Nombre y apellidos</label>
@@ -307,8 +365,6 @@
                 <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos si tienes alguna alergia, si eres vegetariano/a, etc."></textarea>
             </div>
 
-            <!-- De momento este botón no envía a ningún sitio;
-                 más adelante podemos conectarlo a Google Forms o a tu email -->
             <button type="button" class="btn btn-secondary">
                 (Pendiente de configurar envío)
             </button>
@@ -348,5 +404,3 @@
 
 </body>
 </html>
-
-
