@@ -307,21 +307,72 @@
 
 <!-- ===================== CONFIRMACIÓN DE ASISTENCIA ===================== -->
 <section class="section" id="rsvp">
-    <h2 class="section-title">
-        <!-- ICONO CHECK -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        Confirmación de asistencia
-    </h2>
+    <form id="rsvpForm" class="rsvp-form">
 
-    <div class="card">
-        <p>Podéis confirmar vuestra asistencia mediante WhatsApp o formulario externo.</p>
+    <label>Nombre y apellidos *</label>
+    <input type="text" id="nombre" required>
 
-        <a href="https://forms.gle/TU_FORMULARIO" target="_blank">
-            <button class="btn">Abrir formulario de confirmación</button>
-        </a>
-    </div>
+    <label>¿Asistirás?</label>
+    <select id="asistencia">
+        <option value="Sí">Sí</option>
+        <option value="No">No</option>
+        <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+    </select>
+
+    <label>Adultos</label>
+    <select id="adultos">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <label>Niños</label>
+    <select id="ninos">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+
+    <label>Alergias y/o intolerancias</label>
+    <textarea id="comentarios"></textarea>
+
+    <button type="submit" class="btn">Confirmar asistencia</button>
+</form>
+
+<p id="rsvp-ok" style="display:none; color:#3c5e44; margin-top:15px;">
+    ¡Gracias! Hemos recibido tu confirmación ❤️
+</p>
+
+<script>
+document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    // URL REAL DE TU FORMULARIO
+    const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+
+    const data = new FormData();
+    data.append("entry.1644133493", document.getElementById("nombre").value);       // Nombre
+    data.append("entry.371748636",  document.getElementById("asistencia").value);  // Asistirás
+    data.append("entry.1964685042", document.getElementById("adultos").value);     // Adultos
+    data.append("entry.1609486861", document.getElementById("ninos").value);       // Niños
+    data.append("entry.320730572",  document.getElementById("comentarios").value); // Alergias
+
+    fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        body: data
+    })
+    .then(() => {
+        document.getElementById("rsvpForm").reset();
+        document.getElementById("rsvp-ok").style.display = "block";
+    });
+});
+</script>
+
 </section>
 
 <footer>
@@ -345,6 +396,7 @@
 
 </body>
 </html>
+
 
 
 
