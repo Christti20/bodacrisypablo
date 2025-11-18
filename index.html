@@ -5,7 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boda – Cris & Pablo</title>
 
+<!-- Fuente elegante para títulos (opcional) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
         margin: 0;
         padding: 0;
@@ -15,24 +24,24 @@
         text-align: center;
     }
 
-    /* CONTENEDOR HERO */
+    /* ---------- HERO ---------- */
     .hero {
         position: relative;
         width: 100%;
-        height: 70vh; /* 🔥 Foto fija al 70% del alto del móvil */
+        height: 70vh;
         overflow: hidden;
     }
 
     .hero img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* 🔥 Mantiene recorte bonito sin deformar */
-        opacity: 0.50;     /* 🔥 Suavidad estilo foto lavada */
-        filter: brightness(110%); /* Más claridad tipo ejemplo */
+        object-fit: cover;
+        opacity: 0.50;
+        filter: brightness(110%);
     }
 
-    /* TEXTO PRINCIPAL */
     .names {
+        font-family: "Playfair Display", "Georgia", serif;
         font-size: 2.4rem;
         font-weight: bold;
         margin-top: 20px;
@@ -46,14 +55,124 @@
     .countdown {
         font-size: 1.1rem;
         margin-top: 10px;
+        margin-bottom: 25px;
     }
 
+    /* ---------- SECCIONES GENERALES ---------- */
+    .section {
+        padding: 40px 20px;
+        max-width: 800px;
+        margin: 0 auto 10px auto;
+        text-align: left;
+    }
+
+    .section-title {
+        font-family: "Playfair Display", "Georgia", serif;
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 25px;
+        color: #445f48;
+    }
+
+    .card {
+        background-color: #f8f3e6;
+        border-radius: 16px;
+        padding: 20px 22px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        line-height: 1.6;
+        font-size: 0.98rem;
+    }
+
+    .card h3 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        color: #4b6650;
+    }
+
+    .card p {
+        margin: 8px 0;
+    }
+
+    .highlight {
+        font-weight: bold;
+    }
+
+    /* ---------- LISTAS ---------- */
+    .list {
+        padding-left: 18px;
+        margin: 10px 0;
+    }
+
+    .list li {
+        margin-bottom: 6px;
+    }
+
+    /* ---------- FORMULARIO CONFIRMACIÓN ---------- */
+    .rsvp-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .rsvp-form label {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea {
+        font-family: inherit;
+        font-size: 0.95rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid #c6bda7;
+        background-color: #fdf9f0;
+    }
+
+    .rsvp-form textarea {
+        resize: vertical;
+        min-height: 70px;
+    }
+
+    .btn {
+        margin-top: 10px;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        background-color: #48674b;
+        color: #f9f6ed;
+    }
+
+    .btn-secondary {
+        background-color: #d1c4a6;
+        color: #374335;
+    }
+
+    .btn:hover {
+        filter: brightness(1.05);
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    /* Un poco de espacio al final */
+    footer {
+        padding: 30px 10px 40px;
+        font-size: 0.85rem;
+        color: #7b8a78;
+    }
 </style>
 </head>
 <body>
 
 <!-- FOTO -->
-<div class="hero">
+<div class="hero" id="inicio">
     <img src="portada.jpeg" alt="Cris y Pablo">
 </div>
 
@@ -62,18 +181,152 @@
 <div class="date">12 · Septiembre · 2026</div>
 <div class="countdown" id="countdown"></div>
 
+<!-- ===================== NUESTRA HISTORIA ===================== -->
+<section class="section" id="historia">
+    <h2 class="section-title">Nuestra historia</h2>
+    <div class="card">
+        <p>
+            Aquí puedes contar, con calma, cómo empezó todo: dónde os conocisteis,
+            qué momento marcó la diferencia y cómo habéis llegado hasta este día.
+        </p>
+        <p>
+            Puedes escribir algo tipo:
+        </p>
+        <p>
+            <em>
+            “Nos conocimos en ______ en el año ______. Desde entonces han pasado
+            viajes, risas, mil anécdotas y alguna que otra locura compartida.
+            El 12 de septiembre de 2026 queremos celebrar con vosotros el siguiente
+            capítulo de nuestra historia.”
+            </em>
+        </p>
+        <p>
+            Más adelante solo tendrás que entrar aquí y editar el texto a vuestro gusto.
+        </p>
+    </div>
+</section>
+
+<!-- ===================== LUGAR ===================== -->
+<section class="section" id="lugar">
+    <h2 class="section-title">Lugar</h2>
+    <div class="card">
+        <h3>Ceremonia</h3>
+        <p class="highlight">[Nombre del lugar de la ceremonia]</p>
+        <p>[Dirección completa]</p>
+        <p>Hora de inicio: <span class="highlight">[HH:MM]</span></p>
+
+        <hr style="margin:18px 0; border:none; border-top:1px solid #e0d6c1;">
+
+        <h3>Celebración</h3>
+        <p class="highlight">[Nombre de la finca / restaurante]</p>
+        <p>[Dirección completa]</p>
+        <p>Después de la ceremonia iremos todos juntos a celebrarlo allí.</p>
+
+        <p style="margin-top:16px;">
+            Próximamente añadiremos un mapa y detalles de aparcamiento y transporte.
+        </p>
+    </div>
+</section>
+
+<!-- ===================== ALOJAMIENTO ===================== -->
+<section class="section" id="alojamiento">
+    <h2 class="section-title">Alojamiento</h2>
+    <div class="card">
+        <p>
+            Para quienes vengáis de fuera, hemos preparado algunas sugerencias
+            de hoteles cercanos al lugar de la celebración.
+        </p>
+
+        <ul class="list">
+            <li><span class="highlight">Hotel 1</span> – a X minutos en coche. [Info / código descuento si lo hay]</li>
+            <li><span class="highlight">Hotel 2</span> – a X minutos en coche. [Info]</li>
+            <li><span class="highlight">Hotel 3</span> – zona centro. [Info]</li>
+        </ul>
+
+        <p>
+            Podéis elegir el alojamiento que prefiráis. Si necesitáis ayuda,
+            no dudéis en escribirnos.
+        </p>
+    </div>
+</section>
+
+<!-- ===================== CONFIRMACIÓN DE ASISTENCIA ===================== -->
+<section class="section" id="rsvp">
+    <h2 class="section-title">Confirmación de asistencia</h2>
+    <div class="card">
+        <p>
+            Nos hará mucha ilusión compartir este día con vosotros.  
+            Por favor, confirmad vuestra asistencia antes del
+            <span class="highlight">[fecha límite]</span>.
+        </p>
+
+        <!-- Formulario simple (no envía aún a ningún sitio concreto) -->
+        <form class="rsvp-form">
+            <div>
+                <label for="nombre">Nombre y apellidos</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+
+            <div>
+                <label for="personas">Número de personas</label>
+                <select id="personas" name="personas">
+                    <option value="1">1 persona</option>
+                    <option value="2">2 personas</option>
+                    <option value="3">3 personas</option>
+                    <option value="4">4 personas</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="asistencia">¿Asistirás?</label>
+                <select id="asistencia" name="asistencia">
+                    <option value="si">Sí, allí estaré</option>
+                    <option value="no">No podré asistir</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="comentarios">Alergias, intolerancias o comentarios</label>
+                <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos si tienes alguna alergia, si eres vegetariano/a, etc."></textarea>
+            </div>
+
+            <!-- De momento este botón no envía a ningún sitio;
+                 más adelante podemos conectarlo a Google Forms o a tu email -->
+            <button type="button" class="btn btn-secondary">
+                (Pendiente de configurar envío)
+            </button>
+        </form>
+
+        <p style="margin-top:18px;" class="center">
+            Si lo prefieres, también puedes confirmar por WhatsApp o mediante
+            un formulario externo:
+        </p>
+        <p class="center">
+            <a href="https://forms.gle/TU_FORMULARIO" target="_blank">
+                <button type="button" class="btn">Abrir formulario de confirmación</button>
+            </a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    Cris & Pablo · 12 · Septiembre · 2026
+</footer>
+
 <script>
-function updateCountdown() {
-    const weddingDate = new Date("2026-09-12");
-    const today = new Date();
-    const diff = weddingDate - today;
+    // Cuenta atrás
+    function updateCountdown() {
+        const weddingDate = new Date("2026-09-12");
+        const today = new Date();
+        const diff = weddingDate - today;
 
-    const days = Math.floor(diff / (1000*60*60*24));
-    document.getElementById("countdown").textContent = days + " días para la boda ❤️";
-}
+        const days = Math.floor(diff / (1000*60*60*24));
+        document.getElementById("countdown").textContent =
+            days + " días para la boda ❤️";
+    }
 
-updateCountdown();
-setInterval(updateCountdown, 1000*60*60);
+    updateCountdown();
+    setInterval(updateCountdown, 1000*60*60);
 </script>
 
 </body>
