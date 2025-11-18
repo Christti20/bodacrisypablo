@@ -307,74 +307,90 @@
 
 <!-- ===================== CONFIRMACIÓN DE ASISTENCIA ===================== -->
 <section class="section" id="rsvp">
-    <form id="rsvpForm" class="rsvp-form">
 
-    <label>Nombre y apellidos *</label>
-    <input type="text" id="nombre" required>
+    <h2 class="section-title">
+        <!-- ICONO MANO CORAZÓN -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" stroke-width="1.6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M12 21s-6-4.35-9-8.7C1 9 2 5 5 3.5S10 4 12 7c2-3 5-4.5 7-3.5s4 5.5 2 8.8C18 16.65 12 21 12 21z"/>
+        </svg>
+        Confirmación de asistencia
+    </h2>
 
-    <label>¿Asistirás?</label>
-    <select id="asistencia">
-        <option value="Sí">Sí</option>
-        <option value="No">No</option>
-        <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
-    </select>
+    <div class="card">
 
-    <label>Adultos</label>
-    <select id="adultos">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+        <p style="margin-bottom:18px;">
+            Nos hará mucha ilusión compartir este día con vosotros.  
+            Por favor, confirmad vuestra asistencia antes del <span class="highlight">[fecha límite]</span>.
+        </p>
 
-    <label>Niños</label>
-    <select id="ninos">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-    </select>
+        <!-- FORMULARIO -->
+        <form id="rsvpForm" class="rsvp-form">
 
-    <label>Alergias y/o intolerancias</label>
-    <textarea id="comentarios"></textarea>
+            <label>Nombre y apellidos *</label>
+            <input type="text" id="nombre" required>
 
-    <button type="submit" class="btn">Confirmar asistencia</button>
-</form>
+            <label>¿Asistirás?</label>
+            <select id="asistencia">
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+                <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+            </select>
 
-<p id="rsvp-ok" style="display:none; color:#3c5e44; margin-top:15px;">
-    ¡Gracias! Hemos recibido tu confirmación ❤️
-</p>
+            <label>Adultos</label>
+            <select id="adultos">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
 
-<script>
-document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-    e.preventDefault();
+            <label>Niños</label>
+            <select id="ninos">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
 
-    // URL REAL DE TU FORMULARIO
-    const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+            <label>Alergias y/o intolerancias</label>
+            <textarea id="comentarios"></textarea>
 
-    const data = new FormData();
-    data.append("entry.1644133493", document.getElementById("nombre").value);       // Nombre
-    data.append("entry.371748636",  document.getElementById("asistencia").value);  // Asistirás
-    data.append("entry.1964685042", document.getElementById("adultos").value);     // Adultos
-    data.append("entry.1609486861", document.getElementById("ninos").value);       // Niños
-    data.append("entry.320730572",  document.getElementById("comentarios").value); // Alergias
+            <button type="submit" class="btn">Confirmar asistencia</button>
+        </form>
 
-    fetch(url, {
-        method: "POST",
-        mode: "no-cors",
-        body: data
-    })
-    .then(() => {
-        document.getElementById("rsvpForm").reset();
-        document.getElementById("rsvp-ok").style.display = "block";
+        <p id="rsvp-ok" style="display:none; color:#3c5e44; margin-top:15px;">
+            ¡Gracias! Hemos recibido tu confirmación ❤️
+        </p>
+    </div>
+
+    <!-- SCRIPT GOOGLE FORMS -->
+    <script>
+    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+
+        const data = new FormData();
+        data.append("entry.1644133493", document.getElementById("nombre").value);       // Nombre
+        data.append("entry.371748636",  document.getElementById("asistencia").value);  // Asistencia
+        data.append("entry.1964685042", document.getElementById("adultos").value);     // Adultos
+        data.append("entry.1609486861", document.getElementById("ninos").value);       // Niños
+        data.append("entry.320730572",  document.getElementById("comentarios").value); // Alergias
+
+        fetch(url, {
+            method: "POST",
+            mode: "no-cors",
+            body: data
+        })
+        .then(() => {
+            document.getElementById("rsvpForm").reset();
+            document.getElementById("rsvp-ok").style.display = "block";
+        });
     });
-});
-</script>
-
+    </script>
 </section>
-
 <footer>
     Cris & Pablo · 12 · Septiembre · 2026
 </footer>
@@ -396,6 +412,7 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
