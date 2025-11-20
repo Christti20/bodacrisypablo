@@ -20,7 +20,82 @@ body {
     color: #48674b;
     text-align: center;
 }
+/* ===================== WELCOME SCREEN ===================== */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #4f6a5a; /* Verde profundo estilo invitación */
+    color: #f0efe8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px;
+    text-align: center;
+    z-index: 9999;
+    animation: fadeIn 0.6s ease-out;
+}
 
+/* Flores arriba/abajo */
+.welcome-top-decoration img,
+.welcome-bottom-decoration img {
+    width: 75%;
+    max-width: 420px;
+    opacity: 0.9;
+}
+
+/* Texto principal */
+.welcome-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    margin-top: -20px;
+    font-weight: 500;
+}
+
+.welcome-names {
+    font-family: "Updock", cursive;
+    font-size: 4rem;
+    margin: 0;
+}
+
+/* Botón */
+.welcome-btn {
+    margin-top: 20px;
+    padding: 14px 34px;
+    font-size: 1.2rem;
+    border-radius: 999px;
+    border: none;
+    background: #ffffff;
+    color: #48674b;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transition: 0.25s;
+}
+
+.welcome-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Ocultar animado al entrar */
+.fade-out {
+    animation: fadeOut 0.7s forwards ease-in;
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+    
 /* ---------- HERO ---------- */
 .hero {
     width: 100%;
@@ -223,6 +298,23 @@ footer {
 </head>
 
 <body>
+<!-- ===================== PANTALLA DE BIENVENIDA ===================== -->
+<div class="welcome-screen" id="welcome">
+    
+    <div class="welcome-top-decoration">
+        <img src="decor-arriba.png" alt="Decoración floral">
+    </div>
+
+    <h1 class="welcome-title">Bienvenidos a la invitación de</h1>
+    <h2 class="welcome-names">Cris & Pablo</h2>
+
+    <button class="welcome-btn" onclick="enterSite()">Descubrir</button>
+
+    <div class="welcome-bottom-decoration">
+        <img src="decor-abajo.png" alt="Decoración floral">
+    </div>
+
+</div>
 
 <!-- HERO -->
 <div class="hero">
@@ -386,6 +478,17 @@ footer {
 </footer>
 
 <!-- ===================== SCRIPTS ===================== -->
+<script>
+function enterSite() {
+    const welcome = document.getElementById("welcome");
+    welcome.classList.add("fade-out");
+
+    setTimeout(() => {
+        welcome.style.display = "none";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 700);
+}
+</script>
 
 <script>
 // Cuenta atrás
@@ -447,4 +550,5 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
