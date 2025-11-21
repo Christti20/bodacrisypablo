@@ -109,22 +109,117 @@ body {
     margin-bottom: 15px;
     color: #445f48;
 }
+/* Sección fondo beige curva */
+.contador-section {
+    background: #f8f3e6;
+    padding: 60px 0 120px 0;
+    position: relative;
+    margin-top: -40px;
+    border-radius: 50px 50px 0 0;
+}
+
+/* Flecha animada */
 .scroll-arrow {
     width: 35px;
     height: 35px;
-    border-bottom: 3px solid #ffffff;
     border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
     transform: rotate(45deg);
-    margin: 0 auto 20px auto;
+    margin: 10px auto 30px auto;
     animation: arrowBounce 1.5s infinite ease-in-out;
     opacity: 0.9;
 }
-
 @keyframes arrowBounce {
     0% { transform: translateY(0) rotate(45deg); }
     50% { transform: translateY(10px) rotate(45deg); }
     100% { transform: translateY(0) rotate(45deg); }
 }
+
+/* Contenedor general */
+.contador-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: auto;
+}
+
+/* Marco geométrico */
+.marco-geom {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 260px;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hojas superiores */
+.hojas-arriba {
+    position: absolute;
+    top: -10px;
+    right: -20px;
+    width: 140px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Hojas inferiores */
+.hojas-abajo {
+    position: absolute;
+    bottom: -25px;
+    left: -25px;
+    width: 150px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Círculo blanco del contador */
+.contador-circle {
+    width: 260px;
+    height: 260px;
+    background: white;
+    border-radius: 50%;
+    margin: auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    position: relative;
+    padding: 20px;
+}
+
+/* Título */
+.contador-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    color: #b49a69;
+    margin-bottom: 10px;
+}
+
+/* Valores */
+.contador-values {
+    display: flex;
+    gap: 14px;
+    text-align: center;
+    color: #777;
+    font-size: 0.85rem;
+}
+.contador-values span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Corazón */
+.contador-heart {
+    font-size: 1.7rem;
+    color: #6f8b6d;
+    margin-top: 10px;
+}
+
 .countdown-wrapper {
     background: #f7f2e9;
     padding: 40px 0;
@@ -350,18 +445,42 @@ footer {
 <div class="names">Cris & Pablo</div>
 <div class="date">12 · Septiembre · 2026</div>
 <div class="scroll-arrow"></div>
-<div class="countdown-wrapper">
-    <div class="countdown-circle">
-        <div class="countdown-title">Falta</div>
-        <div class="countdown-values">
-            <div><span id="d">00</span><br>días</div>
-            <div><span id="h">00</span><br>hs</div>
-            <div><span id="m">00</span><br>min</div>
-            <div><span id="s">00</span><br>seg</div>
+<!-- SECCIÓN CONTADOR ESTILO INVITACIÓN -->
+<section class="contador-section">
+
+    <!-- Flecha animada -->
+    <div class="scroll-arrow"></div>
+
+    <!-- Contenedor general -->
+    <div class="contador-wrapper">
+
+        <!-- Marco geométrico -->
+        <img src="marco-geom.png" class="marco-geom" alt="Marco decorativo">
+
+        <!-- Hojas arriba -->
+        <img src="hojas-arriba.png" class="hojas-arriba" alt="Hojas decoración superior">
+
+        <!-- Círculo blanco -->
+        <div class="contador-circle">
+            <div class="contador-title">Falta</div>
+
+            <div class="contador-values">
+                <div><span id="d">00</span><br>días</div>
+                <div><span id="h">00</span><br>hs</div>
+                <div><span id="m">00</span><br>min</div>
+                <div><span id="s">00</span><br>seg</div>
+            </div>
+
+            <div class="contador-heart">❤</div>
         </div>
-        <div class="countdown-heart">❤</div>
+
+        <!-- Hojas abajo -->
+        <img src="hojas-abajo.png" class="hojas-abajo" alt="Hojas decoración inferior">
+
     </div>
-</div>
+
+</section>
+
 
 <!-- MENÚ -->
 <nav class="subnav">
@@ -544,9 +663,8 @@ function updateCircularCountdown() {
     document.getElementById("m").textContent = minutes;
     document.getElementById("s").textContent = seconds;
 }
-
-setInterval(updateCircularCountdown, 1000);
 updateCircularCountdown();
+setInterval(updateCircularCountdown, 1000);
 </script>
 
     
@@ -610,6 +728,7 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
 
 
