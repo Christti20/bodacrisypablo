@@ -109,6 +109,70 @@ body {
     margin-bottom: 15px;
     color: #445f48;
 }
+.scroll-arrow {
+    width: 35px;
+    height: 35px;
+    border-bottom: 3px solid #ffffff;
+    border-right: 3px solid #ffffff;
+    transform: rotate(45deg);
+    margin: 0 auto 20px auto;
+    animation: arrowBounce 1.5s infinite ease-in-out;
+    opacity: 0.9;
+}
+
+@keyframes arrowBounce {
+    0% { transform: translateY(0) rotate(45deg); }
+    50% { transform: translateY(10px) rotate(45deg); }
+    100% { transform: translateY(0) rotate(45deg); }
+}
+.countdown-wrapper {
+    background: #f7f2e9;
+    padding: 40px 0;
+    border-radius: 50px 50px 0 0;
+    margin-top: -40px;
+}
+
+.countdown-circle {
+    background: white;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    border-radius: 50%;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+
+.countdown-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    color: #a08b63;
+    margin-bottom: 12px;
+}
+
+.countdown-values {
+    display: flex;
+    gap: 16px;
+    text-align: center;
+    color: #7b7b7b;
+    font-size: 0.85rem;
+}
+
+.countdown-values span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.countdown-heart {
+    font-size: 1.5rem;
+    color: #6a7f6a;
+    margin-top: 8px;
+}
 
 /* ---------- MENÚ ---------- */
 .subnav {
@@ -285,7 +349,19 @@ footer {
 
 <div class="names">Cris & Pablo</div>
 <div class="date">12 · Septiembre · 2026</div>
-<div class="countdown" id="countdown"></div>
+<div class="scroll-arrow"></div>
+<div class="countdown-wrapper">
+    <div class="countdown-circle">
+        <div class="countdown-title">Falta</div>
+        <div class="countdown-values">
+            <div><span id="d">00</span><br>días</div>
+            <div><span id="h">00</span><br>hs</div>
+            <div><span id="m">00</span><br>min</div>
+            <div><span id="s">00</span><br>seg</div>
+        </div>
+        <div class="countdown-heart">❤</div>
+    </div>
+</div>
 
 <!-- MENÚ -->
 <nav class="subnav">
@@ -453,6 +529,28 @@ function enterSite() {
 </script>
 
 <script>
+function updateCircularCountdown() {
+    const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("d").textContent = days;
+    document.getElementById("h").textContent = hours;
+    document.getElementById("m").textContent = minutes;
+    document.getElementById("s").textContent = seconds;
+}
+
+setInterval(updateCircularCountdown, 1000);
+updateCircularCountdown();
+</script>
+
+    
+<script>
 // Cuenta atrás
 function updateCountdown() {
     const weddingDate = new Date("2026-09-12");
@@ -512,6 +610,7 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
 
 
