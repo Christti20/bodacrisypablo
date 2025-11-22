@@ -137,14 +137,16 @@ body {
     50% { transform: translateY(10px) rotate(45deg); }
     100% { transform: translateY(0) rotate(45deg); }
 }
-
-/* Contenedor general */
-.contador-wrapper {
-    position: relative;
+/* Contenedor del contador centrado */
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 350px;
-    margin: auto;
+    margin: 0 auto;
+    text-align: center;
 }
+
 
 /* Hojas superiores */
 .hojas-arriba {
@@ -181,6 +183,8 @@ body {
     z-index: 2;
     position: relative;
     padding: 20px;
+    display: inline-block;
+    margin:0;
 }
 
 /* Título */
@@ -714,6 +718,7 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
 
 
