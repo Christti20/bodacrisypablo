@@ -8,6 +8,7 @@
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Updock&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     html { scroll-behavior: smooth; }
@@ -21,12 +22,11 @@
       --text-muted:#7b7b7b;
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Georgia", serif;
-      background-color: var(--bg);
-      color: var(--green);
+    body{
+      font-family: "Libre Baskerville", serif;
+      font-weight: 400;
+      background-color: #efe9db;
+      color: #48674b;
       text-align: center;
     }
 
@@ -94,25 +94,6 @@
       position: relative;
     }
 
-    /* Hojas (si quieres mantenerlas, aquí siguen) */
-    .hojas-arriba {
-      position: absolute;
-      top: -40px;
-      right: -20px;
-      width: 140px;
-      z-index: 3;
-      pointer-events: none;
-    }
-    .hojas-abajo {
-      position: absolute;
-      bottom: -50px;
-      left: -25px;
-      width: 150px;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-   
     .contador-circle{
     width: 260px;
     height: 260px;
@@ -257,18 +238,26 @@
       text-align: left;
     }
 
-    .section-title {
+    .section-title{
       font-family: "Playfair Display", serif;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 25px;
-      color: var(--green2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
     }
 
+    .card{
+      font-family: "Libre Baskerville", serif;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      }
+
+    .card p{
+       margin-bottom: 14px;
+      }
+    .card h3,
+    .highlight{
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      }
     .card {
       background-color: var(--card);
       border-radius: 16px;
@@ -687,6 +676,7 @@
 
 </body>
 </html>
+
 
 
 
