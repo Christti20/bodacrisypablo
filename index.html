@@ -18,7 +18,6 @@
       --card: #f8f3e6;
       --green: #48674b;
       --green2:#445f48;
-      --gold: rgba(180,154,105,0.25);
       --text-muted:#7b7b7b;
       --menu:#3f6346;
     }
@@ -52,14 +51,14 @@
     .names {
       font-family: "Updock", cursive;
       font-size: 4rem;
-      margin-top: 10px;
+      margin: 10px 0 0 0;
       line-height: 1;
       color: var(--green2);
     }
     .date {
       font-family: "Updock", cursive;
       font-size: 2.2rem;
-      margin-top: 0;
+      margin: 0;
       line-height: 1.1;
     }
 
@@ -199,10 +198,11 @@
       opacity: 0.92;
     }
 
-    /* ---------- MENÚ (DESKTOP + HAMBURGUESA MÓVIL) ---------- */
+    /* ---------- MENÚ (DESKTOP + SELLO MÓVIL) ---------- */
     .subnav{
       width: 100%;
       background: var(--menu);
+      min-height: 54px;
       padding: 10px 14px;
       position: sticky;
       top: 0;
@@ -211,10 +211,11 @@
 
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center; /* ✅ centrado en todos los casos */
       gap: 18px;
     }
 
+    /* Desktop links */
     .nav-links{
       display: flex;
       gap: 18px;
@@ -228,51 +229,54 @@
       font-weight: 500;
       font-size: 0.95rem;
       letter-spacing: 0.25px;
-      text-transform: uppercase;
       text-decoration: none;
       color: rgba(255,255,255,0.92);
       padding: 6px 4px;
       transition: .2s;
+      text-transform: uppercase; /* desktop OK */
     }
     .nav-links a:hover{ opacity: 0.85; transform: translateY(-1px); }
 
-    /* Botón hamburguesa */
+    /* Botón sello (hamburguesa) */
     .nav-toggle{
-      display: none;
-      border: 0;
-      background: rgba(255,255,255,0.10);
-      padding: 10px 12px;
+      display: none; /* se activa en móvil */
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      border: none;
       cursor: pointer;
-      border-radius: 14px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
     }
     .nav-toggle span{
       display: block;
-      width: 22px;
+      width: 18px;
       height: 2px;
       background: rgba(255,255,255,0.92);
-      margin: 5px 0;
       border-radius: 2px;
     }
 
-    /* Overlay menú móvil */
-    /* Overlay: por defecto oculto cuando tiene [hidden] */
+    /* ---------- OVERLAY MENÚ MÓVIL ---------- */
     .nav-overlay[hidden]{
       display: none !important;
     }
 
-    /* Overlay: solo visible cuando NO tiene [hidden] */
     .nav-overlay:not([hidden]){
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.25);
+      background: rgba(0,0,0,0.18);
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
       z-index: 200;
       display: grid;
-      place-items: center;   /* ✅ centrado perfecto */
+      place-items: center;
       padding: 18px;
     }
+
     .nav-panel{
       width: min(520px, 94vw);
       background: #f6f1e6;
@@ -333,15 +337,6 @@
       font-size: 1.05rem !important;
       font-weight: 700;
       box-shadow: 0 10px 28px rgba(0,0,0,0.16);
-    }
-
-    /* MÓVIL: ocultar enlaces, mostrar hamburguesa */
-    @media (max-width: 520px){
-      .subnav{
-        justify-content: flex-end;
-      }
-      .nav-links{ display: none; }
-      .nav-toggle{ display: inline-flex; align-items: center; justify-content: center; }
     }
 
     /* ---------- SECCIONES ---------- */
@@ -468,9 +463,7 @@
     }
     .extra-row > div { flex: 1; }
 
-    #comentarios {
-      width: 100%;
-    }
+    #comentarios { width: 100%; }
 
     .btn {
       margin-top: 14px;
@@ -502,7 +495,14 @@
     }
 
     /* ---------- AJUSTES EN MÓVIL ---------- */
-    @media (max-width: 480px) {
+    @media (max-width: 520px) {
+      /* Móvil: ocultar links y mostrar botón sello centrado */
+      .nav-links{ display: none; }
+      .nav-toggle{ display: flex; }
+
+      /* Móvil: el texto del menú (desktop) no aplica, pero por si acaso */
+      .nav-links a{ text-transform: none; }
+
       .contador-section { padding: 70px 0 90px 0; }
 
       .contador-circle {
@@ -524,9 +524,7 @@
       .contador-rest > div{ min-width: 48px; }
 
       /* Historia en móvil: mejor alineado a la izquierda */
-      #historia .card p{
-        text-align: left;
-      }
+      #historia .card p{ text-align: left; }
     }
   </style>
 </head>
@@ -580,7 +578,7 @@
       <a href="#rsvp">Asistencia</a>
     </div>
   </nav>
-  
+
   <!-- Overlay menú móvil -->
   <div class="nav-overlay" hidden>
     <div class="nav-panel" role="dialog" aria-modal="true" aria-label="Menú">
@@ -740,109 +738,104 @@
   </footer>
 
   <script>
-  // Forzar cargar SIEMPRE arriba
-  window.history.scrollRestoration = "manual";
-  window.addEventListener("load", () => window.scrollTo(0, 0));
+    // Forzar cargar SIEMPRE arriba
+    window.history.scrollRestoration = "manual";
+    window.addEventListener("load", () => window.scrollTo(0, 0));
 
-  // Contador
-  function updateCircularCountdown() {
-    const weddingDate = new Date("2026-09-12T00:00:00").getTime();
-    const now = new Date().getTime();
-    const diff = weddingDate - now;
+    // Contador
+    function updateCircularCountdown() {
+      const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
 
-    const safe = Math.max(diff, 0);
+      const safe = Math.max(diff, 0);
 
-    const days = Math.floor(safe / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((safe % (1000 * 60)) / 1000);
+      const days = Math.floor(safe / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((safe % (1000 * 60)) / 1000);
 
-    document.getElementById("d").textContent = String(days);
-    document.getElementById("h").textContent = String(hours).padStart(2, "0");
-    document.getElementById("m").textContent = String(minutes).padStart(2, "0");
-    document.getElementById("s").textContent = String(seconds).padStart(2, "0");
-  }
-  updateCircularCountdown();
-  setInterval(updateCircularCountdown, 1000);
-
-  // Mostrar / ocultar campos extra
-  document.getElementById("asistencia").addEventListener("change", function () {
-    const extra = document.getElementById("extraFields");
-    if (this.value === "Sí") {
-      extra.classList.add("extra-visible");
-    } else {
-      extra.classList.remove("extra-visible");
-      document.getElementById("adultos").value = "0";
-      document.getElementById("ninos").value = "0";
-      document.getElementById("comentarios").value = "";
+      document.getElementById("d").textContent = String(days);
+      document.getElementById("h").textContent = String(hours).padStart(2, "0");
+      document.getElementById("m").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("s").textContent = String(seconds).padStart(2, "0");
     }
-  });
+    updateCircularCountdown();
+    setInterval(updateCircularCountdown, 1000);
 
-  // Envío a Google Forms
-  document.getElementById("rsvpForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const url =
-      "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
-    const data = new FormData();
-
-    data.append("entry.1644133493", document.getElementById("nombre").value);
-    data.append("entry.371748636", document.getElementById("asistencia").value);
-    data.append("entry.1964685042", document.getElementById("adultos").value);
-    data.append("entry.1609486861", document.getElementById("ninos").value);
-    data.append("entry.320730572", document.getElementById("comentarios").value);
-
-    fetch(url, { method: "POST", mode: "no-cors", body: data }).then(() => {
-      document.getElementById("rsvpForm").reset();
-      document.getElementById("extraFields").classList.remove("extra-visible");
-      document.getElementById("rsvp-ok").style.display = "block";
+    // Mostrar / ocultar campos extra
+    document.getElementById("asistencia").addEventListener("change", function () {
+      const extra = document.getElementById("extraFields");
+      if (this.value === "Sí") {
+        extra.classList.add("extra-visible");
+      } else {
+        extra.classList.remove("extra-visible");
+        document.getElementById("adultos").value = "0";
+        document.getElementById("ninos").value = "0";
+        document.getElementById("comentarios").value = "";
+      }
     });
-  });
 
-  // Menú hamburguesa móvil (FIX: overlay no debe abrirse solo, y el X debe cerrar siempre)
-  (() => {
-    const toggleBtn = document.querySelector(".nav-toggle");
-    const overlay = document.querySelector(".nav-overlay");
-    const panel = document.querySelector(".nav-panel");
-    const closeBtn = document.querySelector(".nav-close");
-    const links = document.querySelectorAll(".nav-panel-links a");
+    // Envío a Google Forms
+    document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    if (!toggleBtn || !overlay || !panel || !closeBtn) return;
+      const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+      const data = new FormData();
 
-    // Asegurar estado inicial cerrado
-    overlay.hidden = true;
-    toggleBtn.setAttribute("aria-expanded", "false");
+      data.append("entry.1644133493", document.getElementById("nombre").value);
+      data.append("entry.371748636", document.getElementById("asistencia").value);
+      data.append("entry.1964685042", document.getElementById("adultos").value);
+      data.append("entry.1609486861", document.getElementById("ninos").value);
+      data.append("entry.320730572", document.getElementById("comentarios").value);
 
-    const openMenu = () => {
-      overlay.hidden = false;
-      toggleBtn.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    };
+      fetch(url, { method: "POST", mode: "no-cors", body: data }).then(() => {
+        document.getElementById("rsvpForm").reset();
+        document.getElementById("extraFields").classList.remove("extra-visible");
+        document.getElementById("rsvp-ok").style.display = "block";
+      });
+    });
 
-    const closeMenu = () => {
+    // Menú hamburguesa móvil
+    (() => {
+      const toggleBtn = document.querySelector(".nav-toggle");
+      const overlay = document.querySelector(".nav-overlay");
+      const panel = document.querySelector(".nav-panel");
+      const closeBtn = document.querySelector(".nav-close");
+      const links = document.querySelectorAll(".nav-panel-links a");
+
+      if (!toggleBtn || !overlay || !panel || !closeBtn) return;
+
+      // Estado inicial cerrado
       overlay.hidden = true;
       toggleBtn.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    };
 
-    toggleBtn.addEventListener("click", openMenu);
-    closeBtn.addEventListener("click", closeMenu);
+      const openMenu = () => {
+        overlay.hidden = false;
+        toggleBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      };
 
-    // Cerrar si clicas fuera del panel (mejor que e.target === overlay)
-    overlay.addEventListener("click", (e) => {
-      if (!panel.contains(e.target)) closeMenu();
-    });
+      const closeMenu = () => {
+        overlay.hidden = true;
+        toggleBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      };
 
-    // ESC cierra
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !overlay.hidden) closeMenu();
-    });
+      toggleBtn.addEventListener("click", openMenu);
+      closeBtn.addEventListener("click", closeMenu);
 
-    // Cerrar al elegir opción
-    links.forEach((a) => a.addEventListener("click", closeMenu));
-  })();
-</script>
+      overlay.addEventListener("click", (e) => {
+        if (!panel.contains(e.target)) closeMenu();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !overlay.hidden) closeMenu();
+      });
+
+      links.forEach((a) => a.addEventListener("click", closeMenu));
+    })();
+  </script>
 
 </body>
 </html>
-
