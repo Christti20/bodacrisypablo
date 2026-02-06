@@ -460,6 +460,9 @@ footer {
     width: min(78vw, 240px);
     height: min(78vw, 240px);
     margin-top: 0;          /* <- clave */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    outline: 1px solid rgba(180,154,105,0.25);
+    outline-offset: -10px;
   }
 
   /* Ajuste fino de tipografías para que respiren */
@@ -484,6 +487,63 @@ footer {
     bottom: -35px;
     left: -12px;
   }
+  .contador-days span{ font-size: 2.2rem; }
+  .contador-rest{ gap: 14px; }
+  .contador-rest > div{ min-width: 48px; }
+}
+/* --- Layout contador: DÍAS arriba, resto abajo --- */
+.contador-values--stacked{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.contador-days{
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.contador-days span{
+  display: block;
+  font-size: 2.4rem;     /* protagonista */
+  font-weight: 700;
+  color: #3d3d3d;
+  letter-spacing: 0.5px;
+}
+
+.contador-days small{
+  display: block;
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+}
+
+.contador-rest{
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  align-items: baseline;
+  text-align: center;
+}
+
+.contador-rest > div{
+  min-width: 54px;
+}
+
+.contador-rest span{
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #555;
+}
+
+.contador-rest small{
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #7b7b7b;
 }
 </style>
 </head>
@@ -511,11 +571,17 @@ footer {
         <div class="contador-circle">
             <div class="contador-title">Faltan</div>
 
-            <div class="contador-values">
-                <div><span id="d">00</span><br>días</div>
-                <div><span id="h">00</span><br>hs</div>
-                <div><span id="m">00</span><br>min</div>
-                <div><span id="s">00</span><br>seg</div>
+            <div class="contador-values contador-values--stacked">
+              <div class="contador-days">
+                <span id="d">00</span>
+                <small>días</small>
+              </div>
+
+              <div class="contador-rest">
+                <div><span id="h">00</span><small>hs</small></div>
+                <div><span id="m">00</span><small>min</small></div>
+                <div><span id="s">00</span><small>seg</small></div>
+              </div>
             </div>
 
             <div class="contador-heart">❤</div>
@@ -775,6 +841,7 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
 
 
