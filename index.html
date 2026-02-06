@@ -20,13 +20,17 @@
       --green2:#445f48;
       --gold: rgba(180,154,105,0.25);
       --text-muted:#7b7b7b;
+      --menu:#3f6346;
     }
 
+    *{ box-sizing: border-box; }
+
     body{
+      margin: 0;
       font-family: "Libre Baskerville", serif;
       font-weight: 400;
-      background-color: #efe9db;
-      color: #48674b;
+      background-color: var(--bg);
+      color: var(--green);
       text-align: center;
     }
 
@@ -42,6 +46,7 @@
       object-fit: cover;
       opacity: 0.50;
       filter: brightness(110%);
+      display:block;
     }
 
     .names {
@@ -58,7 +63,7 @@
       line-height: 1.1;
     }
 
-    /* Flecha animada (ahora clicable) */
+    /* Flecha animada (clicable) */
     .scroll-arrow {
       display: block;
       width: 35px;
@@ -82,8 +87,6 @@
     .contador-section {
       background: var(--card);
       padding: 100px 0 120px 0;
-      position: relative;
-      margin-top: 0px;
       border-radius: 50px 50px 0 0;
     }
 
@@ -95,28 +98,22 @@
     }
 
     .contador-circle{
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    margin-top: 90px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      margin-top: 90px;
 
-    background: radial-gradient(
-      circle at top,
-      #f6f1e7 0%,
-      #f4efe3 60%
-    );
+      background: radial-gradient(circle at top, #f6f1e7 0%, #f4efe3 60%);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
 
-    /* SOLO sombra exterior, sin borde */
-    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
 
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-
-    position:relative;
-    z-index:2;
+      position:relative;
+      z-index:2;
     }
 
     /* Corona (corona.png en la misma carpeta) */
@@ -142,7 +139,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* --- Layout contador: DÍAS arriba, resto abajo --- */
     .contador-values--stacked{
       display: flex;
       flex-direction: column;
@@ -180,9 +176,7 @@
       text-align: center;
     }
 
-    .contador-rest > div{
-      min-width: 54px;
-    }
+    .contador-rest > div{ min-width: 54px; }
 
     .contador-rest span{
       display: block;
@@ -205,24 +199,31 @@
       opacity: 0.92;
     }
 
-    /* ---------- MENÚ ---------- */
-    .subnav--event{
-      background: #3f6346; /* verde elegante */
-      padding: 10px 16px;
+    /* ---------- MENÚ (DESKTOP + HAMBURGUESA MÓVIL) ---------- */
+    .subnav{
+      width: 100%;
+      background: var(--menu);
+      padding: 10px 14px;
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 80;
       box-shadow: 0 2px 12px rgba(0,0,0,0.12);
 
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 16px;
+      gap: 18px;
+    }
 
+    .nav-links{
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
       white-space: nowrap;
     }
 
-    .subnav--event a{
+    .nav-links a{
       font-family: "Playfair Display", serif;
       font-weight: 500;
       font-size: 0.95rem;
@@ -231,34 +232,111 @@
       text-decoration: none;
       color: rgba(255,255,255,0.92);
       padding: 6px 4px;
+      transition: .2s;
+    }
+    .nav-links a:hover{ opacity: 0.85; transform: translateY(-1px); }
+
+    /* Botón hamburguesa */
+    .nav-toggle{
+      display: none;
+      border: 0;
+      background: rgba(255,255,255,0.10);
+      padding: 10px 12px;
+      cursor: pointer;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    }
+    .nav-toggle span{
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.92);
+      margin: 5px 0;
+      border-radius: 2px;
     }
 
-    .subnav--event .sep{
-      color: rgba(255,255,255,0.65);
-      font-size: 1rem;
+    /* Overlay menú móvil */
+    .nav-overlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 200;
+      display: grid;
+      place-items: start center;
+      padding: 18px;
+    }
+
+    .nav-panel{
+      width: min(520px, 94vw);
+      background: #f6f1e6;
+      border-radius: 20px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      padding: 18px 18px 20px;
+      border: 1px solid rgba(180,154,105,0.16);
+    }
+
+    .nav-panel-top{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .nav-brand{
+      font-family: "Updock", cursive;
+      font-size: 2.2rem;
+      color: var(--green2);
       line-height: 1;
-      user-select: none;
     }
-    .subnav--event{ width: 100%; box-sizing: border-box; }
 
-    @media (max-width: 480px){
-      .subnav--event{
-      padding: 8px 10px;
-      gap: 10px;
-      justify-content: center;
-      overflow: hidden;   /* no scroll, y no debería cortar si cabe */
-      }
+    .nav-close{
+      border: 0;
+      background: transparent;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--green2);
+      padding: 6px 10px;
+      border-radius: 12px;
+    }
+    .nav-close:hover{ background: rgba(69,95,73,0.08); }
 
-      .subnav--event a{
-      font-size: 0.78rem;
-      letter-spacing: 0.12px;
-      text-transform: none;   /* <- clave: quita mayúsculas en móvil */
-      padding: 6px 2px;
-      }
+    .nav-panel-links{
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-align: center;
+      padding: 18px 8px 6px;
+    }
 
-    .subnav--event .sep{
-      font-size: 0.85rem;
+    .nav-panel-links a{
+      font-family: "Playfair Display", serif;
+      font-size: 1.55rem;
+      color: #2c4133;
+      text-decoration: none;
+    }
+    .nav-panel-links a:hover{ opacity: 0.85; }
+
+    .nav-cta{
+      margin-top: 10px;
+      display: inline-block;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: var(--green);
+      color: #f9f6ed !important;
+      font-size: 1.05rem !important;
+      font-weight: 700;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+    }
+
+    /* MÓVIL: ocultar enlaces, mostrar hamburguesa */
+    @media (max-width: 520px){
+      .subnav{
+        justify-content: flex-end;
       }
+      .nav-links{ display: none; }
+      .nav-toggle{ display: inline-flex; align-items: center; justify-content: center; }
     }
 
     /* ---------- SECCIONES ---------- */
@@ -273,45 +351,47 @@
       font-family: "Playfair Display", serif;
       font-weight: 700;
       letter-spacing: 0.3px;
+      text-align: center;
+      margin: 0 0 25px 0;
+      color: var(--green2);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
     }
 
-    .card{
-      font-family: "Libre Baskerville", serif;
-      font-size: 1.02rem;
-      line-height: 1.75;
-      }
-
-    .card p{
-       margin-bottom: 14px;
-      }
-    .card h3,
-    .highlight{
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      }
     .card {
       background-color: var(--card);
       border-radius: 16px;
       padding: 20px 22px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      line-height: 1.6;
-      font-size: 0.98rem;
+      font-family: "Libre Baskerville", serif;
+      font-size: 1.02rem;
+      line-height: 1.75;
     }
-    #historia .card p{
-    text-align: justify;
-    text-justify: inter-word;
-    }
+
+    .card p{ margin: 0 0 14px 0; }
+
+    .card h3,
     .highlight{
       font-family: "Playfair Display", serif;
-      font-size: 1.15rem;
       font-weight: 700;
+    }
+
+    .highlight{
+      font-size: 1.15rem;
       color: var(--green2);
       margin: 6px 0;
     }
-    #historia .card{
-      hyphens: auto;
-      -webkit-hyphens: auto;
+
+    /* Historia: justificado en pantallas grandes */
+    #historia .card p{
+      text-align: justify;
+      text-justify: inter-word;
     }
+    #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
     /* ---------- MAPAS ---------- */
     .map-container {
@@ -385,7 +465,6 @@
 
     #comentarios {
       width: 100%;
-      box-sizing: border-box;
     }
 
     .btn {
@@ -417,19 +496,14 @@
       text-align: center;
     }
 
-    /* =========================
-       FIX + AJUSTES EN MÓVIL
-    ========================= */
+    /* ---------- AJUSTES EN MÓVIL ---------- */
     @media (max-width: 480px) {
-      .contador-section {
-        padding: 70px 0 90px 0;
-      }
+      .contador-section { padding: 70px 0 90px 0; }
 
       .contador-circle {
         width: min(78vw, 240px);
         height: min(78vw, 240px);
         margin-top: 0;
-        outline-offset: -10px;
       }
 
       .contador-circle::after{
@@ -438,36 +512,16 @@
         opacity: 0.82;
       }
 
-      .contador-title {
-        font-size: 1.15rem;
-        margin-bottom: 8px;
-      }
+      .contador-title { font-size: 1.15rem; margin-bottom: 8px; }
 
       .contador-days span{ font-size: 2.25rem; }
       .contador-rest{ gap: 14px; }
       .contador-rest > div{ min-width: 48px; }
-      
-      @media (max-width: 480px){
-      #historia .card p{
-      text-align: left; /* evita ríos raros en móvil */
 
-      @media (max-width: 480px){
-        .subnav{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px 18px;
-        padding: 14px 14px;
+      /* Historia en móvil: mejor alineado a la izquierda */
+      #historia .card p{
+        text-align: left;
       }
-      .subnav a{
-        text-align: center;
-        font-size: 0.98rem;
-        line-height: 1.2;
-        padding: 6px 0;
-        white-space: normal;
-        }
-      }
-  }
-}
     }
   </style>
 </head>
@@ -482,13 +536,11 @@
   <div class="names">Cris & Pablo</div>
   <div class="date">12 · Septiembre · 2026</div>
 
-  <!-- flecha ahora baja a la sección contador -->
   <a class="scroll-arrow" href="#contador" aria-label="Bajar al contador"></a>
 
-  <!-- SECCIÓN CONTADOR ESTILO INVITACIÓN -->
+  <!-- CONTADOR -->
   <section class="contador-section" id="contador">
     <div class="contador">
-
       <div class="contador-circle">
         <div class="contador-title">Faltan</div>
 
@@ -511,20 +563,40 @@
   </section>
 
   <!-- MENÚ -->
-  <nav class="subnav subnav--event">
-    <a href="#historia">Nuestra historia</a>
-    <span class="sep">✦</span>
-    <a href="#lugar">Celebración</a>
-    <span class="sep">✦</span>
-    <a href="#alojamiento">Alojamiento</a>
-    <span class="sep">✦</span>
-    <a href="#rsvp">Asistencia</a>
-  </nav>  
+  <nav class="subnav" aria-label="Menú principal">
+    <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-  <!-- ===================== NUESTRA HISTORIA ===================== -->
+    <div class="nav-links">
+      <a href="#historia">Nuestra historia</a>
+      <a href="#lugar">Celebración</a>
+      <a href="#alojamiento">Alojamiento</a>
+      <a href="#rsvp">Asistencia</a>
+    </div>
+  </nav>
+
+  <!-- Overlay menú móvil -->
+  <div class="nav-overlay" hidden>
+    <div class="nav-panel" role="dialog" aria-modal="true" aria-label="Menú">
+      <div class="nav-panel-top">
+        <div class="nav-brand">Cris &amp; Pablo</div>
+        <button class="nav-close" type="button" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <div class="nav-panel-links">
+        <a href="#historia">Nuestra historia</a>
+        <a href="#lugar">Celebración</a>
+        <a href="#alojamiento">Alojamiento</a>
+        <a href="#rsvp" class="nav-cta">Confirmar asistencia</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORIA -->
   <section class="section" id="historia">
     <h2 class="section-title">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" aria-hidden="true">
         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
       Nuestra historia
@@ -562,9 +634,9 @@
     </div>
   </section>
 
-  <!-- ===================== LUGAR ===================== -->
+  <!-- LUGAR -->
   <section class="section" id="lugar">
-    <h2 class="section-title">Lugar</h2>
+    <h2 class="section-title">Celebración</h2>
 
     <div class="card">
       <h3>Ceremonia</h3>
@@ -573,7 +645,7 @@
 
       <hr>
 
-      <h3>Celebración</h3>
+      <h3>Banquete y fiesta</h3>
       <p class="highlight">Finca Casaes</p>
       <p>El cóctel comenzará a las <strong>19:00</strong></p>
 
@@ -595,7 +667,7 @@
     </div>
   </section>
 
-  <!-- ===================== ALOJAMIENTO ===================== -->
+  <!-- ALOJAMIENTO -->
   <section class="section" id="alojamiento">
     <h2 class="section-title">Alojamiento</h2>
     <div class="card">
@@ -603,7 +675,7 @@
     </div>
   </section>
 
-  <!-- ===================== ASISTENCIA ===================== -->
+  <!-- RSVP -->
   <section class="section" id="rsvp">
     <h2 class="section-title">Confirmación de asistencia</h2>
 
@@ -667,9 +739,8 @@
     window.history.scrollRestoration = "manual";
     window.onload = function() { window.scrollTo(0, 0); };
 
-    // Contador (único, limpio)
+    // Contador
     function updateCircularCountdown() {
-      // Si quieres que cuente hasta la ceremonia a las 18:00, cambia a "2026-09-12T18:00:00+02:00"
       const weddingDate = new Date("2026-09-12T00:00:00").getTime();
       const now = new Date().getTime();
       const diff = weddingDate - now;
@@ -692,7 +763,6 @@
     // Mostrar / ocultar campos extra
     document.getElementById("asistencia").addEventListener("change", function() {
       const extra = document.getElementById("extraFields");
-
       if (this.value === "Sí") {
         extra.classList.add("extra-visible");
       } else {
@@ -723,16 +793,39 @@
           document.getElementById("rsvp-ok").style.display = "block";
         });
     });
+
+    // Menú hamburguesa móvil
+    (function(){
+      const toggleBtn = document.querySelector(".nav-toggle");
+      const overlay = document.querySelector(".nav-overlay");
+      const closeBtn = document.querySelector(".nav-close");
+      const links = document.querySelectorAll(".nav-panel-links a");
+
+      function openMenu(){
+        overlay.hidden = false;
+        toggleBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMenu(){
+        overlay.hidden = true;
+        toggleBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      toggleBtn?.addEventListener("click", openMenu);
+      closeBtn?.addEventListener("click", closeMenu);
+
+      overlay?.addEventListener("click", (e) => {
+        if(e.target === overlay) closeMenu();
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if(e.key === "Escape" && overlay && !overlay.hidden) closeMenu();
+      });
+
+      links.forEach(a => a.addEventListener("click", closeMenu));
+    })();
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
