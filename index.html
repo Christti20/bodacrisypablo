@@ -119,6 +119,9 @@
       background: #ffffff;
       border-radius: 50%;
       margin-top: 90px;
+      background: rgba(255,255,255,0.55);   /* <- velo */
+      backdrop-filter: blur(6px);           /* <- efecto invitación */
+      -webkit-backdrop-filter: blur(6px);
       box-shadow: 0 14px 34px rgba(0,0,0,0.12);
       outline: 1px solid var(--gold);
       outline-offset: -12px;
@@ -447,10 +450,6 @@
   <section class="contador-section" id="contador">
     <div class="contador">
 
-      <!-- Si decides quitar las hojas antiguas, borra estas 2 líneas y ya -->
-      <img src="hojas-arriba.png" class="hojas-arriba" alt="Hojas decoración superior">
-      <img src="hojas-abajo.png" class="hojas-abajo" alt="Hojas decoración inferior">
-
       <div class="contador-circle">
         <div class="contador-title">Faltan</div>
 
@@ -686,3 +685,4 @@
 
 </body>
 </html>
+
