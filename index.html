@@ -112,20 +112,21 @@
       pointer-events: none;
     }
 
-    /* Círculo blanco */
+   
     .contador-circle{
     width: 260px;
     height: 260px;
     border-radius: 50%;
     margin-top: 90px;
 
-    /* MISMO COLOR QUE EL FONDO */
-    background: #f4efe3; /* 1–2 tonos más claro */
+    background: radial-gradient(
+      circle at top,
+      #f6f1e7 0%,
+      #f4efe3 60%
+    );
 
-    /* relieve muy sutil */
-    box-shadow:
-      inset 0 0 0 1px rgba(180,154,105,0.18),
-      0 12px 28px rgba(0,0,0,0.10);
+    /* SOLO sombra exterior, sin borde */
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
 
     display:flex;
     flex-direction:column;
@@ -686,6 +687,7 @@
 
 </body>
 </html>
+
 
 
 
