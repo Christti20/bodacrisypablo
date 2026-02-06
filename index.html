@@ -239,24 +239,27 @@
       line-height: 1;
       user-select: none;
     }
+    .subnav--event{ width: 100%; box-sizing: border-box; }
 
-  /* móvil: scroll horizontal elegante */
-  @media (max-width: 480px){
-    .subnav--event{
-      justify-content: flex-start;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      gap: 14px;
-    }
+    @media (max-width: 480px){
+      .subnav--event{
+      padding: 8px 10px;
+      gap: 10px;
+      justify-content: center;
+      overflow: hidden;   /* no scroll, y no debería cortar si cabe */
+      }
 
-    .subnav--event::-webkit-scrollbar{
-      height: 0;
-    }
+      .subnav--event a{
+      font-size: 0.78rem;
+      letter-spacing: 0.12px;
+      text-transform: none;   /* <- clave: quita mayúsculas en móvil */
+      padding: 6px 2px;
+      }
 
-    .subnav--event a{
-      font-size: 0.88rem;
+    .subnav--event .sep{
+      font-size: 0.85rem;
+      }
     }
-  }
 
     /* ---------- SECCIONES ---------- */
     .section {
@@ -724,6 +727,7 @@
 
 </body>
 </html>
+
 
 
 
