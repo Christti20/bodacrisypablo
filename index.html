@@ -256,7 +256,13 @@
     }
 
     /* Overlay menú móvil */
-    .nav-overlay{
+    /* Overlay: por defecto oculto cuando tiene [hidden] */
+    .nav-overlay[hidden]{
+      display: none !important;
+    }
+
+    /* Overlay: solo visible cuando NO tiene [hidden] */
+    .nav-overlay:not([hidden]){
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.25);
@@ -264,10 +270,9 @@
       -webkit-backdrop-filter: blur(2px);
       z-index: 200;
       display: grid;
-      place-items: start center;
+      place-items: center;   /* ✅ centrado perfecto */
       padding: 18px;
     }
-
     .nav-panel{
       width: min(520px, 94vw);
       background: #f6f1e6;
@@ -575,7 +580,7 @@
       <a href="#rsvp">Asistencia</a>
     </div>
   </nav>
-
+  
   <!-- Overlay menú móvil -->
   <div class="nav-overlay" hidden>
     <div class="nav-panel" role="dialog" aria-modal="true" aria-label="Menú">
@@ -735,97 +740,109 @@
   </footer>
 
   <script>
-    // Forzar cargar SIEMPRE arriba
-    window.history.scrollRestoration = "manual";
-    window.onload = function() { window.scrollTo(0, 0); };
+  // Forzar cargar SIEMPRE arriba
+  window.history.scrollRestoration = "manual";
+  window.addEventListener("load", () => window.scrollTo(0, 0));
 
-    // Contador
-    function updateCircularCountdown() {
-      const weddingDate = new Date("2026-09-12T00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
+  // Contador
+  function updateCircularCountdown() {
+    const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
 
-      const safe = Math.max(diff, 0);
+    const safe = Math.max(diff, 0);
 
-      const days = Math.floor(safe / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((safe % (1000 * 60)) / 1000);
+    const days = Math.floor(safe / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((safe % (1000 * 60)) / 1000);
 
-      document.getElementById("d").textContent = String(days);
-      document.getElementById("h").textContent = String(hours).padStart(2, "0");
-      document.getElementById("m").textContent = String(minutes).padStart(2, "0");
-      document.getElementById("s").textContent = String(seconds).padStart(2, "0");
+    document.getElementById("d").textContent = String(days);
+    document.getElementById("h").textContent = String(hours).padStart(2, "0");
+    document.getElementById("m").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("s").textContent = String(seconds).padStart(2, "0");
+  }
+  updateCircularCountdown();
+  setInterval(updateCircularCountdown, 1000);
+
+  // Mostrar / ocultar campos extra
+  document.getElementById("asistencia").addEventListener("change", function () {
+    const extra = document.getElementById("extraFields");
+    if (this.value === "Sí") {
+      extra.classList.add("extra-visible");
+    } else {
+      extra.classList.remove("extra-visible");
+      document.getElementById("adultos").value = "0";
+      document.getElementById("ninos").value = "0";
+      document.getElementById("comentarios").value = "";
     }
-    updateCircularCountdown();
-    setInterval(updateCircularCountdown, 1000);
+  });
 
-    // Mostrar / ocultar campos extra
-    document.getElementById("asistencia").addEventListener("change", function() {
-      const extra = document.getElementById("extraFields");
-      if (this.value === "Sí") {
-        extra.classList.add("extra-visible");
-      } else {
-        extra.classList.remove("extra-visible");
-        document.getElementById("adultos").value = "0";
-        document.getElementById("ninos").value = "0";
-        document.getElementById("comentarios").value = "";
-      }
+  // Envío a Google Forms
+  document.getElementById("rsvpForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const url =
+      "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
+    const data = new FormData();
+
+    data.append("entry.1644133493", document.getElementById("nombre").value);
+    data.append("entry.371748636", document.getElementById("asistencia").value);
+    data.append("entry.1964685042", document.getElementById("adultos").value);
+    data.append("entry.1609486861", document.getElementById("ninos").value);
+    data.append("entry.320730572", document.getElementById("comentarios").value);
+
+    fetch(url, { method: "POST", mode: "no-cors", body: data }).then(() => {
+      document.getElementById("rsvpForm").reset();
+      document.getElementById("extraFields").classList.remove("extra-visible");
+      document.getElementById("rsvp-ok").style.display = "block";
+    });
+  });
+
+  // Menú hamburguesa móvil (FIX: overlay no debe abrirse solo, y el X debe cerrar siempre)
+  (() => {
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const overlay = document.querySelector(".nav-overlay");
+    const panel = document.querySelector(".nav-panel");
+    const closeBtn = document.querySelector(".nav-close");
+    const links = document.querySelectorAll(".nav-panel-links a");
+
+    if (!toggleBtn || !overlay || !panel || !closeBtn) return;
+
+    // Asegurar estado inicial cerrado
+    overlay.hidden = true;
+    toggleBtn.setAttribute("aria-expanded", "false");
+
+    const openMenu = () => {
+      overlay.hidden = false;
+      toggleBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
+      overlay.hidden = true;
+      toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
+
+    toggleBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
+
+    // Cerrar si clicas fuera del panel (mejor que e.target === overlay)
+    overlay.addEventListener("click", (e) => {
+      if (!panel.contains(e.target)) closeMenu();
     });
 
-    // Envío a Google Forms
-    document.getElementById("rsvpForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
-      const data = new FormData();
-
-      data.append("entry.1644133493", document.getElementById("nombre").value);
-      data.append("entry.371748636", document.getElementById("asistencia").value);
-      data.append("entry.1964685042", document.getElementById("adultos").value);
-      data.append("entry.1609486861", document.getElementById("ninos").value);
-      data.append("entry.320730572", document.getElementById("comentarios").value);
-
-      fetch(url, { method: "POST", mode: "no-cors", body: data })
-        .then(() => {
-          document.getElementById("rsvpForm").reset();
-          document.getElementById("extraFields").classList.remove("extra-visible");
-          document.getElementById("rsvp-ok").style.display = "block";
-        });
+    // ESC cierra
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.hidden) closeMenu();
     });
 
-    // Menú hamburguesa móvil
-    (function(){
-      const toggleBtn = document.querySelector(".nav-toggle");
-      const overlay = document.querySelector(".nav-overlay");
-      const closeBtn = document.querySelector(".nav-close");
-      const links = document.querySelectorAll(".nav-panel-links a");
-
-      function openMenu(){
-        overlay.hidden = false;
-        toggleBtn.setAttribute("aria-expanded", "true");
-        document.body.style.overflow = "hidden";
-      }
-      function closeMenu(){
-        overlay.hidden = true;
-        toggleBtn.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
-
-      toggleBtn?.addEventListener("click", openMenu);
-      closeBtn?.addEventListener("click", closeMenu);
-
-      overlay?.addEventListener("click", (e) => {
-        if(e.target === overlay) closeMenu();
-      });
-
-      window.addEventListener("keydown", (e) => {
-        if(e.key === "Escape" && overlay && !overlay.hidden) closeMenu();
-      });
-
-      links.forEach(a => a.addEventListener("click", closeMenu));
-    })();
-  </script>
+    // Cerrar al elegir opción
+    links.forEach((a) => a.addEventListener("click", closeMenu));
+  })();
+</script>
 
 </body>
 </html>
+
