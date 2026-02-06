@@ -439,6 +439,52 @@ footer {
     color: #7b8a78;
     text-align: center;
 }
+/* =========================
+   FIX CONTADOR EN MÓVIL
+========================= */
+@media (max-width: 480px) {
+
+  /* Asegura centrado real del bloque */
+  .contador-section {
+    padding: 70px 0 90px 0;
+  }
+
+  .contador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* El círculo deja de depender de márgenes raros */
+  .contador-circle {
+    width: min(78vw, 240px);
+    height: min(78vw, 240px);
+    margin-top: 0;          /* <- clave */
+  }
+
+  /* Ajuste fino de tipografías para que respiren */
+  .contador-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .contador-values span {
+    font-size: 1.25rem;
+  }
+
+  /* Hojas: más pequeñas y recolocadas para móvil */
+  .hojas-arriba {
+    width: min(34vw, 120px);
+    top: -28px;
+    right: -10px;
+  }
+
+  .hojas-abajo {
+    width: min(36vw, 130px);
+    bottom: -35px;
+    left: -12px;
+  }
+}
 </style>
 </head>
 
@@ -729,6 +775,7 @@ window.onload = function() { window.scrollTo(0, 0); };
 
 </body>
 </html>
+
 
 
 
