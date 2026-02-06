@@ -113,27 +113,28 @@
     }
 
     /* Círculo blanco */
-    .contador-circle {
-      width: 260px;
-      height: 260px;
-      background: #ffffff;
-      border-radius: 50%;
-      margin-top: 90px;
-      background: rgba(255,255,255,0.55);   /* <- velo */
-      backdrop-filter: blur(6px);           /* <- efecto invitación */
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 14px 34px rgba(0,0,0,0.12);
-      outline: 1px solid var(--gold);
-      outline-offset: -12px;
+    .contador-circle{
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin-top: 90px;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
+    /* MISMO COLOR QUE EL FONDO */
+    background: #efe9db;
 
-      position: relative;
-      z-index: 2;
+    /* relieve muy sutil */
+    box-shadow:
+      inset 0 0 0 1px rgba(180,154,105,0.18),
+      0 12px 28px rgba(0,0,0,0.10);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    position:relative;
+    z-index:2;
     }
 
     /* Corona (corona.png en la misma carpeta) */
@@ -685,4 +686,5 @@
 
 </body>
 </html>
+
 
