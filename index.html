@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -393,6 +393,41 @@
     }
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
+    .place-photos{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0 14px 0;
+    }
+
+    .place-photo{
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+      border: 1px solid rgba(180,154,105,0.14);
+    }
+
+    .place-photo img{
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .place-photo figcaption{
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      color: var(--green2);
+      padding: 10px 12px 12px;
+      font-size: 1.02rem;
+      text-align: center;
+    }
+
+    @media (max-width: 520px){
+      .place-photos{ grid-template-columns: 1fr; }
+      .place-photo img{ height: 190px; }
+    }
     /* ---------- MAPAS ---------- */
     .map-container {
       margin-top: 18px;
@@ -642,21 +677,29 @@
     <h2 class="section-title">Celebración</h2>
 
     <div class="card">
-      <h3>Ceremonia</h3>
-      <p class="highlight">Castillo de Oropesa</p>
-      <p><strong>18:00</strong></p>
-
-      <hr>
-
-      <h3>Banquete y fiesta</h3>
-      <p class="highlight">Finca Casaes</p>
-      <p>El cóctel comenzará a las <strong>19:00</strong></p>
-
+      <div class="place-photos">
+        <figure class="place-photo">
+          <img src="castillo.jpeg" alt="Castillo de Oropesa">
+          <figcaption>Castillo de Oropesa</figcaption>
+        </figure>
+      <div>
+      <p class="highlight">La ceremonia tendrá lugar en el Castillo de Oropesa a las 18:00 horas</p>
       <a class="btn-maps" target="_blank" rel="noopener"
          href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo">
         Cómo llegar al Castillo de Oropesa
       </a>
+        
+      <hr>
 
+      <div class="place-photos">      
+        <figure class="place-photo">
+          <img src="finca.jpeg" alt="Finca Casaes">
+          <figcaption>Finca Casaes</figcaption>
+        </figure>
+      </div>
+    
+      <p class="highlight">El cóctel dará comienzo a las 19:30 en Finca Casaes</p>
+    
       <a class="btn-maps" target="_blank" rel="noopener"
          href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo">
         Cómo llegar a la Finca Casaes
@@ -839,3 +882,4 @@
 
 </body>
 </html>
+
