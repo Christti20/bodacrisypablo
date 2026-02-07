@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -394,39 +394,70 @@
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
     .place-photos{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 16px 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      margin: 18px 0 24px;
     }
 
+    /* Marco tipo papel */
     .place-photo{
-      background: #fff;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-      border: 1px solid rgba(180,154,105,0.14);
+      position: relative;
+      background: #fdfaf2;
+      padding: 14px;
+      border-radius: 6px;
+      box-shadow:
+        0 14px 28px rgba(0,0,0,0.14),
+        0 2px 6px rgba(0,0,0,0.08);
     }
 
+    /* Imagen grande */
     .place-photo img{
       width: 100%;
-      height: 170px;
+      height: 240px;
       object-fit: cover;
       display: block;
+
+      /* efecto acuarela suave */
+      filter: saturate(1.05) contrast(0.95);
+
+      /* bordes tipo deckle */
+      -webkit-mask-image: radial-gradient(
+        circle at 10% 10%,
+        rgba(0,0,0,1) 60%,
+        rgba(0,0,0,0.85) 68%,
+        rgba(0,0,0,0) 74%
+      );
+      mask-image: radial-gradient(
+        circle at 10% 10%,
+        rgba(0,0,0,1) 60%,
+        rgba(0,0,0,0.85) 68%,
+        rgba(0,0,0,0) 74%
+      );
     }
 
-    .place-photo figcaption{
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      color: var(--green2);
-      padding: 10px 12px 12px;
-      font-size: 1.02rem;
-      text-align: center;
+    /* Sutil textura de papel */
+    .place-photo::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          rgba(0,0,0,0.015),
+          rgba(0,0,0,0.015) 1px,
+          transparent 1px,
+          transparent 3px
+        );
+      pointer-events: none;
+      border-radius: 6px;
     }
 
+    /* Móvil: fotos aún más protagonistas */
     @media (max-width: 520px){
-      .place-photos{ grid-template-columns: 1fr; }
-      .place-photo img{ height: 190px; }
+      .place-photo img{
+        height: 280px;
+      }
     }
     /* ---------- MAPAS ---------- */
     .map-container {
@@ -696,7 +727,7 @@
         </figure>
       </div>
     
-      <p class="highlight">El cóctel dará comienzo a las 19:30 en Finca Casaes</p>
+      <p class="highlight">Posteriormente, en Finca Casaes, el cóctel dará comienzo a las 19:30</p>
     
       <a class="btn-maps" target="_blank" rel="noopener"
          href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo">
@@ -874,6 +905,7 @@
 
 </body>
 </html>
+
 
 
 
