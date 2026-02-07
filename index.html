@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -394,71 +394,33 @@
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
     .place-photos{
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-      margin: 18px 0 24px;
-    }
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+          margin: 24px 0 28px;
+        }
 
-    /* Marco tipo papel */
-    .place-photo{
-      position: relative;
-      background: #fdfaf2;
-      padding: 14px;
-      border-radius: 6px;
-      box-shadow:
-        0 14px 28px rgba(0,0,0,0.14),
-        0 2px 6px rgba(0,0,0,0.08);
-    }
+     .place-photo{
+          width: 100%;
+          border-radius: 18px;
+          overflow: hidden;
+          box-shadow: 0 10px 26px rgba(0,0,0,0.12);
+          background: #fdfaf2;
+        }
 
-    /* Imagen grande */
-    .place-photo img{
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      display: block;
-
-      /* efecto acuarela suave */
-      filter: saturate(1.05) contrast(0.95);
-
-      /* bordes tipo deckle */
-      -webkit-mask-image: radial-gradient(
-        circle at 10% 10%,
-        rgba(0,0,0,1) 60%,
-        rgba(0,0,0,0.85) 68%,
-        rgba(0,0,0,0) 74%
-      );
-      mask-image: radial-gradient(
-        circle at 10% 10%,
-        rgba(0,0,0,1) 60%,
-        rgba(0,0,0,0.85) 68%,
-        rgba(0,0,0,0) 74%
-      );
-    }
-
-    /* Sutil textura de papel */
-    .place-photo::after{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(
-          45deg,
-          rgba(0,0,0,0.015),
-          rgba(0,0,0,0.015) 1px,
-          transparent 1px,
-          transparent 3px
-        );
-      pointer-events: none;
-      border-radius: 6px;
-    }
-
-    /* Móvil: fotos aún más protagonistas */
-    @media (max-width: 520px){
       .place-photo img{
-        height: 280px;
-      }
-    }
+          width: 100%;
+          height: 260px;          /* horizontal clara */
+          object-fit: cover;
+          display: block;
+        }
+
+        /* En móvil aún más protagonismo */
+        @media (max-width: 520px){
+          .place-photo img{
+            height: 220px;
+          }
+        }
     /* ---------- MAPAS ---------- */
     .map-container {
       margin-top: 18px;
@@ -905,6 +867,7 @@
 
 </body>
 </html>
+
 
 
 
