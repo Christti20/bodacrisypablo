@@ -414,6 +414,83 @@
     }
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
+        /* ===== Anillos animados ===== */
+.rings{
+  display:flex;
+  justify-content:center;
+  margin: 8px 0 14px;
+  opacity: 0.95;
+}
+
+.rings svg{
+  width: 110px;
+  height: auto;
+  overflow: visible;
+}
+
+/* estilo del aro */
+.ring{
+  fill: none;
+  stroke: rgba(72,103,75,0.70); /* verde suave */
+  stroke-width: 3;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* Truco: cada aro se dibuja en "2 mitades".
+   - la parte BACK va "por detrás" (menos opacidad)
+   - la parte FRONT va "por delante" (más opacidad)
+   Ajustamos con stroke-dasharray/offset para seleccionar el tramo visible.
+*/
+.ring-left-back,
+.ring-right-back{
+  opacity: 0.45;
+  stroke-dasharray: 70 200;
+  stroke-dashoffset: 120;
+}
+
+.ring-left-front,
+.ring-right-front{
+  opacity: 0.85;
+  stroke-dasharray: 130 200;
+  stroke-dashoffset: 10;
+}
+
+/* Animación de acercarse y cruzarse */
+.ring-left,
+.ring-right{
+  animation: ringsSlide 2.8s ease-in-out infinite;
+}
+
+.ring-right{
+  animation-delay: 0.12s;
+}
+
+/* Micro “latido” para que se sienta vivo */
+.rings svg{
+  animation: ringsBreath 2.8s ease-in-out infinite;
+}
+
+@keyframes ringsSlide{
+  0%   { transform: translateX(0px) rotate(0deg); }
+  35%  { transform: translateX(10px) rotate(-2deg); }
+  50%  { transform: translateX(14px) rotate(0deg); }
+  65%  { transform: translateX(10px) rotate(2deg); }
+  100% { transform: translateX(0px) rotate(0deg); }
+}
+
+@keyframes ringsBreath{
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+/* Respeto accesibilidad: si el usuario desactiva animaciones */
+@media (prefers-reduced-motion: reduce){
+  .ring-left, .ring-right, .rings svg{ animation: none !important; }
+}
+
    /* =========================
    FOTOS LUGAR / CELEBRACIÓN (CENTRADAS)
 ========================= */
@@ -703,7 +780,18 @@
 
   <!-- LUGAR -->
   <section class="section" id="lugar">
-    <h2 class="section-title">Celebración</h2>
+    <div class="rings" aria-hidden="true">
+          <svg viewBox="0 0 220 90" role="img">
+            <!-- Ring Left: dibujado en 2 mitades para efecto entrelazado -->
+            <circle class="ring ring-left ring-left-back" cx="90" cy="45" r="28"></circle>
+            <circle class="ring ring-left ring-left-front" cx="90" cy="45" r="28"></circle>
+
+            <!-- Ring Right: dibujado en 2 mitades -->
+            <circle class="ring ring-right ring-right-back" cx="130" cy="45" r="28"></circle>
+            <circle class="ring ring-right ring-right-front" cx="130" cy="45" r="28"></circle>
+          </svg>
+    </div>
+    <h2 class="section-title">Ceremonia</h2>
 
     <div class="card">
       <div class="place-photos">
@@ -903,6 +991,7 @@
 
 </body>
 </html>
+
 
 
 
