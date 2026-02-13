@@ -423,12 +423,13 @@
 
 .heart-fill-green{ fill: rgba(72,103,75,0.32); }
 .heart-stroke-gold{
-  fill: none;
+  fill:none;
   stroke: rgba(180,154,105,0.85);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  stroke-width:6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
+
 
 @keyframes heartSlideL { 0%,100%{ transform: translateX(-6px); } 50%{ transform: translateX(-1px);} }
 @keyframes heartSlideR { 0%,100%{ transform: translateX(6px); } 50%{ transform: translateX(1px);} }
@@ -743,27 +744,36 @@
   <section class="section" id="historia">
      <div class="hearts-wrap" aria-hidden="true">
   <svg class="hearts" viewBox="0 0 220 120">
-    <!-- Corazón izquierdo (relleno verde suave) -->
-    <g id="heartL">
-      <path class="heart-fill-green" d="M70,45
-        C70,25 92,20 102,32
-        C112,20 134,25 134,45
-        C134,68 110,82 102,92
-        C94,82 70,68 70,45 Z"/>
-    </g>
 
-    <!-- Corazón derecho (contorno dorado) -->
-    <g id="heartR">
-      <path class="heart-stroke-gold" d="M86,45
-        C86,25 108,20 118,32
-        C128,20 150,25 150,45
-        C150,68 126,82 118,92
-        C110,82 86,68 86,45 Z"/>
-    </g>
+    <!-- Corazón izquierdo (parte trasera) -->
+    <path
+      d="M70,45
+         C70,25 92,20 102,32
+         C112,20 134,25 134,45
+         C134,68 110,82 102,92
+         C94,82 70,68 70,45 Z"
+      fill="rgba(72,103,75,0.28)"
+      id="heartL"
+    />
 
-    <!-- “nudo” central para simular el entrelazado -->
-    <circle cx="110" cy="62" r="7" fill="rgba(239,233,219,0.92)"></circle>
-    <circle cx="110" cy="62" r="5.2" fill="rgba(248,243,230,0.92)"></circle>
+    <!-- Parte trasera del dorado -->
+    <path
+      d="M86,45
+         C86,25 108,20 118,32"
+      class="heart-stroke-gold"
+      id="heartR-back"
+    />
+
+    <!-- Parte delantera del dorado (simula que pasa por delante) -->
+    <path
+      d="M118,32
+         C128,20 150,25 150,45
+         C150,68 126,82 118,92
+         C110,82 86,68 86,45"
+      class="heart-stroke-gold"
+      id="heartR-front"
+    />
+
   </svg>
 </div>
 
@@ -1025,6 +1035,7 @@
 
 </body>
 </html>
+
 
 
 
