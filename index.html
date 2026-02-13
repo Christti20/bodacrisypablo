@@ -414,81 +414,61 @@
     }
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
-        /* ===== Anillos animados ===== */
-.rings{
-  display:flex;
-  justify-content:center;
-  margin: 8px 0 14px;
-  opacity: 0.95;
+/* === ANILLOS ANIMADOS === */
+.rings-wrap{
+  display: grid;
+  place-items: center;
+  margin: 18px auto 12px;
 }
 
-.rings svg{
-  width: 110px;
+.rings{
+  width: min(140px, 42vw);
   height: auto;
   overflow: visible;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.10));
 }
 
-/* estilo del aro */
-.ring{
+.rings .ring{
   fill: none;
-  stroke: rgba(72,103,75,0.70); /* verde suave */
-  stroke-width: 3;
+  stroke-width: 6;
   stroke-linecap: round;
-  transform-box: fill-box;
-  transform-origin: center;
 }
 
-/* Truco: cada aro se dibuja en "2 mitades".
-   - la parte BACK va "por detrás" (menos opacidad)
-   - la parte FRONT va "por delante" (más opacidad)
-   Ajustamos con stroke-dasharray/offset para seleccionar el tramo visible.
-*/
-.ring-left-back,
-.ring-right-back{
-  opacity: 0.45;
-  stroke-dasharray: 70 200;
-  stroke-dashoffset: 120;
+.rings .gold{ stroke: rgba(180,154,105,0.85); }
+.rings .green{ stroke: rgba(72,103,75,0.70); }
+
+/* “Entrelazado”: segmentos front/back */
+.rings .back{
+  opacity: 0.65;
 }
 
-.ring-left-front,
-.ring-right-front{
-  opacity: 0.85;
-  stroke-dasharray: 130 200;
-  stroke-dashoffset: 10;
+.rings .front{
+  opacity: 1;
 }
 
-/* Animación de acercarse y cruzarse */
-.ring-left,
-.ring-right{
-  animation: ringsSlide 2.8s ease-in-out infinite;
+/* Movimiento suave: se acercan, se cruzan, y vuelven */
+@keyframes ringsInterlock {
+  0%,100% { transform: translateX(-10px); }
+  50%     { transform: translateX(10px); }
+}
+@keyframes ringsInterlock2 {
+  0%,100% { transform: translateX(10px); }
+  50%     { transform: translateX(-10px); }
 }
 
-.ring-right{
-  animation-delay: 0.12s;
+/* micro “latido” para que no sea un movimiento robótico */
+@keyframes ringsPulse {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.02); }
 }
 
-/* Micro “latido” para que se sienta vivo */
-.rings svg{
-  animation: ringsBreath 2.8s ease-in-out infinite;
-}
+.rings g#r1{ animation: ringsInterlock 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+.rings g#r2{ animation: ringsInterlock2 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+.rings{ animation: ringsPulse 2.8s ease-in-out infinite; }
 
-@keyframes ringsSlide{
-  0%   { transform: translateX(0px) rotate(0deg); }
-  35%  { transform: translateX(10px) rotate(-2deg); }
-  50%  { transform: translateX(14px) rotate(0deg); }
-  65%  { transform: translateX(10px) rotate(2deg); }
-  100% { transform: translateX(0px) rotate(0deg); }
-}
-
-@keyframes ringsBreath{
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.02); }
-  100% { transform: scale(1); }
-}
-
-/* Respeto accesibilidad: si el usuario desactiva animaciones */
+/* Respeto a usuarios con “reducir movimiento” */
 @media (prefers-reduced-motion: reduce){
-  .ring-left, .ring-right, .rings svg{ animation: none !important; }
+  .rings, .rings g#r1, .rings g#r2{ animation: none !important; }
 }
 
    /* =========================
@@ -780,17 +760,30 @@
 
   <!-- LUGAR -->
   <section class="section" id="lugar">
-    <div class="rings" aria-hidden="true">
-          <svg viewBox="0 0 220 90" role="img">
-            <!-- Ring Left: dibujado en 2 mitades para efecto entrelazado -->
-            <circle class="ring ring-left ring-left-back" cx="90" cy="45" r="28"></circle>
-            <circle class="ring ring-left ring-left-front" cx="90" cy="45" r="28"></circle>
+    <div class="rings-wrap" aria-hidden="true">
+  <svg class="rings" viewBox="0 0 200 120">
+    <!-- Circunferencia aprox r=26 => ~163.36 -->
+    <!-- Ring 1 (oro) -->
+    <g id="r1" transform="translate(78,60)">
+      <!-- segmento “back” -->
+      <circle class="ring gold back" r="26"
+              stroke-dasharray="115 48" stroke-dashoffset="18"></circle>
+      <!-- segmento “front” -->
+      <circle class="ring gold front" r="26"
+              stroke-dasharray="48 115" stroke-dashoffset="18"></circle>
+    </g>
 
-            <!-- Ring Right: dibujado en 2 mitades -->
-            <circle class="ring ring-right ring-right-back" cx="130" cy="45" r="28"></circle>
-            <circle class="ring ring-right ring-right-front" cx="130" cy="45" r="28"></circle>
-          </svg>
-    </div>
+    <!-- Ring 2 (verde) -->
+    <g id="r2" transform="translate(122,60)">
+      <!-- segmento “back” -->
+      <circle class="ring green back" r="26"
+              stroke-dasharray="115 48" stroke-dashoffset="98"></circle>
+      <!-- segmento “front” -->
+      <circle class="ring green front" r="26"
+              stroke-dasharray="48 115" stroke-dashoffset="98"></circle>
+    </g>
+  </svg>
+</div>
     <h2 class="section-title">Ceremonia</h2>
 
     <div class="card">
@@ -991,6 +984,7 @@
 
 </body>
 </html>
+
 
 
 
