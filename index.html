@@ -406,6 +406,41 @@
       color: var(--green2);
       margin: 6px 0;
     }
+/* === CORAZONES ENTRELAZADOS (Historia) === */
+.hearts-wrap{
+  display: grid;
+  place-items: center;
+  margin: 18px auto 8px;
+}
+
+.hearts{
+  width: 135px;
+  max-width: 42vw;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.10));
+}
+
+.heart-fill-green{ fill: rgba(72,103,75,0.32); }
+.heart-stroke-gold{
+  fill: none;
+  stroke: rgba(180,154,105,0.85);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes heartSlideL { 0%,100%{ transform: translateX(-6px); } 50%{ transform: translateX(-1px);} }
+@keyframes heartSlideR { 0%,100%{ transform: translateX(6px); } 50%{ transform: translateX(1px);} }
+@keyframes heartBreath { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.03);} }
+
+.hearts #heartL{ animation: heartSlideL 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+.hearts #heartR{ animation: heartSlideR 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
+.hearts{ animation: heartBreath 2.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce){
+  .hearts, .hearts #heartL, .hearts #heartR{ animation: none !important; }
+}
 
     /* Historia: justificado en pantallas grandes */
     #historia .card p{
@@ -706,10 +741,34 @@
 
   <!-- HISTORIA -->
   <section class="section" id="historia">
+     <div class="hearts-wrap" aria-hidden="true">
+  <svg class="hearts" viewBox="0 0 220 120">
+    <!-- Corazón izquierdo (relleno verde suave) -->
+    <g id="heartL">
+      <path class="heart-fill-green" d="M70,45
+        C70,25 92,20 102,32
+        C112,20 134,25 134,45
+        C134,68 110,82 102,92
+        C94,82 70,68 70,45 Z"/>
+    </g>
+
+    <!-- Corazón derecho (contorno dorado) -->
+    <g id="heartR">
+      <path class="heart-stroke-gold" d="M86,45
+        C86,25 108,20 118,32
+        C128,20 150,25 150,45
+        C150,68 126,82 118,92
+        C110,82 86,68 86,45 Z"/>
+    </g>
+
+    <!-- “nudo” central para simular el entrelazado -->
+    <circle cx="110" cy="62" r="7" fill="rgba(239,233,219,0.92)"></circle>
+    <circle cx="110" cy="62" r="5.2" fill="rgba(248,243,230,0.92)"></circle>
+  </svg>
+</div>
+
     <h2 class="section-title">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" stroke="currentColor" aria-hidden="true">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-      </svg>
+      
       Nuestra historia
     </h2>
 
@@ -766,7 +825,7 @@
     </g>
   </svg>
 </div>
-    <h2 class="section-title">Ceremonia</h2>
+    <h2 class="section-title">Celebración</h2>
 
     <div class="card">
       <div class="place-photos">
@@ -966,6 +1025,7 @@
 
 </body>
 </html>
+
 
 
 
