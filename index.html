@@ -414,62 +414,49 @@
     }
     #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
-/* === ANILLOS ANIMADOS === */
+/* === ANILLOS ELEGANTES (NO loading) === */
 .rings-wrap{
   display: grid;
   place-items: center;
-  margin: 18px auto 12px;
+  margin: 22px auto 14px;
 }
 
 .rings{
-  width: min(140px, 42vw);
+  width: 120px;              /* más presencia */
+  max-width: 38vw;
   height: auto;
   overflow: visible;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,0.10));
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.10));
 }
 
-.rings .ring{
+.ring-stroke{
   fill: none;
-  stroke-width: 6;
+  stroke-width: 7;           /* grosor bonito */
   stroke-linecap: round;
 }
 
-.rings .gold{ stroke: rgba(180,154,105,0.85); }
-.rings .green{ stroke: rgba(72,103,75,0.70); }
+.ring-gold{ stroke: rgba(180,154,105,0.78); }
+.ring-green{ stroke: rgba(72,103,75,0.62); }
 
-/* “Entrelazado”: segmentos front/back */
-.rings .back{
-  opacity: 0.65;
+/* “nudo” central: un puntito suave para dar profundidad */
+.knot{
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.10));
+  opacity: .95;
 }
 
-.rings .front{
-  opacity: 1;
-}
+/* animación: se acercan y vuelven, con mini-escala */
+@keyframes ringSlideL { 0%,100%{ transform: translateX(-6px); } 50%{ transform: translateX(0px);} }
+@keyframes ringSlideR { 0%,100%{ transform: translateX(6px); } 50%{ transform: translateX(0px);} }
+@keyframes ringBreath { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.03);} }
 
-/* Movimiento suave: se acercan, se cruzan, y vuelven */
-@keyframes ringsInterlock {
-  0%,100% { transform: translateX(-10px); }
-  50%     { transform: translateX(10px); }
-}
-@keyframes ringsInterlock2 {
-  0%,100% { transform: translateX(10px); }
-  50%     { transform: translateX(-10px); }
-}
+.rings #leftRing{ animation: ringSlideL 2.6s ease-in-out infinite; transform-origin: 50% 50%; }
+.rings #rightRing{ animation: ringSlideR 2.6s ease-in-out infinite; transform-origin: 50% 50%; }
+.rings{ animation: ringBreath 2.6s ease-in-out infinite; }
 
-/* micro “latido” para que no sea un movimiento robótico */
-@keyframes ringsPulse {
-  0%,100% { transform: scale(1); }
-  50%     { transform: scale(1.02); }
-}
-
-.rings g#r1{ animation: ringsInterlock 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
-.rings g#r2{ animation: ringsInterlock2 2.8s ease-in-out infinite; transform-origin: 50% 50%; }
-.rings{ animation: ringsPulse 2.8s ease-in-out infinite; }
-
-/* Respeto a usuarios con “reducir movimiento” */
 @media (prefers-reduced-motion: reduce){
-  .rings, .rings g#r1, .rings g#r2{ animation: none !important; }
+  .rings, .rings #leftRing, .rings #rightRing{ animation: none !important; }
 }
+
 
    /* =========================
    FOTOS LUGAR / CELEBRACIÓN (CENTRADAS)
@@ -761,26 +748,21 @@
   <!-- LUGAR -->
   <section class="section" id="lugar">
     <div class="rings-wrap" aria-hidden="true">
-  <svg class="rings" viewBox="0 0 200 120">
-    <!-- Circunferencia aprox r=26 => ~163.36 -->
-    <!-- Ring 1 (oro) -->
-    <g id="r1" transform="translate(78,60)">
-      <!-- segmento “back” -->
-      <circle class="ring gold back" r="26"
-              stroke-dasharray="115 48" stroke-dashoffset="18"></circle>
-      <!-- segmento “front” -->
-      <circle class="ring gold front" r="26"
-              stroke-dasharray="48 115" stroke-dashoffset="18"></circle>
+  <svg class="rings" viewBox="0 0 220 120">
+    <!-- Anillo izquierdo -->
+    <g id="leftRing">
+      <circle class="ring-stroke ring-green" cx="95" cy="60" r="26"></circle>
     </g>
 
-    <!-- Ring 2 (verde) -->
-    <g id="r2" transform="translate(122,60)">
-      <!-- segmento “back” -->
-      <circle class="ring green back" r="26"
-              stroke-dasharray="115 48" stroke-dashoffset="98"></circle>
-      <!-- segmento “front” -->
-      <circle class="ring green front" r="26"
-              stroke-dasharray="48 115" stroke-dashoffset="98"></circle>
+    <!-- Anillo derecho -->
+    <g id="rightRing">
+      <circle class="ring-stroke ring-gold" cx="125" cy="60" r="26"></circle>
+    </g>
+
+    <!-- “nudo” central (simula el entrelazado sin dash, sin loading) -->
+    <g class="knot">
+      <circle cx="110" cy="60" r="6" fill="rgba(239,233,219,0.95)"></circle>
+      <circle cx="110" cy="60" r="4.5" fill="rgba(248,243,230,0.95)"></circle>
     </g>
   </svg>
 </div>
@@ -984,6 +966,7 @@
 
 </body>
 </html>
+
 
 
 
