@@ -406,87 +406,87 @@
       color: var(--green2);
       margin: 6px 0;
     }
+/* --- Corazones entrelazados (tamaño + animación real tipo anillos) --- */
 .hearts-wrap{
   display:flex;
   justify-content:center;
-  margin: 6px 0 10px;
+  margin: 10px 0 12px;
 }
 
 .hearts{
-  width: 86px;
+  width: 120px;          /* <-- MÁS GRANDE */
   height: auto;
+  display:block;
   overflow: visible;
 }
 
-/* Estilos */
-.heart-fill-green{
-  fill: rgba(72,103,75,0.28);
-}
-
+/* Colores */
+.heart-fill-green{ fill: rgba(72,103,75,0.28); }
 .heart-stroke-gold{
   fill: none;
-  stroke: rgba(180,154,105,0.85);
+  stroke: rgba(180,154,105,0.88);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-/* Animación: ambos se mueven, en sentidos opuestos */
-.heart--green{
-  transform-origin: 102px 60px;
-  animation: heartWeaveGreen 2.2s ease-in-out infinite;
+/* MUY IMPORTANTE en SVG para que transform funcione fino */
+.heart{
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
 }
 
-.heart--gold{
-  transform-origin: 118px 60px;
-  animation: heartWeaveGold 2.2s ease-in-out infinite;
-}
+/* Animación: ambos se mueven en sentidos opuestos (como anillos) */
+.heart--green{ animation: heartWeaveGreen 2.2s ease-in-out infinite; }
+.heart--gold{  animation: heartWeaveGold  2.2s ease-in-out infinite; }
 
-/* Dorado: alterna delante/detrás sin “punto blanco” */
+/* Dorado duplicado para simular delante/detrás */
 .heart--gold-back{
   opacity: 0.55;
-  animation: goldBackSwap 2.2s ease-in-out infinite;
+  animation-name: heartWeaveGold, goldBackSwap;
+  animation-duration: 2.2s, 2.2s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
 }
-
 .heart--gold-front{
   opacity: 1;
-  animation: goldFrontSwap 2.2s ease-in-out infinite;
+  animation-name: heartWeaveGold, goldFrontSwap;
+  animation-duration: 2.2s, 2.2s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
 }
 
-/* Movimiento tipo anillos */
 @keyframes heartWeaveGreen{
   0%   { transform: translate(0px,0px) rotate(-2deg) scale(1); }
-  25%  { transform: translate(3px,1px) rotate(1deg)  scale(1.02); }
-  50%  { transform: translate(6px,0px) rotate(2deg)  scale(1); }
-  75%  { transform: translate(3px,-1px) rotate(0deg) scale(1.02); }
+  25%  { transform: translate(4px,1px) rotate(1deg)  scale(1.03); }
+  50%  { transform: translate(8px,0px) rotate(2deg)  scale(1); }
+  75%  { transform: translate(4px,-1px) rotate(0deg) scale(1.03); }
   100% { transform: translate(0px,0px) rotate(-2deg) scale(1); }
 }
 
 @keyframes heartWeaveGold{
   0%   { transform: translate(0px,0px) rotate(2deg)  scale(1); }
-  25%  { transform: translate(-3px,-1px) rotate(0deg) scale(1.02); }
-  50%  { transform: translate(-6px,0px) rotate(-2deg) scale(1); }
-  75%  { transform: translate(-3px,1px) rotate(0deg)  scale(1.02); }
+  25%  { transform: translate(-4px,-1px) rotate(0deg) scale(1.03); }
+  50%  { transform: translate(-8px,0px) rotate(-2deg) scale(1); }
+  75%  { transform: translate(-4px,1px) rotate(0deg)  scale(1.03); }
   100% { transform: translate(0px,0px) rotate(2deg)  scale(1); }
 }
 
-/* Swap de “delante/detrás”: a mitad del ciclo cambia */
-@keyframes goldBackSwap{
-  0%, 49%  { opacity: 0.55; }
-  50%, 100%{ opacity: 0.15; }
+/* Swap de profundidad */
+@keyframes goldBackSwap{ 0%,49%{opacity:.55} 50%,100%{opacity:.18} }
+@keyframes goldFrontSwap{0%,49%{opacity:1}   50%,100%{opacity:.72} }
+
+/* Móvil */
+@media (max-width: 480px){
+  .hearts{ width: 110px; }
 }
 
-@keyframes goldFrontSwap{
-  0%, 49%  { opacity: 1; }
-  50%, 100%{ opacity: 0.70; }
-}
-
-/* Respeto a accesibilidad */
+/* Accesibilidad */
 @media (prefers-reduced-motion: reduce){
-  .heart--green, .heart--gold, .heart--gold-back, .heart--gold-front{
-    animation: none !important;
-  }
+  .heart, .heart--gold-back, .heart--gold-front{ animation: none !important; }
 }
+
 
 
     /* Historia: justificado en pantallas grandes */
@@ -789,45 +789,38 @@
   <!-- HISTORIA -->
   <section class="section" id="historia">
      <div class="hearts-wrap" aria-hidden="true">
-  <svg class="hearts" viewBox="0 0 220 120">
-    <!-- Grupo verde -->
+  <svg class="hearts" viewBox="0 0 220 120" role="img">
+    <!-- Verde -->
     <g class="heart heart--green">
-      <path
+      <path class="heart-fill-green"
         d="M70,45
            C70,25 92,20 102,32
            C112,20 134,25 134,45
            C134,68 110,82 102,92
-           C94,82 70,68 70,45 Z"
-        class="heart-fill-green"
-      />
+           C94,82 70,68 70,45 Z" />
     </g>
 
-    <!-- Dorado (parte de atrás) -->
+    <!-- Dorado (back) -->
     <g class="heart heart--gold heart--gold-back">
-      <path
+      <path class="heart-stroke-gold"
         d="M86,45
            C86,25 108,20 118,32
            C128,20 150,25 150,45
            C150,68 126,82 118,92
-           C110,82 86,68 86,45 Z"
-        class="heart-stroke-gold"
-      />
+           C110,82 86,68 86,45 Z" />
     </g>
 
-    <!-- Dorado (parte de delante) -->
+    <!-- Dorado (front) -->
     <g class="heart heart--gold heart--gold-front">
-      <path
+      <path class="heart-stroke-gold"
         d="M86,45
            C86,25 108,20 118,32
            C128,20 150,25 150,45
            C150,68 126,82 118,92
-           C110,82 86,68 86,45 Z"
-        class="heart-stroke-gold"
-      />
+           C110,82 86,68 86,45 Z" />
     </g>
   </svg>
 </div>
-
 
     <h2 class="section-title">
       
@@ -1087,6 +1080,7 @@
 
 </body>
 </html>
+
 
 
 
