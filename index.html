@@ -873,6 +873,44 @@
         animation: none !important;
       }
     }
+    /* ---------- INVITACIÓN PERSONAL ---------- */
+.inv-section {
+  background: var(--bg);
+  padding: 50px 20px 20px;
+  text-align: center;
+}
+
+.inv-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.inv-label {
+  font-family: "Playfair Display", serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.inv-name {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--green2);
+  line-height: 1.2;
+}
+
+/* Móvil */
+@media (max-width: 520px) {
+  .inv-section {
+    padding: 40px 20px 10px;
+  }
+
+  .inv-name {
+    font-size: 1.9rem;
+  }
+}
   </style>
 </head>
 
@@ -890,11 +928,7 @@
       <div class="hero-date-top">12 · Septiembre · 2026</div>
 
       <div class="names">Cris & Pablo</div>
-
-      <div id="invitacion-personal" style="display:none;">
-        <div class="inv-label">INVITACIÓN PARA</div>
-        <div class="inv-name" id="invNombre"></div>
-      </div>
+      
     </div>
   </section>
 
@@ -930,6 +964,16 @@
     </div>
   </section>
 
+  <section class="inv-section" id="invitacion-personal" style="display:none;">
+  <div class="inv-container">
+    
+    <div class="inv-label">INVITACIÓN PARA</div>
+    
+    <div class="inv-name" id="invNombre"></div>
+
+  </div>
+</section>
+  
   <!-- MENÚ -->
   <nav class="subnav" aria-label="Menú principal">
     <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
@@ -1003,7 +1047,7 @@
       </p>
 
       <p>
-        Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que un día de lluvia nos reencontramos frente a un dos cafés. Ninguno quería que terminará aquella tarde.
+        Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que un día de lluvia nos reencontramos frente a un dos cafés. Ninguno de los dos quería que terminará aquella tarde.
         Y así fue como nuestra historia continuó exactamente donde la dejamos. Igual de fuerte. Igual de nuestra.
       </p>
 
