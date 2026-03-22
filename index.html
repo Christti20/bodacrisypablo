@@ -34,123 +34,112 @@
     }
 
     /* ---------- HERO ---------- */
-.hero {
-  width: 100%;
-  overflow: hidden;
-  background: var(--bg);
-}
+    .hero {
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
 
-.hero-image {
-  position: relative;
-  width: 100%;
-  height: 100svh;
-  min-height: 100svh;
-  overflow: hidden;
-}
+    .hero-image {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      min-height: 100svh;
+      overflow: hidden;
+    }
 
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  opacity: 0.58;
-  filter: brightness(102%);
-  display: block;
-}
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.58;
+      filter: brightness(102%);
+      display: block;
+    }
 
-.hero-arrow-wrap {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-}
-
-.hero-text {
-  padding: 22px 20px 10px;
-  text-align: center;
-}
-
-.hero-date-top {
-  font-family: "Playfair Display", serif;
-  font-size: 1rem;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-}
-
-.names {
-  font-family: "Updock", cursive;
-  font-size: 4rem;
-  margin: 0;
-  line-height: 1;
-  color: var(--green2);
-}
-
-.inv-label {
-  font-family: "Playfair Display", serif;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-top: 12px;
-  margin-bottom: 6px;
-}
-
-.inv-name {
-  font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--green2);
-  margin-top: 0;
-}
-
-/* Desktop */
-@media (min-width: 900px) {
-  .hero-image {
-    height: 100vh;
-    min-height: 700px;
-    max-height: 1000px;
-  }
-
-  .hero-image img {
-    opacity: 0.68;
-    filter: brightness(96%);
-  }
-}
-
-/* Móvil */
-@media (max-width: 520px) {
-  .hero-image {
-    height: 100svh;
-    min-height: 100svh;
-  }
-
-  .hero-image img {
-    object-position: center center;
-  }
-
-  .hero-text {
-    padding-top: 18px;
-  }
-
-  .hero-date-top {
-    font-size: 0.9rem;
-    letter-spacing: 1.5px;
-  }
-
-  .names {
-    font-size: 3.2rem;
-  }
-
-  .inv-name {
-    font-size: 1.3rem;
-  }
-}
     .hero-arrow-wrap {
-  bottom: 20px;
-}
-    /* Flecha animada (clicable) */
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+
+    .hero-text {
+      padding: 22px 20px 10px;
+      text-align: center;
+    }
+
+    .hero-date-top {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .names {
+      font-family: "Updock", cursive;
+      font-size: 4rem;
+      margin: 0;
+      line-height: 1;
+      color: var(--green2);
+    }
+
+    /* ---------- INVITACIÓN SOBRE HERO ---------- */
+    .hero-inv {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+
+      text-align: center;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 14px;
+
+      background: rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+
+      opacity: 0;
+      animation: inviteFadeUp 1s ease forwards;
+      animation-delay: 0.25s;
+      will-change: transform, opacity;
+    }
+
+    .hero-inv .inv-label {
+      font-family: "Playfair Display", serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      color: rgba(255, 255, 255, 0.88);
+      text-transform: uppercase;
+    }
+
+    .hero-inv .inv-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #ffffff;
+    }
+
+    @keyframes inviteFadeUp {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Flecha animada */
     .scroll-arrow {
       display: block;
       width: 35px;
@@ -796,6 +785,19 @@
     }
 
     /* ---------- RESPONSIVE ---------- */
+    @media (min-width: 900px) {
+      .hero-image {
+        height: 100vh;
+        min-height: 700px;
+        max-height: 1000px;
+      }
+
+      .hero-image img {
+        opacity: 0.68;
+        filter: brightness(96%);
+      }
+    }
+
     @media (max-width: 900px) {
       .place-photo img {
         height: 260px;
@@ -803,6 +805,42 @@
     }
 
     @media (max-width: 520px) {
+      .hero-image {
+        height: 100svh;
+        min-height: 100svh;
+      }
+
+      .hero-image img {
+        object-position: center center;
+      }
+
+      .hero-text {
+        padding-top: 18px;
+      }
+
+      .hero-date-top {
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+      }
+
+      .names {
+        font-size: 3.2rem;
+      }
+
+      .hero-inv {
+        top: 18px;
+        padding: 8px 14px;
+      }
+
+      .hero-inv .inv-label {
+        font-size: 0.64rem;
+        letter-spacing: 1.8px;
+      }
+
+      .hero-inv .inv-name {
+        font-size: 1.08rem;
+      }
+
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
 
@@ -840,23 +878,6 @@
       .place-photo img {
         height: 220px;
       }
-
-      .names {
-        font-size: 3.2rem;
-      }
-
-      .hero-text {
-        padding-top: 18px;
-      }
-
-      .hero-date-top {
-        font-size: 0.9rem;
-        letter-spacing: 1.5px;
-      }
-
-      .inv-name {
-        font-size: 1.3rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -869,129 +890,13 @@
       .heart--gold-front,
       .rings,
       .rings #leftRing,
-      .rings #rightRing {
+      .rings #rightRing,
+      .hero-inv,
+      .scroll-arrow,
+      .contador-heart svg {
         animation: none !important;
       }
     }
-    /* ---------- INVITACIÓN PERSONAL ---------- */
-.inv-section {
-  background: var(--bg);
-  padding: 90px 20px 60px;   /* desktop: más aire arriba */
-  text-align: center;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 220px;         /* mejor centrado visual */
-  border-top: 1px solid rgba(72,103,75,0.15); /* toque elegante */
-}
-
-.inv-container {
-  max-width: 700px;
-  margin: 0 auto;
-  transform: translateY(-10px); /* pequeño ajuste fino */
-}
-
-/* Texto superior */
-.inv-label {
-  font-family: "Playfair Display", serif;
-  font-size: 0.85rem;
-  letter-spacing: 3px;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-}
-
-/* Nombre */
-.inv-name {
-  font-family: "Playfair Display", serif;
-  font-size: 2.6rem;
-  font-weight: 700;
-  color: var(--green2);
-  line-height: 1.25;
-}
-
-/* ---------- TABLET ---------- */
-@media (max-width: 900px) {
-  .inv-section {
-    padding: 70px 20px 40px;
-    min-height: 200px;
-  }
-
-  .inv-name {
-    font-size: 2.2rem;
-  }
-}
-
-/* ---------- MÓVIL ---------- */
-@media (max-width: 520px) {
-  .inv-section {
-    padding: 50px 20px 25px;  /* menos aire pero sigue elegante */
-    min-height: auto;         /* evita hueco raro */
-  }
-
-  .inv-container {
-    transform: translateY(-4px); /* menos desplazamiento */
-  }
-
-  .inv-label {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
-  }
-
-  .inv-name {
-    font-size: 1.9rem;
-    line-height: 1.3;
-  }
-}
-
-
-  /* ---------- INVITACIÓN SOBRE HERO ---------- */
-.hero-inv {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 6;
-
-  text-align: center;
-  color: white;
-
-  padding: 10px 16px;
-  border-radius: 14px;
-
-  background: rgba(0,0,0,0.15); /* ligera capa */
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* Texto superior */
-.hero-inv .inv-label {
-  font-family: "Playfair Display", serif;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-  opacity: 0.85;
-}
-
-/* Nombre */
-.hero-inv .inv-name {
-  font-family: "Playfair Display", serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.2;
-}
-    @media (max-width: 520px) {
-  .hero-inv {
-    top: 18px;
-    padding: 8px 14px;
-  }
-
-  .hero-inv .inv-name {
-    font-size: 1.1rem;
-  }
-}
   </style>
 </head>
 
@@ -1000,21 +905,20 @@
   <section class="hero">
     <div class="hero-image">
       <img src="portada.jpeg" alt="Cris y Pablo" />
+
+      <div id="invitacion-personal" class="hero-inv" style="display:none;">
+        <div class="inv-label">INVITACIÓN PARA</div>
+        <div class="inv-name" id="invNombre"></div>
+      </div>
+
       <div class="hero-arrow-wrap">
         <a class="scroll-arrow" href="#contador" aria-label="Ir al contador"></a>
       </div>
     </div>
-    <!-- INVITACIÓN -->
-    <div id="invitacion-personal" class="hero-inv" style="display:none;">
-      <div class="inv-label">INVITACIÓN PARA</div>
-      <div class="inv-name" id="invNombre"></div>
-    </div>
 
     <div class="hero-text">
       <div class="hero-date-top">12 · Septiembre · 2026</div>
-
       <div class="names">Cris & Pablo</div>
-      
     </div>
   </section>
 
@@ -1049,8 +953,7 @@
       </div>
     </div>
   </section>
-</section>
-  
+
   <!-- MENÚ -->
   <nav class="subnav" aria-label="Menú principal">
     <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false">
@@ -1124,7 +1027,7 @@
       </p>
 
       <p>
-        Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que un día de lluvia nos reencontramos frente a un dos cafés. Ninguno de los dos quería que terminará aquella tarde.
+        Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que un día de lluvia nos reencontramos frente a dos cafés. Ninguno de los dos quería que terminara aquella tarde.
         Y así fue como nuestra historia continuó exactamente donde la dejamos. Igual de fuerte. Igual de nuestra.
       </p>
 
@@ -1319,42 +1222,6 @@
   </footer>
 
   <script>
-    // ---------- LANDING ----------
-(function () {
-  const params = new URLSearchParams(window.location.search);
-  const nombre = params.get("nombre");
-
-  const landing = document.getElementById("landing-invitacion");
-  const main = document.getElementById("main-content");
-
-  const landingNombre = document.getElementById("landingNombre");
-
-  if (nombre) {
-    const nombreDecodificado = decodeURIComponent(nombre);
-    landingNombre.textContent = nombreDecodificado;
-
-    // también lo mantenemos para la web interna
-    const inv = document.getElementById("invNombre");
-    if (inv) inv.textContent = nombreDecodificado;
-  }
-
-  // BOTÓN ENTRAR
-  document.getElementById("btnEntrar").addEventListener("click", () => {
-    landing.style.display = "none";
-    main.style.display = "block";
-    window.scrollTo(0, 0);
-  });
-
-  // BOTÓN RSVP
-  document.getElementById("btnRSVP").addEventListener("click", () => {
-    landing.style.display = "none";
-    main.style.display = "block";
-
-    setTimeout(() => {
-      document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  });
-})();
     window.history.scrollRestoration = "manual";
     window.addEventListener("load", () => window.scrollTo(0, 0));
 
