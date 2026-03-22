@@ -758,7 +758,22 @@
   font-style: italic;
   color: var(--text-muted);
 }
+          .inv-label{
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.inv-name{
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--green2);
+}
   </style>
+
 </head>
 
 <body>
@@ -773,6 +788,10 @@
 
   <a class="scroll-arrow" href="#contador" aria-label="Bajar al contador"></a>
 
+  <div id="invitacion-personal" style="display:none; margin-top: 20px;">
+     <div class="inv-label">INVITACIÓN PARA</div>
+     <div class="inv-name" id="invNombre"></div>
+  </div>
   <!-- CONTADOR -->
   <section class="contador-section" id="contador">
     <div class="contador">
@@ -1198,6 +1217,18 @@
 
       links.forEach((a) => a.addEventListener("click", closeMenu));
     })();
+          (function () {
+  const params = new URLSearchParams(window.location.search);
+  const nombre = params.get("nombre");
+
+  if (nombre) {
+    // Decodifica espacios (por si vienen con %20)
+    const nombreDecodificado = decodeURIComponent(nombre);
+
+    document.getElementById("invNombre").textContent = nombreDecodificado;
+    document.getElementById("invitacion-personal").style.display = "block";
+  }
+})();
   </script>
 
 </body>
