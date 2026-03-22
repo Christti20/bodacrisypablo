@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -8,23 +8,23 @@
   <!-- Fuentes -->
   <link href="https://fonts.googleapis.com/css2?family=Updock&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
     html { scroll-behavior: smooth; }
 
-    :root{
+    :root {
       --bg: #efe9db;
       --card: #f8f3e6;
       --green: #48674b;
-      --green2:#445f48;
-      --text-muted:#7b7b7b;
-      --menu:#3f6346;
+      --green2: #445f48;
+      --text-muted: #7b7b7b;
+      --menu: #3f6346;
     }
 
-    *{ box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
-    body{
+    body {
       margin: 0;
       font-family: "Libre Baskerville", serif;
       font-weight: 400;
@@ -36,43 +36,92 @@
     /* ---------- HERO ---------- */
     .hero {
       width: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-image {
+      position: relative;
+      width: 100%;
       height: 65vh;
       overflow: hidden;
     }
-    .hero img {
+
+    .hero-image img {
       width: 100%;
-      height: 95%;
+      height: 100%;
       object-fit: cover;
+      object-position: center center;
       opacity: 0.50;
       filter: brightness(110%);
-      display:block;
+      display: block;
     }
-    @media (min-width: 900px) {
-  .hero {
-    height: 78vh;
-    min-height: 560px;
-    max-height: 860px;
-  }
 
-  .hero img {
-    height: 100%;
-    opacity: 0.68;
-    filter: brightness(96%);
-    object-position: center center;
-  }
-}
+    @media (min-width: 900px) {
+      .hero-image {
+        height: 100vh;
+        min-height: 700px;
+        max-height: 1000px;
+      }
+
+      .hero-image img {
+        opacity: 0.68;
+        filter: brightness(96%);
+      }
+    }
+
+    .hero-arrow-wrap {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+    }
+
+    .hero-text {
+      padding: 22px 20px 10px;
+      text-align: center;
+    }
+
+    .hero-date-top {
+      font-family: "Playfair Display", serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
     .names {
       font-family: "Updock", cursive;
       font-size: 4rem;
-      margin: 10px 0 0 0;
+      margin: 0;
       line-height: 1;
       color: var(--green2);
     }
+
     .date {
       font-family: "Updock", cursive;
       font-size: 2.2rem;
       margin: 0;
       line-height: 1.1;
+    }
+
+    .inv-label {
+      font-family: "Playfair Display", serif;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      margin-top: 12px;
+      margin-bottom: 6px;
+    }
+
+    .inv-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--green2);
+      margin-top: 0;
     }
 
     /* Flecha animada (clicable) */
@@ -83,12 +132,13 @@
       border-right: 3px solid #ffffff;
       border-bottom: 3px solid #ffffff;
       transform: rotate(45deg);
-      margin: 10px auto 30px auto;
+      margin: 0 auto;
       animation: arrowBounce 1.5s infinite ease-in-out;
       opacity: 0.9;
       position: relative;
       z-index: 10;
     }
+
     @keyframes arrowBounce {
       0% { transform: translateY(0) rotate(45deg); }
       50% { transform: translateY(10px) rotate(45deg); }
@@ -109,29 +159,25 @@
       position: relative;
     }
 
-    .contador-circle{
+    .contador-circle {
       width: 260px;
       height: 260px;
       border-radius: 50%;
       margin-top: 90px;
-
       background: radial-gradient(circle at top, #f6f1e7 0%, #f4efe3 60%);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
-
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-
-      position:relative;
-      z-index:2;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Corona (corona.png en la misma carpeta) */
-    .contador-circle::after{
-      content:"";
-      position:absolute;
+    .contador-circle::after {
+      content: "";
+      position: absolute;
       width: 140%;
       height: 140%;
       background: url("corona.png") no-repeat center / contain;
@@ -146,58 +192,59 @@
     .contador-title {
       font-family: "Playfair Display", serif;
       font-size: 1.25rem;
-      color: rgba(180,154,105,0.95);
+      color: rgba(180, 154, 105, 0.95);
       margin-bottom: 10px;
       letter-spacing: 0.2px;
     }
 
-    .contador-values--stacked{
+    .contador-values--stacked {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
     }
 
-    .contador-days{
+    .contador-days {
       text-align: center;
       margin-bottom: 10px;
       line-height: 1;
     }
 
-    .contador-days span{
+    .contador-days span {
       display: block;
-      font-family:"Playfair Display", serif;
+      font-family: "Playfair Display", serif;
       font-size: 2.55rem;
       font-weight: 700;
       color: var(--green2);
       letter-spacing: 0.4px;
     }
 
-    .contador-days small{
+    .contador-days small {
       display: block;
       margin-top: 6px;
       font-size: 0.95rem;
       color: #6b6b6b;
     }
 
-    .contador-rest{
+    .contador-rest {
       display: flex;
       gap: 18px;
       justify-content: center;
       align-items: baseline;
       text-align: center;
+      margin-top: 8px;
     }
 
-    .contador-rest > div{ min-width: 54px; }
+    .contador-rest > div { min-width: 54px; }
 
-    .contador-rest span{
+    .contador-rest span {
       display: block;
       font-size: 1.35rem;
       font-weight: 700;
       color: #555;
     }
 
-    .contador-rest small{
+    .contador-rest small {
       display: block;
       margin-top: 4px;
       font-size: 0.85rem;
@@ -205,35 +252,27 @@
     }
 
     @keyframes heartbeat {
-          0%   { transform: scale(1); }
-          15%  { transform: scale(1.15); }
-          30%  { transform: scale(1); }
-          45%  { transform: scale(1.12); }
-          70%  { transform: scale(1); }
-          100% { transform: scale(1); }
-        }
+      0%   { transform: scale(1); }
+      15%  { transform: scale(1.15); }
+      30%  { transform: scale(1); }
+      45%  { transform: scale(1.12); }
+      70%  { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    .contador-heart {
+      margin-top: 18px;
+    }
 
     .contador-heart svg {
-        animation: heartbeat 2.8s ease-in-out infinite;
-          transform-origin: center;
-          display: block;
-          margin: 0 auto;
-     }
-     .contador-heart {
-          margin-top: 18px;   /* antes estaba en 12px */
-     }
+      animation: heartbeat 2.8s ease-in-out infinite;
+      transform-origin: center;
+      display: block;
+      margin: 0 auto;
+    }
 
-     .contador-heart svg {
-          animation: heartbeat 2.8s ease-in-out infinite;
-          transform-origin: center;
-          display: block;
-          margin: 0 auto;
-     }
-     .contador-rest {
-          margin-top: 8px;
-     }
-    /* ---------- MENÚ (DESKTOP + SELLO MÓVIL) ---------- */
-    .subnav{
+    /* ---------- MENÚ ---------- */
+    .subnav {
       width: 100%;
       background: var(--menu);
       min-height: 54px;
@@ -241,16 +280,14 @@
       position: sticky;
       top: 0;
       z-index: 80;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
-
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
       display: flex;
       align-items: center;
-      justify-content: center; /* ✅ centrado en todos los casos */
+      justify-content: center;
       gap: 18px;
     }
 
-    /* Desktop links */
-    .nav-links{
+    .nav-links {
       display: flex;
       gap: 18px;
       align-items: center;
@@ -258,51 +295,54 @@
       white-space: nowrap;
     }
 
-    .nav-links a{
+    .nav-links a {
       font-family: "Playfair Display", serif;
       font-weight: 500;
       font-size: 0.95rem;
       letter-spacing: 0.25px;
       text-decoration: none;
-      color: rgba(255,255,255,0.92);
+      color: rgba(255, 255, 255, 0.92);
       padding: 6px 4px;
-      transition: .2s;
-      text-transform: uppercase; /* desktop OK */
+      transition: 0.2s;
+      text-transform: uppercase;
     }
-    .nav-links a:hover{ opacity: 0.85; transform: translateY(-1px); }
 
-    /* Botón sello (hamburguesa) */
-    .nav-toggle{
-      display: none; /* se activa en móvil */
+    .nav-links a:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .nav-toggle {
+      display: none;
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.18);
       border: none;
       cursor: pointer;
-
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 4px;
     }
-    .nav-toggle span{
+
+    .nav-toggle span {
       display: block;
       width: 18px;
       height: 2px;
-      background: rgba(255,255,255,0.92);
+      background: rgba(255, 255, 255, 0.92);
       border-radius: 2px;
     }
 
     /* ---------- OVERLAY MENÚ MÓVIL ---------- */
-    .nav-overlay[hidden]{
+    .nav-overlay[hidden] {
       display: none !important;
     }
 
-    .nav-overlay:not([hidden]){
+    .nav-overlay:not([hidden]) {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.18);
+      background: rgba(0, 0, 0, 0.18);
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
       z-index: 200;
@@ -311,30 +351,30 @@
       padding: 18px;
     }
 
-    .nav-panel{
+    .nav-panel {
       width: min(520px, 94vw);
       background: #f6f1e6;
       border-radius: 20px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
       padding: 18px 18px 20px;
-      border: 1px solid rgba(180,154,105,0.16);
+      border: 1px solid rgba(180, 154, 105, 0.16);
     }
 
-    .nav-panel-top{
+    .nav-panel-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 8px;
     }
 
-    .nav-brand{
+    .nav-brand {
       font-family: "Updock", cursive;
       font-size: 2.2rem;
       color: var(--green2);
       line-height: 1;
     }
 
-    .nav-close{
+    .nav-close {
       border: 0;
       background: transparent;
       font-size: 1.4rem;
@@ -343,9 +383,12 @@
       padding: 6px 10px;
       border-radius: 12px;
     }
-    .nav-close:hover{ background: rgba(69,95,73,0.08); }
 
-    .nav-panel-links{
+    .nav-close:hover {
+      background: rgba(69, 95, 73, 0.08);
+    }
+
+    .nav-panel-links {
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -353,15 +396,18 @@
       padding: 18px 8px 6px;
     }
 
-    .nav-panel-links a{
+    .nav-panel-links a {
       font-family: "Playfair Display", serif;
       font-size: 1.55rem;
       color: #2c4133;
       text-decoration: none;
     }
-    .nav-panel-links a:hover{ opacity: 0.85; }
 
-    .nav-cta{
+    .nav-panel-links a:hover {
+      opacity: 0.85;
+    }
+
+    .nav-cta {
       margin-top: 10px;
       display: inline-block;
       padding: 14px 16px;
@@ -370,7 +416,7 @@
       color: #f9f6ed !important;
       font-size: 1.05rem !important;
       font-weight: 700;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.16);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
     }
 
     /* ---------- SECCIONES ---------- */
@@ -381,14 +427,13 @@
       text-align: left;
     }
 
-    .section-title{
+    .section-title {
       font-family: "Playfair Display", serif;
       font-weight: 700;
       letter-spacing: 0.3px;
       text-align: center;
       margin: 0 0 25px 0;
       color: var(--green2);
-
       display: flex;
       justify-content: center;
       align-items: center;
@@ -400,215 +445,209 @@
       background-color: var(--card);
       border-radius: 16px;
       padding: 20px 22px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
       font-family: "Libre Baskerville", serif;
       font-size: 1.02rem;
       line-height: 1.75;
     }
 
-    .card p{ margin: 0 0 14px 0; }
+    .card p { margin: 0 0 14px 0; }
 
     .card h3,
-    .highlight{
+    .highlight {
       font-family: "Playfair Display", serif;
       font-weight: 700;
     }
 
-    .highlight{
+    .highlight {
       font-size: 1.15rem;
       color: var(--green2);
       margin: 6px 0;
     }
-/* --- Corazones entrelazados (tamaño + animación real tipo anillos) --- */
-.hearts-wrap{
-  display:flex;
-  justify-content:center;
-  margin: 10px 0 12px;
-}
 
-.hearts{
-  width: 120px;          /* <-- MÁS GRANDE */
-  height: auto;
-  display:block;
-  overflow: visible;
-}
+    /* --- Corazones entrelazados --- */
+    .hearts-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 10px 0 12px;
+    }
 
-/* Colores */
-.heart-fill-green{ fill: rgba(72,103,75,0.28); }
-.heart-stroke-gold{
-  fill: none;
-  stroke: rgba(180,154,105,0.88);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+    .hearts {
+      width: 120px;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
 
-/* MUY IMPORTANTE en SVG para que transform funcione fino */
-.heart{
-  transform-box: fill-box;
-  transform-origin: center;
-  will-change: transform;
-}
+    .heart-fill-green { fill: rgba(72, 103, 75, 0.28); }
 
-/* Animación: ambos se mueven en sentidos opuestos (como anillos) */
-.heart--green{ animation: heartWeaveGreen 2.2s ease-in-out infinite; }
-.heart--gold{  animation: heartWeaveGold  2.2s ease-in-out infinite; }
+    .heart-stroke-gold {
+      fill: none;
+      stroke: rgba(180, 154, 105, 0.88);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-/* Dorado duplicado para simular delante/detrás */
-.heart--gold-back{
-  opacity: 0.55;
-  animation-name: heartWeaveGold, goldBackSwap;
-  animation-duration: 2.2s, 2.2s;
-  animation-timing-function: ease-in-out, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
-.heart--gold-front{
-  opacity: 1;
-  animation-name: heartWeaveGold, goldFrontSwap;
-  animation-duration: 2.2s, 2.2s;
-  animation-timing-function: ease-in-out, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
+    .heart {
+      transform-box: fill-box;
+      transform-origin: center;
+      will-change: transform;
+    }
 
-@keyframes heartWeaveGreen{
-  0%   { transform: translate(0px,0px) rotate(-2deg) scale(1); }
-  25%  { transform: translate(4px,1px) rotate(1deg)  scale(1.03); }
-  50%  { transform: translate(8px,0px) rotate(2deg)  scale(1); }
-  75%  { transform: translate(4px,-1px) rotate(0deg) scale(1.03); }
-  100% { transform: translate(0px,0px) rotate(-2deg) scale(1); }
-}
+    .heart--green { animation: heartWeaveGreen 2.2s ease-in-out infinite; }
+    .heart--gold { animation: heartWeaveGold 2.2s ease-in-out infinite; }
 
-@keyframes heartWeaveGold{
-  0%   { transform: translate(0px,0px) rotate(2deg)  scale(1); }
-  25%  { transform: translate(-4px,-1px) rotate(0deg) scale(1.03); }
-  50%  { transform: translate(-8px,0px) rotate(-2deg) scale(1); }
-  75%  { transform: translate(-4px,1px) rotate(0deg)  scale(1.03); }
-  100% { transform: translate(0px,0px) rotate(2deg)  scale(1); }
-}
+    .heart--gold-back {
+      opacity: 0.55;
+      animation-name: heartWeaveGold, goldBackSwap;
+      animation-duration: 2.2s, 2.2s;
+      animation-timing-function: ease-in-out, ease-in-out;
+      animation-iteration-count: infinite, infinite;
+    }
 
-/* Swap de profundidad */
-@keyframes goldBackSwap{ 0%,49%{opacity:.55} 50%,100%{opacity:.18} }
-@keyframes goldFrontSwap{0%,49%{opacity:1}   50%,100%{opacity:.72} }
+    .heart--gold-front {
+      opacity: 1;
+      animation-name: heartWeaveGold, goldFrontSwap;
+      animation-duration: 2.2s, 2.2s;
+      animation-timing-function: ease-in-out, ease-in-out;
+      animation-iteration-count: infinite, infinite;
+    }
 
-/* Móvil */
-@media (max-width: 480px){
-  .hearts{ width: 110px; }
-}
+    @keyframes heartWeaveGreen {
+      0%   { transform: translate(0px, 0px) rotate(-2deg) scale(1); }
+      25%  { transform: translate(4px, 1px) rotate(1deg) scale(1.03); }
+      50%  { transform: translate(8px, 0px) rotate(2deg) scale(1); }
+      75%  { transform: translate(4px, -1px) rotate(0deg) scale(1.03); }
+      100% { transform: translate(0px, 0px) rotate(-2deg) scale(1); }
+    }
 
-/* Accesibilidad */
-@media (prefers-reduced-motion: reduce){
-  .heart, .heart--gold-back, .heart--gold-front{ animation: none !important; }
-}
+    @keyframes heartWeaveGold {
+      0%   { transform: translate(0px, 0px) rotate(2deg) scale(1); }
+      25%  { transform: translate(-4px, -1px) rotate(0deg) scale(1.03); }
+      50%  { transform: translate(-8px, 0px) rotate(-2deg) scale(1); }
+      75%  { transform: translate(-4px, 1px) rotate(0deg) scale(1.03); }
+      100% { transform: translate(0px, 0px) rotate(2deg) scale(1); }
+    }
 
+    @keyframes goldBackSwap {
+      0%, 49% { opacity: .55; }
+      50%, 100% { opacity: .18; }
+    }
 
+    @keyframes goldFrontSwap {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: .72; }
+    }
 
-    /* Historia: justificado en pantallas grandes */
-    #historia .card p{
+    /* Historia */
+    #historia .card p {
       text-align: justify;
       text-justify: inter-word;
     }
-    #historia .card{ hyphens: auto; -webkit-hyphens: auto; }
 
-/* === ANILLOS ELEGANTES (NO loading) === */
-.rings-wrap{
-  display: grid;
-  place-items: center;
-  margin: 22px auto 14px;
-}
+    #historia .card {
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
 
-.rings{
-  width: 150px;              /* más presencia */
-  max-width: 38vw;
-  height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.10));
-}
+    /* ---------- ANILLOS ---------- */
+    .rings-wrap {
+      display: grid;
+      place-items: center;
+      margin: 22px auto 14px;
+    }
 
-.ring-stroke{
-  fill: none;
-  stroke-width: 7;           /* grosor bonito */
-  stroke-linecap: round;
-}
+    .rings {
+      width: 150px;
+      max-width: 38vw;
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.10));
+      animation: ringBreath 2.6s ease-in-out infinite;
+    }
 
-.ring-gold{ stroke: rgba(180,154,105,0.78); }
-.ring-green{ stroke: rgba(72,103,75,0.62); }
+    .ring-stroke {
+      fill: none;
+      stroke-width: 7;
+      stroke-linecap: round;
+    }
 
-/* “nudo” central: un puntito suave para dar profundidad */
-.knot{
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.10));
-  opacity: .95;
-}
+    .ring-gold { stroke: rgba(180, 154, 105, 0.78); }
+    .ring-green { stroke: rgba(72, 103, 75, 0.62); }
 
-/* animación: se acercan y vuelven, con mini-escala */
-@keyframes ringSlideL { 0%,100%{ transform: translateX(-6px); } 50%{ transform: translateX(0px);} }
-@keyframes ringSlideR { 0%,100%{ transform: translateX(6px); } 50%{ transform: translateX(0px);} }
-@keyframes ringBreath { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.03);} }
+    .knot {
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.10));
+      opacity: .95;
+    }
 
-.rings #leftRing{ animation: ringSlideL 2.6s ease-in-out infinite; transform-origin: 50% 50%; }
-.rings #rightRing{ animation: ringSlideR 2.6s ease-in-out infinite; transform-origin: 50% 50%; }
-.rings{ animation: ringBreath 2.6s ease-in-out infinite; }
+    @keyframes ringSlideL {
+      0%, 100% { transform: translateX(-6px); }
+      50% { transform: translateX(0px); }
+    }
 
-@media (prefers-reduced-motion: reduce){
-  .rings, .rings #leftRing, .rings #rightRing{ animation: none !important; }
-}
+    @keyframes ringSlideR {
+      0%, 100% { transform: translateX(6px); }
+      50% { transform: translateX(0px); }
+    }
 
+    @keyframes ringBreath {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
 
-   /* =========================
-   FOTOS LUGAR / CELEBRACIÓN (CENTRADAS)
-========================= */
+    .rings #leftRing {
+      animation: ringSlideL 2.6s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
 
-.place-photos{
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 34px;
-  margin: 22px 0 28px;
-  justify-items: center;              /* ✅ centra los bloques */
-}
+    .rings #rightRing {
+      animation: ringSlideR 2.6s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
 
-.place-photo{
-  width: min(640px, 100%);            /* ✅ misma anchura visual */
-  margin: 0 auto;                     /* ✅ centrado */
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.12);
-  background: #fdfaf2;
-}
+    /* ---------- FOTOS LUGAR ---------- */
+    .place-photos {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 34px;
+      margin: 22px 0 28px;
+      justify-items: center;
+    }
 
-.place-photo img{
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
-}
+    .place-photo {
+      width: min(640px, 100%);
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+      background: #fdfaf2;
+    }
 
-@media (max-width: 900px){
-  .place-photo img{
-    height: 260px;
-  }
-}
-
-@media (max-width: 520px){
-  .place-photo img{
-    height: 220px;
-  }
-}
+    .place-photo img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
 
     /* ---------- MAPAS ---------- */
     .map-container {
       margin-top: 18px;
       border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
     }
+
     .map-iframe {
       width: 100%;
       height: 260px;
       border: 0;
     }
 
-    /* ---------- BOTONES GOOGLE MAPS ---------- */
+    /* ---------- BOTONES ---------- */
     .btn-maps {
       display: block;
       width: 100%;
@@ -622,10 +661,23 @@
       font-weight: 600;
       font-size: 1rem;
       text-align: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
       transition: 0.2s;
     }
+
     .btn-maps:hover { filter: brightness(1.07); }
+
+    .btn {
+      margin-top: 14px;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background-color: var(--green);
+      color: #f9f6ed;
+    }
 
     /* ---------- FORMULARIO ---------- */
     .rsvp-form {
@@ -652,6 +704,7 @@
       overflow: hidden;
       transition: all .45s ease;
     }
+
     #extraFields.extra-visible {
       max-height: 500px;
       opacity: 1;
@@ -663,21 +716,10 @@
       gap: 14px;
       margin-bottom: 12px;
     }
+
     .extra-row > div { flex: 1; }
 
     #comentarios { width: 100%; }
-
-    .btn {
-      margin-top: 14px;
-      border: none;
-      border-radius: 999px;
-      padding: 12px 18px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      background-color: var(--green);
-      color: #f9f6ed;
-    }
 
     #rsvp-ok {
       background: #e8f2ea;
@@ -696,14 +738,49 @@
       text-align: center;
     }
 
-    /* ---------- AJUSTES EN MÓVIL ---------- */
-    @media (max-width: 520px) {
-      /* Móvil: ocultar links y mostrar botón sello centrado */
-      .nav-links{ display: none; }
-      .nav-toggle{ display: flex; }
+    /* ---------- ALOJAMIENTO ---------- */
+    .lodging-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 22px;
+    }
 
-      /* Móvil: el texto del menú (desktop) no aplica, pero por si acaso */
-      .nav-links a{ text-transform: none; }
+    .lodging-item {
+      background: #fcf8ef;
+      border: 1px solid rgba(180, 154, 105, 0.20);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .lodging-item h3 {
+      margin: 0 0 12px 0;
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      color: var(--green2);
+    }
+
+    .lodging-note {
+      margin-top: 22px !important;
+      text-align: center !important;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .place-photo img {
+        height: 260px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .nav-links a { text-transform: none; }
 
       .contador-section { padding: 70px 0 90px 0; }
 
@@ -713,135 +790,88 @@
         margin-top: 0;
       }
 
-      .contador-circle::after{
+      .contador-circle::after {
         width: 160%;
         height: 160%;
         opacity: 0.82;
       }
 
-      .contador-title { font-size: 1.15rem; margin-bottom: 8px; }
+      .contador-title {
+        font-size: 1.15rem;
+        margin-bottom: 8px;
+      }
 
-      .contador-days span{ font-size: 2.25rem; }
-      .contador-rest{ gap: 14px; }
-      .contador-rest > div{ min-width: 48px; }
+      .contador-days span { font-size: 2.25rem; }
 
-      /* Historia en móvil: mejor alineado a la izquierda */
-      #historia .card p{ text-align: left; }
+      .contador-rest {
+        gap: 14px;
+      }
+
+      .contador-rest > div { min-width: 48px; }
+
+      #historia .card p { text-align: left; }
+
+      .place-photo img {
+        height: 220px;
+      }
+
+      .names {
+        font-size: 3.2rem;
+      }
+
+      .hero-text {
+        padding-top: 18px;
+      }
+
+      .hero-date-top {
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+      }
+
+      .inv-name {
+        font-size: 1.3rem;
+      }
     }
-    /* ---------- ALOJAMIENTO ---------- */
-.lodging-list{
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 22px;
-}
 
-.lodging-item{
-  background: #fcf8ef;
-  border: 1px solid rgba(180,154,105,0.20);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-  text-align: center;
-}
+    @media (max-width: 480px) {
+      .hearts { width: 110px; }
+    }
 
-.lodging-item h3{
-  margin: 0 0 12px 0;
-  font-family: "Playfair Display", serif;
-  font-size: 1.2rem;
-  color: var(--green2);
-}
-
-.lodging-note{
-  margin-top: 22px !important;
-  text-align: center !important;
-  font-style: italic;
-  color: var(--text-muted);
-}
-          .inv-label{
-  font-family: "Playfair Display", serif;
-  font-size: 0.9rem;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 6px;
-}
-
-.inv-name{
-  font-family: "Playfair Display", serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--green2);
-}
-          .hero{
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  min-height: 600px;
-  overflow: hidden;
-}
-
-.hero img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-overlay{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.25);
-}
-
-.hero-content{
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  color: white;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.names{
-  font-family: "Updock", cursive;
-  font-size: 5rem;
-  margin: 0;
-}
-
-.hero-date-top{
-  margin-bottom: 10px;
-}
-
-.inv-name{
-  font-size: 1.6rem;
-  margin-top: 10px;
-}
+    @media (prefers-reduced-motion: reduce) {
+      .heart,
+      .heart--gold-back,
+      .heart--gold-front,
+      .rings,
+      .rings #leftRing,
+      .rings #rightRing {
+        animation: none !important;
+      }
+    }
   </style>
-
 </head>
 
 <body>
-
   <!-- HERO -->
- <section class="hero">
-  <img src="portada.jpeg" alt="Cris y Pablo">
-
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <div class="hero-date-top">12 · Septiembre · 2026</div>
-
-    <div class="names">Cris & Pablo</div>
-
-    <div id="invitacion-personal" style="display:none;">
-      <div class="inv-label">INVITACIÓN PARA</div>
-      <div class="inv-name" id="invNombre"></div>
+  <section class="hero">
+    <div class="hero-image">
+      <img src="portada.jpeg" alt="Cris y Pablo" />
+      <div class="hero-arrow-wrap">
+        <a class="scroll-arrow" href="#contador" aria-label="Ir al contador"></a>
+      </div>
     </div>
 
-    <a class="scroll-arrow" href="#contador"></a>
-  </div>
-</section>
+    <div class="hero-text">
+      <div class="hero-date-top">12 · Septiembre · 2026</div>
+
+      <div class="names">Cris & Pablo</div>
+
+      <div id="invitacion-personal" style="display:none;">
+        <div class="inv-label">INVITACIÓN PARA</div>
+        <div class="inv-name" id="invNombre"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTADOR -->
   <section class="contador-section" id="contador">
     <div class="contador">
@@ -861,15 +891,15 @@
           </div>
         </div>
 
-       <div class="contador-heart">
+        <div class="contador-heart">
           <svg viewBox="0 0 40 40" width="26" height="26">
             <g transform="matrix(0.8693782091140747,0,0,0.8693782091140747,2.5026798248291016,2.0325698852539062)">
               <g transform="matrix(1,0,0,1,18.97599983215332,16.06599998474121)">
-        <path fill="rgb(111,139,109)" d="M-1.1369999647140503,15.593999862670898 C-0.7720000147819519,15.741999626159668 -0.38600000739097595,15.815999984741211 0.0010000000474974513,15.815999984741211 C0.3869999945163727,15.815999984741211 0.7730000019073486,15.741999626159668 1.1369999647140503,15.593999862670898 C1.8550000190734863,15.300999641418457 18.725000381469727,8.284000396728516 18.725000381469727,-4.073999881744385 C18.725000381469727,-10.550000190734863 13.385000228881836,-15.815999984741211 6.820000171661377,-15.815999984741211 C4.349999904632568,-15.815999984741211 1.9789999723434448,-15.067000389099121 0.0010000000474974513,-13.70199966430664 C-1.9780000448226929,-15.067000389099121 -4.348999977111816,-15.815999984741211 -6.817999839782715,-15.815999984741211 C-13.383999824523926,-15.815999984741211 -18.725000381469727,-10.550000190734863 -18.725000381469727,-4.073999881744385 C-18.725000381469727,8.284000396728516 -1.8550000190734863,15.300999641418457 -1.1369999647140503,15.593999862670898z"/>
-      </g>
-    </g>
-  </svg>
-</div>
+                <path fill="rgb(111,139,109)" d="M-1.1369999647140503,15.593999862670898 C-0.7720000147819519,15.741999626159668 -0.38600000739097595,15.815999984741211 0.0010000000474974513,15.815999984741211 C0.3869999945163727,15.815999984741211 0.7730000019073486,15.741999626159668 1.1369999647140503,15.593999862670898 C1.8550000190734863,15.300999641418457 18.725000381469727,8.284000396728516 18.725000381469727,-4.073999881744385 C18.725000381469727,-10.550000190734863 13.385000228881836,-15.815999984741211 6.820000171661377,-15.815999984741211 C4.349999904632568,-15.815999984741211 1.9789999723434448,-15.067000389099121 0.0010000000474974513,-13.70199966430664 C-1.9780000448226929,-15.067000389099121 -4.348999977111816,-15.815999984741211 -6.817999839782715,-15.815999984741211 C-13.383999824523926,-15.815999984741211 -18.725000381469727,-10.550000190734863 -18.725000381469727,-4.073999881744385 C-18.725000381469727,8.284000396728516 -1.8550000190734863,15.300999641418457 -1.1369999647140503,15.593999862670898z"/>
+              </g>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
   </section>
@@ -907,44 +937,23 @@
 
   <!-- HISTORIA -->
   <section class="section" id="historia">
-     <div class="hearts-wrap" aria-hidden="true">
-  <svg class="hearts" viewBox="0 0 220 120" role="img">
-    <!-- Verde -->
-    <g class="heart heart--green">
-      <path class="heart-fill-green"
-        d="M70,45
-           C70,25 92,20 102,32
-           C112,20 134,25 134,45
-           C134,68 110,82 102,92
-           C94,82 70,68 70,45 Z" />
-    </g>
+    <div class="hearts-wrap" aria-hidden="true">
+      <svg class="hearts" viewBox="0 0 220 120" role="img">
+        <g class="heart heart--green">
+          <path class="heart-fill-green" d="M70,45 C70,25 92,20 102,32 C112,20 134,25 134,45 C134,68 110,82 102,92 C94,82 70,68 70,45 Z" />
+        </g>
 
-    <!-- Dorado (back) -->
-    <g class="heart heart--gold heart--gold-back">
-      <path class="heart-stroke-gold"
-        d="M86,45
-           C86,25 108,20 118,32
-           C128,20 150,25 150,45
-           C150,68 126,82 118,92
-           C110,82 86,68 86,45 Z" />
-    </g>
+        <g class="heart heart--gold heart--gold-back">
+          <path class="heart-stroke-gold" d="M86,45 C86,25 108,20 118,32 C128,20 150,25 150,45 C150,68 126,82 118,92 C110,82 86,68 86,45 Z" />
+        </g>
 
-    <!-- Dorado (front) -->
-    <g class="heart heart--gold heart--gold-front">
-      <path class="heart-stroke-gold"
-        d="M86,45
-           C86,25 108,20 118,32
-           C128,20 150,25 150,45
-           C150,68 126,82 118,92
-           C110,82 86,68 86,45 Z" />
-    </g>
-  </svg>
-</div>
+        <g class="heart heart--gold heart--gold-front">
+          <path class="heart-stroke-gold" d="M86,45 C86,25 108,20 118,32 C128,20 150,25 150,45 C150,68 126,82 118,92 C110,82 86,68 86,45 Z" />
+        </g>
+      </svg>
+    </div>
 
-    <h2 class="section-title">
-      
-      Nuestra historia
-    </h2>
+    <h2 class="section-title">Nuestra historia</h2>
 
     <div class="card">
       <div style="text-align:center; margin-bottom: 20px;">
@@ -952,31 +961,35 @@
       </div>
 
       <p>
-        Todo comenzó un octubre de 2003, primer día de Facultad de Informática, una rubia entra tarde en clase (qué raro), 
-        un chico en la última fila levanta la vista…la mira…y ya está…no había ya nada que se pudiera hacer…bastó con mirar esos ojos azules por primera vez y el pensamiento vino solo…
-        <em>”date por jodido chaval.”</em>
+        Todo comenzó un octubre de 2003, primer día de Facultad de Informática, una rubia entra tarde en clase (qué raro),
+        un chico en la última fila levanta la vista… la mira… y ya está… no había ya nada que se pudiera hacer… bastó con mirar esos ojos azules por primera vez y el pensamiento vino solo…
+        <em>“date por jodido chaval.”</em>
       </p>
+
       <p>
         Desde el primer día hubo una chispa, una de esas conexiones que te hacen pensar:
         <em>“Uy… aquí pasa algo.”</em>
       </p>
+
       <p>
-        Tuvimos una historia breve, intensa, de locuras y aventuras propias de esa edad, pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos. 
+        Tuvimos una historia breve, intensa, de locuras y aventuras propias de esa edad, pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos.
         Eso sí: nunca llegamos a perder del todo ese hilo que nos mantenía cerca, aunque fuera en la distancia.
       </p>
 
       <p>
         Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que el destino nos reencontró de nuevo y nuestra historia continuó exactamente donde la dejamos. Igual de fuerte. Igual de nuestra.
       </p>
+
       <p>
-        Desde entonces hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que han hecho que esta historia tenga aún más sentido, amor y paciencia…sobre todo paciencia.
+        Desde entonces hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que han hecho que esta historia tenga aún más sentido, amor y paciencia… sobre todo paciencia.
       </p>
 
       <p>
-        Hoy seguimos aquí, queriéndonos y celebrando que, aunque el destino se tomara su tiempo, al final nos volvió a poner en el mismo camino.  
+        Hoy seguimos aquí, queriéndonos y celebrando que, aunque el destino se tomara su tiempo, al final nos volvió a poner en el mismo camino.
       </p>
+
       <p>
-         <strong>Porque el corazón nunca olvida donde dejó sus mejores latidos.</strong>
+        <strong>Porque el corazón nunca olvida donde dejó sus mejores latidos.</strong>
       </p>
     </div>
   </section>
@@ -984,24 +997,22 @@
   <!-- LUGAR -->
   <section class="section" id="lugar">
     <div class="rings-wrap" aria-hidden="true">
-  <svg class="rings" viewBox="0 0 220 120">
-    <!-- Anillo izquierdo -->
-    <g id="leftRing">
-      <circle class="ring-stroke ring-green" cx="95" cy="60" r="26"></circle>
-    </g>
+      <svg class="rings" viewBox="0 0 220 120">
+        <g id="leftRing">
+          <circle class="ring-stroke ring-green" cx="95" cy="60" r="26"></circle>
+        </g>
 
-    <!-- Anillo derecho -->
-    <g id="rightRing">
-      <circle class="ring-stroke ring-gold" cx="125" cy="60" r="26"></circle>
-    </g>
+        <g id="rightRing">
+          <circle class="ring-stroke ring-gold" cx="125" cy="60" r="26"></circle>
+        </g>
 
-    <!-- “nudo” central (simula el entrelazado sin dash, sin loading) -->
-    <g class="knot">
-        <circle cx="110" cy="60" r="6" fill="#efe9db"></circle>
-        <circle cx="110" cy="60" r="4.5" fill="#efe9db"></circle>
-    </g>
-  </svg>
-</div>
+        <g class="knot">
+          <circle cx="110" cy="60" r="6" fill="#efe9db"></circle>
+          <circle cx="110" cy="60" r="4.5" fill="#efe9db"></circle>
+        </g>
+      </svg>
+    </div>
+
     <h2 class="section-title">Celebración</h2>
 
     <div class="card">
@@ -1009,103 +1020,96 @@
         <figure class="place-photo">
           <img src="castillo.png" alt="Castillo de Oropesa">
         </figure>
-      <div>
+      </div>
+
       <p class="highlight">La ceremonia tendrá lugar en el Castillo de Oropesa a las 18:00 horas</p>
-      <a class="btn-maps" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo">
+
+      <a class="btn-maps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Castillo+de+Oropesa,+Toledo">
         Cómo llegar al Castillo de Oropesa
       </a>
-        
+
       <hr>
 
-      <div class="place-photos">      
+      <div class="place-photos">
         <figure class="place-photo">
           <img src="finca.png" alt="Finca Casaes">
         </figure>
       </div>
-    
+
       <p class="highlight">Posteriormente, en Finca Casaes, el cóctel dará comienzo a las 20:00</p>
-    
-      <a class="btn-maps" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo">
+
+      <a class="btn-maps" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Finca+Casaes,+Oropesa,+Toledo">
         Cómo llegar a la Finca Casaes
       </a>
     </div>
   </section>
 
   <!-- ALOJAMIENTO -->
-  <!-- ALOJAMIENTO -->
-<section class="section" id="alojamiento">
-  <h2 class="section-title">Alojamiento</h2>
+  <section class="section" id="alojamiento">
+    <h2 class="section-title">Alojamiento</h2>
 
-  <div class="card">
-    <p>
-      Para que podáis disfrutar de la celebración con total tranquilidad, os dejamos aquí algunas opciones de alojamiento disponibles en Oropesa.
-    </p>
+    <div class="card">
+      <p>
+        Para que podáis disfrutar de la celebración con total tranquilidad, os dejamos aquí algunas opciones de alojamiento disponibles en Oropesa.
+      </p>
 
-    <p>
-      Os recomendamos reservar con antelación, ya que la disponibilidad puede cambiar con el tiempo.
-    </p>
+      <p>
+        Os recomendamos reservar con antelación, ya que la disponibilidad puede cambiar con el tiempo.
+      </p>
 
-    <div class="lodging-list">
+      <div class="lodging-list">
+        <div class="lodging-item">
+          <h3>Casa Rural La Posada</h3>
+          <p>
+            Alojamiento rural con encanto en Oropesa, ideal para quienes buscan un entorno tranquilo y acogedor.
+          </p>
+          <a class="btn-maps" target="_blank" rel="noopener" href="https://www.infocasarural.com/es">
+            Ver web
+          </a>
+        </div>
 
-  <div class="lodging-item">
-    <h3>Casa Rural La Posada</h3>
-    <p>
-      Alojamiento rural con encanto en Oropesa, ideal para quienes buscan un entorno tranquilo y acogedor.
-    </p>
-    <a class="btn-maps" target="_blank" rel="noopener"
-       href="https://www.infocasarural.com/es">
-      Ver web
-    </a>
-  </div>
+        <div class="lodging-item">
+          <h3>Casa Platón Páramo</h3>
+          <p>
+            Una opción perfecta para grupos o familias que quieran disfrutar de una estancia más independiente.
+          </p>
+          <a class="btn-maps" target="_blank" rel="noopener" href="https://www.casaplatonparamo.com/">
+            Ver web
+          </a>
+        </div>
 
-  <div class="lodging-item">
-    <h3>Casa Platón Páramo</h3>
-    <p>
-      Una opción perfecta para grupos o familias que quieran disfrutar de una estancia más independiente.
-    </p>
-    <a class="btn-maps" target="_blank" rel="noopener"
-       href="https://www.casaplatonparamo.com/">
-      Ver web
-    </a>
-  </div>
+        <div class="lodging-item">
+          <h3>La Troje Oropesana</h3>
+          <p>
+            Alojamiento con estilo tradicional y ambiente cálido, muy cerca del centro de Oropesa.
+          </p>
+          <a class="btn-maps" target="_blank" rel="noopener" href="https://latrojeoropesana.top/">
+            Ver web
+          </a>
+        </div>
 
-  <div class="lodging-item">
-    <h3>La Troje Oropesana</h3>
-    <p>
-      Alojamiento con estilo tradicional y ambiente cálido, muy cerca del centro de Oropesa.
-    </p>
-    <a class="btn-maps" target="_blank" rel="noopener"
-       href="https://latrojeoropesana.top/">
-      Ver web
-    </a>
-  </div>
+        <div class="lodging-item">
+          <h3>La Hostería de Oropesa</h3>
+          <p>
+            Hotel con encanto y todas las comodidades para disfrutar del fin de semana de la boda.
+          </p>
+          <a class="btn-maps" target="_blank" rel="noopener" href="https://www.lahosteriadeoropesa.es/es">
+            Ver web
+          </a>
+        </div>
 
-  <div class="lodging-item">
-    <h3>La Hostería de Oropesa</h3>
-    <p>
-      Hotel con encanto y todas las comodidades para disfrutar del fin de semana de la boda.
-    </p>
-    <a class="btn-maps" target="_blank" rel="noopener"
-       href="https://www.lahosteriadeoropesa.es/es">
-      Ver web
-    </a>
-  </div>
-
-  <div class="lodging-item">
-    <h3>Casa Rural El Infante</h3>
-    <p>
-      Casa rural acogedora, perfecta para desconectar y disfrutar del entorno de Oropesa con total comodidad.
-    </p>
-    <a class="btn-maps" target="_blank" rel="noopener"
-       href="https://www.casaruralelinfante.es/">
-      Ver web
-    </a>
-  </div>
-
-</div>
-</section>
+        <div class="lodging-item">
+          <h3>Casa Rural El Infante</h3>
+          <p>
+            Casa rural acogedora, perfecta para desconectar y disfrutar del entorno de Oropesa con total comodidad.
+          </p>
+          <a class="btn-maps" target="_blank" rel="noopener" href="https://www.casaruralelinfante.es/">
+            Ver web
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- RSVP -->
   <section class="section" id="rsvp">
@@ -1167,16 +1171,13 @@
   </footer>
 
   <script>
-    // Forzar cargar SIEMPRE arriba
     window.history.scrollRestoration = "manual";
     window.addEventListener("load", () => window.scrollTo(0, 0));
 
-    // Contador
     function updateCircularCountdown() {
       const weddingDate = new Date("2026-09-12T00:00:00").getTime();
       const now = new Date().getTime();
       const diff = weddingDate - now;
-
       const safe = Math.max(diff, 0);
 
       const days = Math.floor(safe / (1000 * 60 * 60 * 24));
@@ -1189,12 +1190,13 @@
       document.getElementById("m").textContent = String(minutes).padStart(2, "0");
       document.getElementById("s").textContent = String(seconds).padStart(2, "0");
     }
+
     updateCircularCountdown();
     setInterval(updateCircularCountdown, 1000);
 
-    // Mostrar / ocultar campos extra
     document.getElementById("asistencia").addEventListener("change", function () {
       const extra = document.getElementById("extraFields");
+
       if (this.value === "Sí") {
         extra.classList.add("extra-visible");
       } else {
@@ -1205,7 +1207,6 @@
       }
     });
 
-    // Envío a Google Forms
     document.getElementById("rsvpForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -1225,7 +1226,6 @@
       });
     });
 
-    // Menú hamburguesa móvil
     (() => {
       const toggleBtn = document.querySelector(".nav-toggle");
       const overlay = document.querySelector(".nav-overlay");
@@ -1235,7 +1235,6 @@
 
       if (!toggleBtn || !overlay || !panel || !closeBtn) return;
 
-      // Estado inicial cerrado
       overlay.hidden = true;
       toggleBtn.setAttribute("aria-expanded", "false");
 
@@ -1264,35 +1263,17 @@
 
       links.forEach((a) => a.addEventListener("click", closeMenu));
     })();
-          (function () {
-  const params = new URLSearchParams(window.location.search);
-  const nombre = params.get("nombre");
 
-  if (nombre) {
-    // Decodifica espacios (por si vienen con %20)
-    const nombreDecodificado = decodeURIComponent(nombre);
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const nombre = params.get("nombre");
 
-    document.getElementById("invNombre").textContent = nombreDecodificado;
-    document.getElementById("invitacion-personal").style.display = "block";
-  }
-})();
+      if (nombre) {
+        const nombreDecodificado = decodeURIComponent(nombre);
+        document.getElementById("invNombre").textContent = nombreDecodificado;
+        document.getElementById("invitacion-personal").style.display = "block";
+      }
+    })();
   </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
