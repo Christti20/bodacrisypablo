@@ -945,11 +945,81 @@
     line-height: 1.3;
   }
 }
+/* ---------- LANDING INVITACIÓN ---------- */
+.landing {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.landing-box {
+  max-width: 600px;
+  width: 100%;
+}
+
+.landing-buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Botones */
+.btn-primary {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-secondary:hover {
+  background: rgba(72,103,75,0.08);
+}
   </style>
 </head>
 
 <body>
+  <section id="landing-invitacion" class="landing">
+  
+  <div class="landing-box">
+
+    <div class="inv-label">INVITACIÓN PARA</div>
+    <div class="inv-name" id="landingNombre"></div>
+
+    <div class="landing-buttons">
+      <button id="btnEntrar" class="btn-primary">Entrar</button>
+      <button id="btnRSVP" class="btn-secondary">Confirmar asistencia</button>
+    </div>
+
+  </div>
+
+</section>
+  <div id="main-content" style="display:none;">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-image">
@@ -998,15 +1068,6 @@
       </div>
     </div>
   </section>
-
-  <section class="inv-section" id="invitacion-personal" style="display:none;">
-  <div class="inv-container">
-    
-    <div class="inv-label">INVITACIÓN PARA</div>
-    
-    <div class="inv-name" id="invNombre"></div>
-
-  </div>
 </section>
   
   <!-- MENÚ -->
@@ -1277,6 +1338,42 @@
   </footer>
 
   <script>
+    // ---------- LANDING ----------
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const nombre = params.get("nombre");
+
+  const landing = document.getElementById("landing-invitacion");
+  const main = document.getElementById("main-content");
+
+  const landingNombre = document.getElementById("landingNombre");
+
+  if (nombre) {
+    const nombreDecodificado = decodeURIComponent(nombre);
+    landingNombre.textContent = nombreDecodificado;
+
+    // también lo mantenemos para la web interna
+    const inv = document.getElementById("invNombre");
+    if (inv) inv.textContent = nombreDecodificado;
+  }
+
+  // BOTÓN ENTRAR
+  document.getElementById("btnEntrar").addEventListener("click", () => {
+    landing.style.display = "none";
+    main.style.display = "block";
+    window.scrollTo(0, 0);
+  });
+
+  // BOTÓN RSVP
+  document.getElementById("btnRSVP").addEventListener("click", () => {
+    landing.style.display = "none";
+    main.style.display = "block";
+
+    setTimeout(() => {
+      document.getElementById("rsvp").scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  });
+})();
     window.history.scrollRestoration = "manual";
     window.addEventListener("load", () => window.scrollTo(0, 0));
 
@@ -1381,5 +1478,6 @@
       }
     })();
   </script>
+  </div>
 </body>
 </html>
