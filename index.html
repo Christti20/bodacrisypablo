@@ -708,6 +708,36 @@
       /* Historia en móvil: mejor alineado a la izquierda */
       #historia .card p{ text-align: left; }
     }
+    /* ---------- ALOJAMIENTO ---------- */
+.lodging-list{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.lodging-item{
+  background: #fcf8ef;
+  border: 1px solid rgba(180,154,105,0.20);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.lodging-item h3{
+  margin: 0 0 12px 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  color: var(--green2);
+}
+
+.lodging-note{
+  margin-top: 22px !important;
+  text-align: center !important;
+  font-style: italic;
+  color: var(--text-muted);
+}
   </style>
 </head>
 
@@ -916,12 +946,78 @@
   </section>
 
   <!-- ALOJAMIENTO -->
-  <section class="section" id="alojamiento">
-    <h2 class="section-title">Alojamiento</h2>
-    <div class="card">
-      <p>Pronto añadiremos recomendaciones de hoteles.</p>
-    </div>
-  </section>
+  <!-- ALOJAMIENTO -->
+<section class="section" id="alojamiento">
+  <h2 class="section-title">Alojamiento</h2>
+
+  <div class="card">
+    <p>
+      Para que podáis disfrutar de la celebración con total tranquilidad, os dejamos aquí algunas opciones de alojamiento disponibles en Oropesa.
+    </p>
+
+    <p>
+      Os recomendamos reservar con antelación, ya que la disponibilidad puede cambiar con el tiempo.
+    </p>
+
+    <div class="lodging-list">
+
+  <div class="lodging-item">
+    <h3>Casa Rural La Posada</h3>
+    <p>
+      Alojamiento rural con encanto en Oropesa, ideal para quienes buscan un entorno tranquilo y acogedor.
+    </p>
+    <a class="btn-maps" target="_blank" rel="noopener"
+       href="https://www.infocasarural.com/es">
+      Ver web
+    </a>
+  </div>
+
+  <div class="lodging-item">
+    <h3>Casa Platón Páramo</h3>
+    <p>
+      Una opción perfecta para grupos o familias que quieran disfrutar de una estancia más independiente.
+    </p>
+    <a class="btn-maps" target="_blank" rel="noopener"
+       href="https://www.casaplatonparamo.com/">
+      Ver web
+    </a>
+  </div>
+
+  <div class="lodging-item">
+    <h3>La Troje Oropesana</h3>
+    <p>
+      Alojamiento con estilo tradicional y ambiente cálido, muy cerca del centro de Oropesa.
+    </p>
+    <a class="btn-maps" target="_blank" rel="noopener"
+       href="https://latrojeoropesana.top/">
+      Ver web
+    </a>
+  </div>
+
+  <div class="lodging-item">
+    <h3>La Hostería de Oropesa</h3>
+    <p>
+      Hotel con encanto y todas las comodidades para disfrutar del fin de semana de la boda.
+    </p>
+    <a class="btn-maps" target="_blank" rel="noopener"
+       href="https://www.lahosteriadeoropesa.es/es">
+      Ver web
+    </a>
+  </div>
+
+  <div class="lodging-item">
+    <h3>Casa Rural El Infante</h3>
+    <p>
+      Casa rural acogedora, perfecta para desconectar y disfrutar del entorno de Oropesa con total comodidad.
+    </p>
+    <a class="btn-maps" target="_blank" rel="noopener"
+       href="https://www.casaruralelinfante.es/">
+      Ver web
+    </a>
+  </div>
+
+</div>
+</section>
 
   <!-- RSVP -->
   <section class="section" id="rsvp">
