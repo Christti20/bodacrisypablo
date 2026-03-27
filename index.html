@@ -104,17 +104,14 @@
 /* Texto superior */
 .hero-inv .inv-label {
   font-family: "Playfair Display", serif;
-  font-size: 1.9rem;               /* ⬅️ MÁS GRANDE */
+  font-size: 1.9rem;
   letter-spacing: 6px;
   margin: 0 0 14px 0;
   color: #ffffff;
-
-  font-weight: 600;                /* ⬅️ MÁS PRESENCIA */
-
+  font-weight: 600;
   text-transform: uppercase;
-
   text-shadow:
-    0 3px 10px rgba(0, 0, 0, 0.65), /* ⬅️ MÁS CONTRASTE */
+    0 3px 10px rgba(0, 0, 0, 0.65),
     0 0 3px rgba(0, 0, 0, 0.35);
 }
 
@@ -157,8 +154,9 @@
   }
 
   .hero-inv .inv-label {
-  font-size: 1.2rem;   /* ⬅️ antes era demasiado pequeño */
+  font-size: 1.2rem;
   letter-spacing: 3px;
+  margin-bottom: 6px;
 }
 
   .hero-inv .inv-name {
@@ -323,6 +321,24 @@
       display: block;
       margin: 0 auto;
     }
+    /* ---------- JUSTIFICAR TEXTOS ---------- */
+.card p,
+.card li,
+.lodging-item p,
+.section p {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+    @media (max-width: 520px) {
+  .card p,
+  .card li,
+  .lodging-item p,
+  .section p {
+    text-align: left;
+  }
+}
 
     /* ---------- MENÚ ---------- */
     .subnav {
