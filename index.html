@@ -128,7 +128,28 @@
     0 3px 10px rgba(0, 0, 0, 0.50),
     0 0 2px rgba(0, 0, 0, 0.22);
 }
+/* ---------- EFECTO ESCRITURA NOMBRE ---------- */
+.inv-name-write {
+  display: inline-block;
+  white-space: normal;
+  overflow: hidden;
+  max-width: 0;
+  opacity: 0;
+  animation:
+    writeReveal 2.6s steps(40, end) forwards,
+    writeFade 0.25s ease forwards;
+  animation-delay: 0.65s, 0.65s;
+}
 
+@keyframes writeReveal {
+  from { max-width: 0; }
+  to { max-width: 1000px; }
+}
+
+@keyframes writeFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}    
 /* ---------- DEGRADADO SUAVE SOBRE FOTO ---------- */
 .hero-image::after {
   content: "";
@@ -158,10 +179,22 @@
   margin-bottom: 16px;
 }
 
-  .hero-inv .inv-name {
-    font-size: 4.7rem;
-    line-height: 0.92;
-  }
+ .hero-inv .inv-name {
+  font-size: 4.7rem;
+  line-height: 0.92;
+}
+  .inv-name-write {
+  max-width: 0;
+  animation:
+    writeRevealMobile 2.4s steps(34, end) forwards,
+    writeFade 0.25s ease forwards;
+  animation-delay: 0.65s, 0.65s;
+}
+
+@keyframes writeRevealMobile {
+  from { max-width: 0; }
+  to { max-width: 95vw; }
+}
 }
     @keyframes inviteFadeUp {
       0% {
@@ -964,7 +997,7 @@
 
       <div id="invitacion-personal" class="hero-inv" style="display:none;">
         <div class="inv-label">INVITACIÓN PARA</div>
-        <div class="inv-name" id="invNombre"></div>
+        <div class="inv-name inv-name-write" id="invNombre"></div>
       </div>
 
       <div class="hero-arrow-wrap">
