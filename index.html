@@ -89,48 +89,80 @@
     }
 
     /* ---------- INVITACIÓN SOBRE HERO ---------- */
-    .hero-inv {
-      position: absolute;
-      top: 150px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 6;
-      text-align: center;
-      color: #ffffff;
-      padding: 0;
-      background: transparent;
-      border-radius: 0;
-      opacity: 0;
-      animation: inviteFadeUp 1s ease forwards;
-      animation-delay: 0.25s;
-      will-change: transform, opacity;
-      width: min(94vw, 1100px);
-      pointer-events: none;
-    }
+.hero-inv {
+  position: absolute;
+  top: 120px; /* ⬅️ ajusta aquí si quieres subir/bajar */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
 
-    .hero-inv .inv-label {
-      font-family: "Playfair Display", serif;
-      font-size: 1.45rem;
-      letter-spacing: 5px;
-      margin: 0 0 10px 0;
-      color: #f7f1e4;
-      text-transform: uppercase;
-      text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.45),
-        0 0 2px rgba(0, 0, 0, 0.25);
-    }
+  text-align: center;
+  pointer-events: none;
+  width: min(92vw, 900px);
+}
 
-    .hero-inv .inv-name {
-      font-family: "Updock", cursive;
-      font-size: 7.8rem;
-      font-weight: 400;
-      line-height: 0.9;
-      color: #fffaf0;
-      margin: 0;
-      text-shadow:
-        0 3px 10px rgba(0, 0, 0, 0.50),
-        0 0 2px rgba(0, 0, 0, 0.22);
-    }
+/* Texto superior */
+.hero-inv .inv-label {
+  font-family: "Playfair Display", serif;
+  font-size: 1.45rem;
+  letter-spacing: 5px;
+  margin: 0 0 10px 0;
+  color: #f7f1e4;
+  text-transform: uppercase;
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.45),
+    0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Nombre manuscrito */
+.hero-inv .inv-name {
+  font-family: "Updock", cursive;
+  font-size: 7.8rem;
+  font-weight: 400;
+  line-height: 0.9;
+  color: #fffaf0;
+  margin: 0;
+  text-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.50),
+    0 0 2px rgba(0, 0, 0, 0.22);
+}
+
+/* ---------- DEGRADADO SUAVE SOBRE FOTO ---------- */
+.hero-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 34%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.08) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- MÓVIL ---------- */
+@media (max-width: 520px) {
+  .hero-inv {
+    top: 90px;
+    width: 95vw;
+  }
+
+  .hero-inv .inv-label {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+
+  .hero-inv .inv-name {
+    font-size: 4.7rem;
+    line-height: 0.92;
+  }
+}
     @keyframes inviteFadeUp {
       0% {
         opacity: 0;
