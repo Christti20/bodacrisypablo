@@ -91,7 +91,7 @@
     /* ---------- INVITACIÓN SOBRE HERO ---------- */
 .hero-inv {
   position: absolute;
-  top: 120px; /* ⬅️ ajusta aquí si quieres subir/bajar */
+  top: 80px; /* ⬅️ ajusta aquí si quieres subir/bajar */
   left: 50%;
   transform: translateX(-50%);
   z-index: 6;
@@ -104,12 +104,13 @@
 /* Texto superior */
 .hero-inv .inv-label {
   font-family: "Playfair Display", serif;
-  font-size: 1.9rem;
+  font-size: 2.2rem;              /* ⬅️ un poco más grande */
   letter-spacing: 6px;
-  margin: 0 0 14px 0;
+  margin: 0 0 28px 0;             /* ⬅️ MÁS separación con el nombre */
   color: #ffffff;
   font-weight: 600;
   text-transform: uppercase;
+
   text-shadow:
     0 3px 10px rgba(0, 0, 0, 0.65),
     0 0 3px rgba(0, 0, 0, 0.35);
@@ -149,14 +150,12 @@
 /* ---------- MÓVIL ---------- */
 @media (max-width: 520px) {
   .hero-inv {
-    top: 90px;
-    width: 95vw;
-  }
+  top: 70px;
+}
 
-  .hero-inv .inv-label {
-  font-size: 1.2rem;
-  letter-spacing: 3px;
-  margin-bottom: 6px;
+.hero-inv .inv-label {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
 }
 
   .hero-inv .inv-name {
