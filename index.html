@@ -767,7 +767,7 @@
       color: #7b8a78;
       text-align: center;
     }
-    /* ---------- ICONO ALOJAMIENTO ---------- */
+    /* ---------- ICONO CASA ALOJAMIENTO ---------- */
 .lodging-icon-wrap {
   display: grid;
   place-items: center;
@@ -775,40 +775,29 @@
 }
 
 .lodging-icon {
-  width: 120px;
-  max-width: 34vw;
+  width: 80px;
   height: auto;
-  overflow: visible;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
 }
 
-.lodging-stroke {
+.lodging-green {
   fill: none;
-  stroke-width: 6;
+  stroke: rgba(72, 103, 75, 0.75);
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.lodging-green {
-  stroke: rgba(72, 103, 75, 0.70);
-}
-
 .lodging-gold {
-  stroke: rgba(180, 154, 105, 0.82);
+  fill: none;
+  stroke: rgba(180, 154, 105, 0.85);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-.lodging-fill-green {
-  fill: rgba(72, 103, 75, 0.70);
-}
-
-.lodging-fill-gold {
-  fill: rgba(180, 154, 105, 0.82);
-}
-
-@media (max-width: 520px) {
-  .lodging-icon {
-    width: 100px;
-  }
+.lodging-gold-fill {
+  fill: rgba(180, 154, 105, 0.85);
 }
     /* ---------- ALOJAMIENTO ---------- */
     .lodging-list {
@@ -1167,15 +1156,15 @@
   <!-- ALOJAMIENTO -->
   <section class="section" id="alojamiento">
     <div class="lodging-icon-wrap" aria-hidden="true">
-  <svg class="lodging-icon" viewBox="0 0 220 120">
-    <g>
-      <path class="lodging-stroke lodging-green" d="M52 74 V56 c0-10 8-18 18-18 h16 c10 0 18 8 18 18 v18" />
-      <path class="lodging-stroke lodging-gold" d="M116 74 V56 c0-10 8-18 18-18 h16 c10 0 18 8 18 18 v18" />
-      <path class="lodging-stroke lodging-green" d="M42 74 H178" />
-      <path class="lodging-stroke lodging-gold" d="M58 88 H162" />
-      <circle class="lodging-fill-gold" cx="84" cy="56" r="4.5"></circle>
-      <circle class="lodging-fill-green" cx="148" cy="56" r="4.5"></circle>
-    </g>
+  <svg class="lodging-icon" viewBox="0 0 120 120">
+    <!-- Tejado -->
+    <path class="lodging-gold" d="M30 55 L60 30 L90 55" />
+
+    <!-- Cuerpo casa -->
+    <rect class="lodging-green" x="38" y="55" width="44" height="32" rx="6" />
+
+    <!-- Puerta -->
+    <rect class="lodging-gold-fill" x="55" y="68" width="10" height="19" rx="2" />
   </svg>
 </div>
     <h2 class="section-title">Alojamiento</h2>
