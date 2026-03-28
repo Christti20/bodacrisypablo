@@ -846,7 +846,47 @@
       font-style: italic;
       color: var(--text-muted);
     }
+    /* ---------- ICONO RSVP ---------- */
+.rsvp-icon-wrap {
+  display: grid;
+  place-items: center;
+  margin: 10px 0 14px;
+}
 
+.rsvp-icon {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+  animation: rsvpFloat 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.rsvp-green {
+  fill: none;
+  stroke: rgba(72, 103, 75, 0.75);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rsvp-gold {
+  fill: none;
+  stroke: rgba(180, 154, 105, 0.85);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@keyframes rsvpFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-icon {
+    animation: none !important;
+  }
+}
     /* ---------- RESPONSIVE ---------- */
     @media (min-width: 900px) {
       .hero-image {
@@ -1246,6 +1286,18 @@
 
   <!-- RSVP -->
   <section class="section" id="rsvp">
+    <div class="rsvp-icon-wrap" aria-hidden="true">
+  <svg class="rsvp-icon" viewBox="0 0 120 120">
+    <!-- Sobre -->
+    <rect class="rsvp-green" x="30" y="45" width="60" height="40" rx="6"/>
+    
+    <!-- Solapa -->
+    <path class="rsvp-gold" d="M30 45 L60 68 L90 45"/>
+    
+    <!-- Línea central -->
+    <path class="rsvp-gold" d="M30 85 L55 65 M90 85 L65 65"/>
+  </svg>
+</div>
     <h2 class="section-title">Confirmación de asistencia</h2>
 
     <div class="card">
