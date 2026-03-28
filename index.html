@@ -767,7 +767,49 @@
       color: #7b8a78;
       text-align: center;
     }
+    /* ---------- ICONO ALOJAMIENTO ---------- */
+.lodging-icon-wrap {
+  display: grid;
+  place-items: center;
+  margin: 10px 0 14px;
+}
 
+.lodging-icon {
+  width: 120px;
+  max-width: 34vw;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08));
+}
+
+.lodging-stroke {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lodging-green {
+  stroke: rgba(72, 103, 75, 0.70);
+}
+
+.lodging-gold {
+  stroke: rgba(180, 154, 105, 0.82);
+}
+
+.lodging-fill-green {
+  fill: rgba(72, 103, 75, 0.70);
+}
+
+.lodging-fill-gold {
+  fill: rgba(180, 154, 105, 0.82);
+}
+
+@media (max-width: 520px) {
+  .lodging-icon {
+    width: 100px;
+  }
+}
     /* ---------- ALOJAMIENTO ---------- */
     .lodging-list {
       display: flex;
@@ -1050,16 +1092,16 @@
 
       <p>
         Tuvimos una historia breve, intensa, de locuras y aventuras propias de esa edad, pero la vida —esa guionista loca— decidió que aquel no era nuestro momento y nos llevó por caminos distintos.
-        Eso sí: nunca llegamos a perder del todo ese hilo que nos mantenía cerca, aunque fuera en la distancia.
+        <br>Eso sí: nunca llegamos a perder del todo ese hilo que nos mantenía cerca, aunque fuera en la distancia.
       </p>
 
       <p>
         Pasaron <strong>16 años</strong> (sí, sí, dieciséis… de aquella época solo queda Saber y Ganar), hasta que un día de lluvia nos reencontramos frente a dos cafés. Ninguno de los dos quería que terminara aquella tarde.
-        <br>Y así fue como nuestra historia continuó exactamente donde la dejamos. Igual de fuerte. Igual de nuestra.
+        <br>Y así fue como nuestra historia continuó exactamente donde la dejamos. <br>Igual de fuerte. Igual de nuestra.
       </p>
 
       <p>
-        Desde entonces hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que han hecho que esta historia tenga aún más sentido, amor y paciencia… sobre todo paciencia.
+        Desde entonces, hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que hacen que esta historia tenga aún más sentido, amor y paciencia… sobre todo paciencia.
       </p>
 
       <p>
@@ -1124,6 +1166,18 @@
 
   <!-- ALOJAMIENTO -->
   <section class="section" id="alojamiento">
+    <div class="lodging-icon-wrap" aria-hidden="true">
+  <svg class="lodging-icon" viewBox="0 0 220 120">
+    <g>
+      <path class="lodging-stroke lodging-green" d="M52 74 V56 c0-10 8-18 18-18 h16 c10 0 18 8 18 18 v18" />
+      <path class="lodging-stroke lodging-gold" d="M116 74 V56 c0-10 8-18 18-18 h16 c10 0 18 8 18 18 v18" />
+      <path class="lodging-stroke lodging-green" d="M42 74 H178" />
+      <path class="lodging-stroke lodging-gold" d="M58 88 H162" />
+      <circle class="lodging-fill-gold" cx="84" cy="56" r="4.5"></circle>
+      <circle class="lodging-fill-green" cx="148" cy="56" r="4.5"></circle>
+    </g>
+  </svg>
+</div>
     <h2 class="section-title">Alojamiento</h2>
 
     <div class="card">
