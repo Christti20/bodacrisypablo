@@ -767,7 +767,7 @@
       color: #7b8a78;
       text-align: center;
     }
-    /* ---------- ICONO CASA ALOJAMIENTO ---------- */
+   /* ---------- ICONO CASA ALOJAMIENTO ---------- */
 .lodging-icon-wrap {
   display: grid;
   place-items: center;
@@ -778,12 +778,14 @@
   width: 80px;
   height: auto;
   filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+  animation: lodgingFloat 2.8s ease-in-out infinite;
+  transform-origin: center;
 }
 
 .lodging-green {
   fill: none;
   stroke: rgba(72, 103, 75, 0.75);
-  stroke-width: 3;
+  stroke-width: 4.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -791,13 +793,28 @@
 .lodging-gold {
   fill: none;
   stroke: rgba(180, 154, 105, 0.85);
-  stroke-width: 3;
+  stroke-width: 4.5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .lodging-gold-fill {
   fill: rgba(180, 154, 105, 0.85);
+}
+
+@keyframes lodgingFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lodging-icon {
+    animation: none !important;
+  }
 }
     /* ---------- ALOJAMIENTO ---------- */
     .lodging-list {
@@ -1090,7 +1107,7 @@
       </p>
 
       <p>
-        Desde entonces, hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que hacen que esta historia tenga aún más sentido, amor y paciencia… sobre todo paciencia.
+        Desde entonces hemos ido construyendo nuestra vida juntos, sin prisas, sin miedos, y esta vez con dos coprotagonistas maravillosas: Natalia y Elena, que hacen que esta historia tenga aún más sentido, amor y paciencia… sobre todo paciencia.
       </p>
 
       <p>
@@ -1157,14 +1174,9 @@
   <section class="section" id="alojamiento">
     <div class="lodging-icon-wrap" aria-hidden="true">
   <svg class="lodging-icon" viewBox="0 0 120 120">
-    <!-- Tejado -->
     <path class="lodging-gold" d="M30 55 L60 30 L90 55" />
-
-    <!-- Cuerpo casa -->
     <rect class="lodging-green" x="38" y="55" width="44" height="32" rx="6" />
-
-    <!-- Puerta -->
-    <rect class="lodging-gold-fill" x="55" y="68" width="10" height="19" rx="2" />
+    <rect class="lodging-gold-fill" x="54" y="66" width="12" height="21" rx="2.5" />
   </svg>
 </div>
     <h2 class="section-title">Alojamiento</h2>
