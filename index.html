@@ -58,6 +58,22 @@
       display: block;
     }
 
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      width: 100%;
+      height: 34%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.18) 0%,
+        rgba(0, 0, 0, 0.08) 45%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .hero-arrow-wrap {
       position: absolute;
       bottom: 20px;
@@ -89,105 +105,52 @@
     }
 
     /* ---------- INVITACIÓN SOBRE HERO ---------- */
-.hero-inv {
-  position: absolute;
-  top: 80px; /* ⬅️ ajusta aquí si quieres subir/bajar */
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 6;
+    .hero-inv {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 6;
+      width: min(92vw, 900px);
+      text-align: center;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeUp 1.2s ease forwards;
+    }
 
-  text-align: center;
-  pointer-events: none;
-  width: min(92vw, 900px);
-}
+    .hero-inv .inv-label {
+      font-family: "Playfair Display", serif;
+      font-size: 2.1rem;
+      letter-spacing: 6px;
+      margin: 0 0 28px 0;
+      color: rgba(255, 255, 255, 0.98);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.70),
+        0 0 3px rgba(0, 0, 0, 0.35);
+    }
 
-/* Texto superior */
-.hero-inv .inv-label {
-  font-family: "Playfair Display", serif;
-  font-size: 2.2rem;              /* ⬅️ un poco más grande */
-  letter-spacing: 6px;
-  margin: 0 0 28px 0;             /* ⬅️ MÁS separación con el nombre */
-  color: rgba(255,255,255,0.95);
-  font-weight: 600;
-  text-transform: uppercase;
+    .hero-inv .inv-name {
+      font-family: "Updock", cursive;
+      font-size: 7.8rem;
+      font-weight: 400;
+      line-height: 0.9;
+      color: #fffaf0;
+      margin: 0;
+      text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.50),
+        0 0 2px rgba(0, 0, 0, 0.22);
+    }
 
-  text-shadow:
-    0 3px 12px rgba(0,0,0,0.65),
-    0 0 2px rgba(0,0,0,0.35);
-}
-
-/* Nombre manuscrito */
-.hero-inv .inv-name {
-  font-family: "Updock", cursive;
-  font-size: 7.8rem;
-  font-weight: 400;
-  line-height: 0.9;
-  color: #fffaf0;
-  margin: 0;
-  text-shadow:
-    0 3px 10px rgba(0, 0, 0, 0.50),
-    0 0 2px rgba(0, 0, 0, 0.22);
-}
-
-.hero-inv {
-  animation: fadeUp 1.2s ease forwards;
-  opacity: 0;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-}
-  
-/* ---------- DEGRADADO SUAVE SOBRE FOTO ---------- */
-.hero-image::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 34%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.18) 0%,
-    rgba(0, 0, 0, 0.08) 45%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ---------- MÓVIL ---------- */
-@media (max-width: 520px) {
-  .hero-inv {
-  top: 70px;
-}
-
-.hero-inv .inv-label {
-  font-size: 1.3rem;   /* 👈 tamaño ideal */
-  letter-spacing: 3px;
-  margin-bottom: 14px;
-  font-weight: 600;
-}
- .hero-inv .inv-name {
-  font-size: 4.7rem;
-  line-height: 0.92;
-}
-}
-    @keyframes inviteFadeUp {
-      0% {
+    @keyframes fadeUp {
+      from {
         opacity: 0;
-        transform: translateX(-50%) translateY(-12px);
+        transform: translate(-50%, 20px);
       }
-      100% {
+      to {
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+        transform: translate(-50%, 0);
       }
     }
 
@@ -337,24 +300,17 @@
       display: block;
       margin: 0 auto;
     }
+
     /* ---------- JUSTIFICAR TEXTOS ---------- */
-.card p,
-.card li,
-.lodging-item p,
-.section p {
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-}
-    @media (max-width: 520px) {
-  .card p,
-  .card li,
-  .lodging-item p,
-  .section p {
-    text-align: left;
-  }
-}
+    .card p,
+    .card li,
+    .lodging-item p,
+    .section p {
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+    }
 
     /* ---------- MENÚ ---------- */
     .subnav {
@@ -625,17 +581,6 @@
       50%, 100% { opacity: .72; }
     }
 
-    /* Historia */
-    #historia .card p {
-      text-align: justify;
-      text-justify: inter-word;
-    }
-
-    #historia .card {
-      hyphens: auto;
-      -webkit-hyphens: auto;
-    }
-
     /* ---------- ANILLOS ---------- */
     .rings-wrap {
       display: grid;
@@ -898,19 +843,23 @@
       }
 
       .hero-inv {
-        top: 120px;
-        width: min(96vw, 500px);
-        padding: 0;
+        top: 70px;
+        width: 95vw;
       }
 
       .hero-inv .inv-label {
-        font-size: 0.95rem;
+        font-size: 1.35rem;
         letter-spacing: 3px;
-        margin-bottom: 6px;
+        margin: 0 0 18px 0;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.98);
+        text-shadow:
+          0 3px 12px rgba(0, 0, 0, 0.70),
+          0 0 3px rgba(0, 0, 0, 0.35);
       }
 
       .hero-inv .inv-name {
-        font-size: 4.7rem;
+        font-size: 4.9rem;
         line-height: 0.92;
       }
 
@@ -946,7 +895,12 @@
 
       .contador-rest > div { min-width: 48px; }
 
-      #historia .card p { text-align: left; }
+      .card p,
+      .card li,
+      .lodging-item p,
+      .section p {
+        text-align: left;
+      }
 
       .place-photo img {
         height: 220px;
