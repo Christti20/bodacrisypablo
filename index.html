@@ -1291,15 +1291,15 @@
       <form
   id="rsvpForm"
   class="rsvp-form"
-  action="https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse"
+  action="https://script.google.com/macros/s/AKfycbxs6Cy4Tti470HPCbuuMGqRlYxLhsJpAEXmH5jgwsYLdm5E2eC0szeDHgsCy0dtMVMrWg/exec"
   method="POST"
   target="hidden_iframe"
 >
   <label>Nombre y apellidos *</label>
-  <input type="text" id="nombre" name="entry.1644133493" required>
+  <input type="text" id="nombre" name="nombre" required>
 
   <label>¿Asistirás?</label>
-  <select id="asistencia" name="entry.371748636" required>
+  <select id="asistencia" name="asistencia" required>
     <option value="" disabled selected>Selecciona una opción</option>
     <option value="Sí">Sí</option>
     <option value="No">No</option>
@@ -1310,7 +1310,7 @@
     <div class="extra-row">
       <div>
         <label>Adultos</label>
-        <select id="adultos" name="entry.1964685042">
+        <select id="adultos" name="adultos">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -1321,7 +1321,7 @@
 
       <div>
         <label>Niños</label>
-        <select id="ninos" name="entry.1609486861">
+        <select id="ninos" name="ninos">
           <option value="0">0</option>
           <option value="1">1</option>
           <option value="2">2</option>
@@ -1332,13 +1332,13 @@
     </div>
 
     <label>Alergias y/o intolerancias</label>
-    <textarea id="comentarios" name="entry.320730572"></textarea>
+    <textarea id="comentarios" name="comentarios"></textarea>
   </div>
 
   <button type="submit" class="btn">Enviar</button>
 </form>
 
-<iframe name="hidden_iframe" style="display:none;"></iframe>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 <p id="rsvp-ok">¡Gracias! Hemos recibido tu respuesta ❤️</p>
   </section>
 
@@ -1383,58 +1383,28 @@
     }
   });
 
-  document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  document.getElementById("rsvpForm").addEventListener("submit", function () {
+  const btn = this.querySelector('button[type="submit"]');
+  const asistencia = document.getElementById("asistencia").value;
+  const vaAsistir = asistencia === "Sí";
 
-    const btn = this.querySelector('button[type="submit"]');
-    const asistencia = document.getElementById("asistencia").value;
-    const vaAsistir = asistencia === "Sí";
+  if (!vaAsistir) {
+    document.getElementById("adultos").value = "0";
+    document.getElementById("ninos").value = "0";
+    document.getElementById("comentarios").value = "";
+  }
 
-    const payload = {
-      nombre: document.getElementById("nombre").value.trim(),
-      asistencia: asistencia,
-      adultos: vaAsistir ? document.getElementById("adultos").value : "0",
-      ninos: vaAsistir ? document.getElementById("ninos").value : "0",
-      comentarios: vaAsistir ? document.getElementById("comentarios").value.trim() : ""
-    };
+  btn.disabled = true;
+  btn.textContent = "Enviando...";
 
-    btn.disabled = true;
-    btn.textContent = "Enviando...";
-
-    try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbxs6Cy4Tti470HPCbuuMGqRlYxLhsJpAEXmH5jgwsYLdm5E2eC0szeDHgsCy0dtMVMrWg/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const text = await res.text();
-      let result = {};
-
-      try {
-        result = JSON.parse(text);
-      } catch {
-        throw new Error("La respuesta del servidor no es JSON válido");
-      }
-
-      if (result.ok) {
-        document.getElementById("rsvpForm").reset();
-        document.getElementById("extraFields").classList.remove("extra-visible");
-        document.getElementById("rsvp-ok").style.display = "block";
-      } else {
-        alert("No se pudo enviar la respuesta.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Ha habido un problema al enviar la respuesta.");
-    } finally {
-      btn.disabled = false;
-      btn.textContent = "Enviar";
-    }
-  });
-
+  setTimeout(() => {
+    document.getElementById("rsvpForm").reset();
+    document.getElementById("extraFields").classList.remove("extra-visible");
+    document.getElementById("rsvp-ok").style.display = "block";
+    btn.disabled = false;
+    btn.textContent = "Enviar";
+  }, 1200);
+});
   (() => {
     const toggleBtn = document.querySelector(".nav-toggle");
     const overlay = document.querySelector(".nav-overlay");
