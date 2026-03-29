@@ -1288,52 +1288,58 @@
     <div class="card">
       <p>Nos hará mucha ilusión compartir este día con vosotros.</p>
 
-      <form id="rsvpForm" class="rsvp-form">
-        <label>Nombre y apellidos *</label>
-        <input type="text" id="nombre" required>
+      <form
+  id="rsvpForm"
+  class="rsvp-form"
+  action="https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse"
+  method="POST"
+  target="hidden_iframe"
+>
+  <label>Nombre y apellidos *</label>
+  <input type="text" id="nombre" name="entry.1644133493" required>
 
-        <label>¿Asistirás?</label>
-        <select id="asistencia" required>
-          <option value="" disabled selected>Selecciona una opción</option>
-          <option value="Sí">Sí</option>
-          <option value="No">No</option>
-          <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+  <label>¿Asistirás?</label>
+  <select id="asistencia" name="entry.371748636" required>
+    <option value="" disabled selected>Selecciona una opción</option>
+    <option value="Sí">Sí</option>
+    <option value="No">No</option>
+    <option value="Aún no puedo confirmar">Aún no puedo confirmar</option>
+  </select>
+
+  <div id="extraFields">
+    <div class="extra-row">
+      <div>
+        <label>Adultos</label>
+        <select id="adultos" name="entry.1964685042">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
         </select>
+      </div>
 
-        <div id="extraFields">
-          <div class="extra-row">
-            <div>
-              <label>Adultos</label>
-              <select id="adultos">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-
-            <div>
-              <label>Niños</label>
-              <select id="ninos">
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-            </div>
-          </div>
-
-          <label>Alergias y/o intolerancias</label>
-          <textarea id="comentarios"></textarea>
-        </div>
-
-        <button type="submit" class="btn">Enviar</button>
-      </form>
-
-      <p id="rsvp-ok">¡Gracias! Hemos recibido tu respuesta ❤️</p>
+      <div>
+        <label>Niños</label>
+        <select id="ninos" name="entry.1609486861">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
     </div>
+
+    <label>Alergias y/o intolerancias</label>
+    <textarea id="comentarios" name="entry.320730572"></textarea>
+  </div>
+
+  <button type="submit" class="btn">Enviar</button>
+</form>
+
+<iframe name="hidden_iframe" style="display:none;"></iframe>
+<p id="rsvp-ok">¡Gracias! Hemos recibido tu respuesta ❤️</p>
   </section>
 
   <footer>
@@ -1377,24 +1383,13 @@
       }
     });
 
-    document.getElementById("rsvpForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const url = "https://docs.google.com/forms/d/e/1FAIpQLSe0-6q3xCxByTHOmUOIdRf885NQKDzpMlXGeurzkoejvwv-ag/formResponse";
-      const data = new FormData();
-
-      data.append("entry.1644133493", document.getElementById("nombre").value);
-      data.append("entry.371748636", document.getElementById("asistencia").value);
-      data.append("entry.1964685042", document.getElementById("adultos").value);
-      data.append("entry.1609486861", document.getElementById("ninos").value);
-      data.append("entry.320730572", document.getElementById("comentarios").value);
-
-      fetch(url, { method: "POST", mode: "no-cors", body: data }).then(() => {
-        document.getElementById("rsvpForm").reset();
-        document.getElementById("extraFields").classList.remove("extra-visible");
-        document.getElementById("rsvp-ok").style.display = "block";
-      });
-    });
+    document.getElementById("rsvpForm").addEventListener("submit", function () {
+  setTimeout(() => {
+    document.getElementById("rsvpForm").reset();
+    document.getElementById("extraFields").classList.remove("extra-visible");
+    document.getElementById("rsvp-ok").style.display = "block";
+  }, 1000);
+});
 
     (() => {
       const toggleBtn = document.querySelector(".nav-toggle");
