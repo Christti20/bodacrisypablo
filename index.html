@@ -1346,99 +1346,142 @@
     Cris & Pablo · 12 · Septiembre · 2026
   </footer>
 
-  <script>
-    window.history.scrollRestoration = "manual";
-    window.addEventListener("load", () => window.scrollTo(0, 0));
+ <script>
+  window.history.scrollRestoration = "manual";
+  window.addEventListener("load", () => window.scrollTo(0, 0));
 
-    function updateCircularCountdown() {
-      const weddingDate = new Date("2026-09-12T00:00:00").getTime();
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
-      const safe = Math.max(diff, 0);
+  function updateCircularCountdown() {
+    const weddingDate = new Date("2026-09-12T00:00:00").getTime();
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    const safe = Math.max(diff, 0);
 
-      const days = Math.floor(safe / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((safe % (1000 * 60)) / 1000);
+    const days = Math.floor(safe / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((safe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((safe % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((safe % (1000 * 60)) / 1000);
 
-      document.getElementById("d").textContent = String(days);
-      document.getElementById("h").textContent = String(hours).padStart(2, "0");
-      document.getElementById("m").textContent = String(minutes).padStart(2, "0");
-      document.getElementById("s").textContent = String(seconds).padStart(2, "0");
+    document.getElementById("d").textContent = String(days);
+    document.getElementById("h").textContent = String(hours).padStart(2, "0");
+    document.getElementById("m").textContent = String(minutes).padStart(2, "0");
+    document.getElementById("s").textContent = String(seconds).padStart(2, "0");
+  }
+
+  updateCircularCountdown();
+  setInterval(updateCircularCountdown, 1000);
+
+  document.getElementById("asistencia").addEventListener("change", function () {
+    const extra = document.getElementById("extraFields");
+
+    if (this.value === "Sí") {
+      extra.classList.add("extra-visible");
+    } else {
+      extra.classList.remove("extra-visible");
+      document.getElementById("adultos").value = "0";
+      document.getElementById("ninos").value = "0";
+      document.getElementById("comentarios").value = "";
     }
+  });
 
-    updateCircularCountdown();
-    setInterval(updateCircularCountdown, 1000);
+  document.getElementById("rsvpForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-    document.getElementById("asistencia").addEventListener("change", function () {
-      const extra = document.getElementById("extraFields");
+    const btn = this.querySelector('button[type="submit"]');
+    const asistencia = document.getElementById("asistencia").value;
+    const vaAsistir = asistencia === "Sí";
 
-      if (this.value === "Sí") {
-        extra.classList.add("extra-visible");
-      } else {
-        extra.classList.remove("extra-visible");
-        document.getElementById("adultos").value = "0";
-        document.getElementById("ninos").value = "0";
-        document.getElementById("comentarios").value = "";
+    const payload = {
+      nombre: document.getElementById("nombre").value.trim(),
+      asistencia: asistencia,
+      adultos: vaAsistir ? document.getElementById("adultos").value : "0",
+      ninos: vaAsistir ? document.getElementById("ninos").value : "0",
+      comentarios: vaAsistir ? document.getElementById("comentarios").value.trim() : ""
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Enviando...";
+
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbxs6Cy4Tti470HPCbuuMGqRlYxLhsJpAEXmH5jgwsYLdm5E2eC0szeDHgsCy0dtMVMrWg/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const text = await res.text();
+      let result = {};
+
+      try {
+        result = JSON.parse(text);
+      } catch {
+        throw new Error("La respuesta del servidor no es JSON válido");
       }
-    });
 
-    document.getElementById("rsvpForm").addEventListener("submit", function () {
-  setTimeout(() => {
-    document.getElementById("rsvpForm").reset();
-    document.getElementById("extraFields").classList.remove("extra-visible");
-    document.getElementById("rsvp-ok").style.display = "block";
-  }, 1000);
-});
+      if (result.ok) {
+        document.getElementById("rsvpForm").reset();
+        document.getElementById("extraFields").classList.remove("extra-visible");
+        document.getElementById("rsvp-ok").style.display = "block";
+      } else {
+        alert("No se pudo enviar la respuesta.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Ha habido un problema al enviar la respuesta.");
+    } finally {
+      btn.disabled = false;
+      btn.textContent = "Enviar";
+    }
+  });
 
-    (() => {
-      const toggleBtn = document.querySelector(".nav-toggle");
-      const overlay = document.querySelector(".nav-overlay");
-      const panel = document.querySelector(".nav-panel");
-      const closeBtn = document.querySelector(".nav-close");
-      const links = document.querySelectorAll(".nav-panel-links a");
+  (() => {
+    const toggleBtn = document.querySelector(".nav-toggle");
+    const overlay = document.querySelector(".nav-overlay");
+    const panel = document.querySelector(".nav-panel");
+    const closeBtn = document.querySelector(".nav-close");
+    const links = document.querySelectorAll(".nav-panel-links a");
 
-      if (!toggleBtn || !overlay || !panel || !closeBtn) return;
+    if (!toggleBtn || !overlay || !panel || !closeBtn) return;
 
+    overlay.hidden = true;
+    toggleBtn.setAttribute("aria-expanded", "false");
+
+    const openMenu = () => {
+      overlay.hidden = false;
+      toggleBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeMenu = () => {
       overlay.hidden = true;
       toggleBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    };
 
-      const openMenu = () => {
-        overlay.hidden = false;
-        toggleBtn.setAttribute("aria-expanded", "true");
-        document.body.style.overflow = "hidden";
-      };
+    toggleBtn.addEventListener("click", openMenu);
+    closeBtn.addEventListener("click", closeMenu);
 
-      const closeMenu = () => {
-        overlay.hidden = true;
-        toggleBtn.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      };
+    overlay.addEventListener("click", (e) => {
+      if (!panel.contains(e.target)) closeMenu();
+    });
 
-      toggleBtn.addEventListener("click", openMenu);
-      closeBtn.addEventListener("click", closeMenu);
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.hidden) closeMenu();
+    });
 
-      overlay.addEventListener("click", (e) => {
-        if (!panel.contains(e.target)) closeMenu();
-      });
+    links.forEach((a) => a.addEventListener("click", closeMenu));
+  })();
 
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && !overlay.hidden) closeMenu();
-      });
+  (() => {
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
 
-      links.forEach((a) => a.addEventListener("click", closeMenu));
-    })();
-
-    (() => {
-      const params = new URLSearchParams(window.location.search);
-      const nombre = params.get("nombre");
-
-      if (nombre) {
-        const nombreDecodificado = decodeURIComponent(nombre);
-        document.getElementById("invNombre").textContent = nombreDecodificado;
-        document.getElementById("invitacion-personal").style.display = "block";
-      }
-    })();
-  </script>
+    if (nombre) {
+      document.getElementById("invNombre").textContent = nombre;
+      document.getElementById("invitacion-personal").style.display = "block";
+    }
+  })();
+</script>
 </body>
 </html>
